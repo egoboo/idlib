@@ -1,0 +1,75 @@
+# CMake/Doxygen.
+CMakeDoxyfile\.in
+CMakeDoxygenDefaults\.cmake
+
+# CMake/CTest/Google test.
+CTestTestfile\.cmake
+gmock.pc
+gmock_main.pc
+gtest.pc
+gtest_main.pc
+DartConfiguration.tcl
+
+# CMake/CPack.
+cmake_install.cmake
+install_manifest.txt
+CPackConfig\.cmake
+CPackSourceConfig\.cmake
+_CPack_Packages
+
+# GNU Make.
+Makefile
+
+# CMake/Visual Studio.
+**/x64/Debug
+**/x64/MinSizeRel
+**/x64/Release
+**/x64/RelWithDebInfo
+**/Win32/Debug
+**/Win32/MinSizeRel
+**/Win32/Release
+**/Win32/RelWithDebInfo
+*\.dir
+
+# Visual Studio 2017.
+\.vs
+*.ilk
+*.pdb
+*.lib
+*.sdf
+*.opensdf
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.VC.db
+*.VC.VC.opendb
+/intermediate
+/product
+
+# Code::Blocks.
+*.layout
+
+# OS X.
+.DS_Store
+
+# Xcode.
+xcuserdata
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# General.
+*.bak
+*.o
+*.dll
+*.exe
+
+# Doxygen.
+/doc/doxygen
+
+# Generated files.
+gen
+
+# CMake.
+CMakeFiles
+CMakeCache.txt

@@ -1,0 +1,73 @@
+sudo: required
+dist: trusty
+
+language: cpp
+
+# Compiler selection
+compiler:
+    - clang
+    - gcc
+
+addons:
+    apt:
+        sources:
+            # add PPAs with more up-to-date toolchains
+            - ubuntu-toolchain-r-test
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.8 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+        packages:
+            # GCC 6
+            - gcc-6
+            - g++-6
+            # CLANG 3.8
+            - clang-3.8
+            - libc++-dev
+            # PhysFS
+            - libphysfs-dev
+            # SDL 2
+            - libsdl2-dev
+            - libsdl2-image-dev
+            - libsdl2-mixer-dev
+            - libsdl2-ttf-dev
+            # CMake (outdated)
+            - cmake
+
+before_install:
+- if [ "$CC" = "clang" ]; then 
+      export CC="clang-3.8" CXX="clang++-3.8" CXXFLAGS="-ftemplate-depth=1024";
+  else
+      export CC="gcc-6" CXX="g++-6";
+  fi
+  
+install:
+- DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+- mkdir -p "${DEPS_DIR}" && cd "${DEPS_DIR}"
+# Download CMake 3.9.3 binary.
+- |
+  CMAKE_BIN_URL="https://cmake.org/files/v3.9/cmake-3.9.3-Linux-x86_64.tar.gz"
+  mkdir -p cmake-bin
+  cd cmake-bin
+  wget --no-check-certificate -O - -q "${CMAKE_BIN_URL}" | tar xsz --strip-components=1 -f -
+  cd ..
+  export PATH="${DEPS_DIR}/cmake-bin/bin:${PATH}"
+  
+before_script:  
+- export CC=gcc-6
+- export CXX=g++-6
+- gcc -v && g++ -v && cmake --version
+- cd "${TRAVIS_BUILD_DIR}"
+- cmake CMakeLists.txt
+
+
+script:
+- cd "${TRAVIS_BUILD_DIR}"
+- make
+
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/bf24f1666021dc4df89a
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start:   false   # default: false
