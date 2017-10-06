@@ -4,6 +4,12 @@ clone_depth: 1
 # Build worker image (VM template)
 image: Visual Studio 2017
 
+# Build branch "master" and "develop" only.
+branches:
+  only:
+    - master
+    - develop
+
 platform:
     - Win32
     - x64

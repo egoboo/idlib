@@ -14,9 +14,14 @@ set_project_default_properties()
 include_directories(${PROJECT_SOURCE_DIR}/src)
 # Determine source files and compile them as C++.
 file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
-#set_source_file_properties(${SOURCE_FILES} PROPERTIES LANGUAGE CXX)
+# Determine header files.
+file(GLOB_RECURSE HEADER_FILES ${PROJECT_SOURCE_DIR}/src/*.hpp)
+
 # Define compilation output.
-add_library(idlib-library STATIC ${SOURCE_FILES})
+add_library(idlib-library STATIC ${SOURCE_FILES} ${HEADER_FILES})
+
+target_include_directories(idlib-library PRIVATE "${PROJECT_SOURCE_DIR}/src")
+target_include_directories(idlib-library INTERFACE "${PROJECT_SOURCE_DIR}/src")
 
 # == Doxygen ==================================================================================== #
 
