@@ -26,6 +26,7 @@
 
 namespace id {
 
+/// @ingroup math
 /// @brief Representation of \f$\mu\f$ (mu).
 /// @detail The greek letter \f$\mu\f$ (mu) is the name for the interpolation parameter in interpolation.
 /// @detail Objects of type @a mu are caches and contracts at the same time:
@@ -39,26 +40,26 @@ template <typename T>
 class mu<T, std::enable_if_t<std::is_floating_point<T>::value>>
 {
 private:
-    T m_oneMinusValue;
-    T m_value;
+    T m_one_minus_mu;
+    T m_mu;
 public:
     /// @brief Construct this mu.
     /// @param mu the float value this mu represents
     /// @throw out_of_bounds_error @a mu is smaller than @a 0 or greater than @a 1
-    mu(T value) :
-        m_value(value)
+    mu(T mu) :
+        m_mu(mu)
     {
-        if (value < zero<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "value");
-        else if (value > one<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "value");
-        m_oneMinusValue = one<T>() - value;
+        if (mu < zero<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "mu is smaller than zero<T>");
+        else if (mu > one<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "mu is greater than one<T>");
+        m_one_minus_mu = one<T>() - mu;
     }
 
     /// @brief Copy-construct this mu.
     /// @param mu the other mu
     /// @return this mu
     mu(const mu& other) noexcept :
-        m_value(other.m_value),
-        m_oneMinusValue(other.m_oneMinusValue)
+        m_mu(other.m_mu),
+        m_one_minus_mu(other.m_one_minus_mu)
     {}
 
     /// @brief Copy-assign this mue from another mu.
@@ -66,22 +67,22 @@ public:
     /// @return this mu
     mu& operator=(const mu& other) noexcept
     {
-        m_value = other.m_value;
-        m_oneMinusValue = other.m_oneMinusValue;
+        m_mu = other.m_mu;
+        m_one_minus_mu = other.m_one_minus_mu;
         return *this;
     }
-    /// @brief Get the value.
-    /// @return the value
-    const T& getValue() const noexcept
+    /// @brief Get the value of \f$\mu\f$.
+    /// @return the value of \f$mu\f$
+    const T& get_mu() const noexcept
     {
-        return m_value;
+        return m_mu;
     }
 
-    /// @brief Get one minus the value.
-    /// @return one minus the value
-    const T& getOneMinusValue() const noexcept
+    /// @brief Get the value of \f$1 - \mu\f$.
+    /// @return the value of \f$1 - \mu\f$
+    const T& get_one_minus_mu() const noexcept
     {
-        return m_oneMinusValue;
+        return m_one_minus_mu;
     }
 
 }; // class mu

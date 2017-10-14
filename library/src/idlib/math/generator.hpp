@@ -3,6 +3,7 @@
 
 namespace id {
 
+/// @ingroup math
 /// @brief Generator functor. Specializations of this functor satisfiy the requirements of the <em>Generator</em> concept.
 /// They define an operator() hat accepts a single parameter of type @a size_t and return a value of type @a R.
 /// Furthermore a generator needs to be 

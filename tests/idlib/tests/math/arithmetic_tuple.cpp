@@ -15,25 +15,37 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
-/// @author Michael Heilmann
+#include "gtest/gtest.h"
+#include "idlib/idlib.hpp"
 
-#pragma once
+namespace id { namespace math { namespace tests {
 
-namespace id {
-
-/// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
-/// @tparam E for SFINAE
-template <typename T, typename E = void>
-struct invert_functor;
-
-template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
+TEST(arithmetic_tuple_test, binary_plus)
 {
-	return invert_functor<T>()(v);
+	id::arithmetic_tuple<int, 3, id::zero_functor<int>> x{1,2,3}, y{2,3,4};
+	auto z = x + y;
+	auto w = x;
+	w += y;
+	ASSERT_EQ(z, w);
 }
 
-} // namespace
+TEST(arithmetic_tuple_test, binary_minus)
+{
+	id::arithmetic_tuple<int, 3, id::zero_functor<int>> x{1,2,3}, y{2,3,4};
+	auto z = x - y;
+	auto w = x;
+	w -= y;
+	ASSERT_EQ(z, w);
+}
+
+TEST(arithmetic_tuple_test, binary_star)
+{
+	int s = 2;
+	id::arithmetic_tuple<int, 3, id::zero_functor<int>> x{1,2,3}, y{2,4,6};
+	auto z = x * s;
+	auto w = x;
+	w *= s;
+	ASSERT_EQ(z, w);
+}
+
+} } } // namespace id::math::tests

@@ -15,25 +15,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
-/// @author Michael Heilmann
+#define IDLIB_PRIVATE 1
+#include "idlib/math/one_zero.hpp"
+//#include "idlib/math/floating_point.hpp"
+//#include "idlib/utility/platform.hpp"
+#undef IDLIB_PRIVATE
 
-#pragma once
+//
+//template struct id::zero_functor<single>;
+//template struct id::zero_functor<double>;
+//template struct id::zero_functor<quadruple>;
+template struct id::zero_functor<short>;
+template struct id::zero_functor<int>;
+template struct id::zero_functor<long>;
 
-namespace id {
-
-/// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
-/// @tparam E for SFINAE
-template <typename T, typename E = void>
-struct invert_functor;
-
-template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
-{
-	return invert_functor<T>()(v);
-}
-
-} // namespace
+//
+//template struct id::one_functor<single>;
+//template struct id::one_functor<double>;
+//template struct id::one_functor<quadruple>;
+template struct id::one_functor<short>;
+template struct id::one_functor<int>;
+template struct id::one_functor<long>;

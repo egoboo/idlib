@@ -27,6 +27,7 @@
 
 namespace id {
 
+/// @ingroup math
 /// @brief Functor which determines wether a value is even.
 /// It defines an operator
 /// @code{constexpr bool operator()(T x) const noexcept}

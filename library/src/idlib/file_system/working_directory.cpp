@@ -60,13 +60,25 @@ std::wstring strtowstr(const std::string &str)
 std::string get_working_directory()
 {
 #if defined(_WIN32)
-    auto length = GetCurrentDirectoryW(0, NULL);
+#if defined(UNICODE) || defined(_UNICODE)
+    auto length = GetCurrentDirectory(0, NULL); // Alias for GetCurrentDirectoryW.
+#else
+	auto length = GetCurrentDirectory(0, NULL); // Alias for GetCurrentDirectorA.
+#endif
     if (!length)
     {
         throw std::runtime_error("unable to obtain working directory");
     }
+#if defined(UNICODE) || defined(_UNICODE)
     auto buffer = std::make_unique<wchar_t[]>(length + 1);
-    length = GetCurrentDirectoryW(length + 1, buffer.get());
+#else
+	auto buffer = std::make_unique<char[]>(length + 1);
+#endif
+#if defined(UNICODE) || defined(_UNICODE)
+    length = GetCurrentDirectory(length + 1, buffer.get()); // Alias for GetCurrentDirectoryW.
+#else
+	length = GetCurrentDirectory(length + 1, buffer.get()); // Alias for GetCurrentDirectoryA.
+#endif
     if (!length)
     {
         throw std::runtime_error("unable to obtain working directory");

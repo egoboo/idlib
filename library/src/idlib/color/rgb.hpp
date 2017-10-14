@@ -28,7 +28,7 @@
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
 #include "idlib/math/interpolate.hpp"
-#include "idlib/math/interpolate_floating_point.hpp"
+#include "idlib/math/floating_point.hpp"
 #include "idlib/math/invert.hpp"
 #include "idlib/utility/is_any_of.hpp"
 #include "idlib/color/brighten.hpp"
@@ -403,15 +403,13 @@ struct invert_functor<color<ColorSpace>,
 
 }; // struct invert_functor
 
-/// @brief Interpolate functor for id::color<id::RGBf> values.
+/// @brief Lineary interpolate functor for id::color<id::RGBf> values.
 template <typename ColorSpace>
-struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
-                           std::enable_if_t<std::is_same<ColorSpace, RGBf>::value>>
+struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<ColorSpace, RGBf>::value>>
 {
     using color_space_type = ColorSpace;
     using color_type = color<color_space_type>;
-    using component_functor_type = interpolate_functor<float, interpolation_method::LINEAR>;
-
+	
     color_type operator()(const color_type& x, const color_type& y, float t) const
     {
         return (*this)(x, y, mu<float>(t));
@@ -419,12 +417,11 @@ struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
 
     color_type operator()(const color_type& x, const color_type& y, const mu<float>& mu) const
     {
-        static const component_functor_type f{};
-        return color_type(color_space_type::r::syntax::range().clamp(f(x.get_r(), y.get_r(), mu)),
-                          color_space_type::g::syntax::range().clamp(f(x.get_g(), y.get_g(), mu)),
-                          color_space_type::b::syntax::range().clamp(f(x.get_b(), y.get_b(), mu)));
+        return color_type(color_space_type::r::syntax::range().clamp(lineary_interpolate(x.get_r(), y.get_r(), mu)),
+                          color_space_type::g::syntax::range().clamp(lineary_interpolate(x.get_g(), y.get_g(), mu)),
+                          color_space_type::b::syntax::range().clamp(lineary_interpolate(x.get_b(), y.get_b(), mu)));
     }
 
-}; // struct interpolate_functor
+}; // struct lineary_interpolate_functor
 
 } // namespace id

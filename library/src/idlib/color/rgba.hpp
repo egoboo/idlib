@@ -28,7 +28,7 @@
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
 #include "idlib/math/interpolate.hpp"
-#include "idlib/math/interpolate_floating_point.hpp"
+#include "idlib/math/floating_point.hpp"
 #include "idlib/math/invert.hpp"
 #include "idlib/utility/is_any_of.hpp"
 #include "idlib/color/brighten.hpp"
@@ -466,14 +466,12 @@ struct invert_functor<color<ColorSpace>,
     }
 };
 
-/// @brief Interpolate functor for id::color<id::RGBAf> values.
+/// @brief Lineary interpolate functor for id::color<id::RGBAf> values.
 template <typename ColorSpace>
-struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
-                          std::enable_if_t<std::is_same<ColorSpace, RGBAf>::value>>
+struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<ColorSpace, RGBAf>::value>>
 {
     using color_space_type = ColorSpace;
     using color_type = color<color_space_type>;
-    using component_functor_type = interpolate_functor<float, interpolation_method::LINEAR>;
 
     color_type operator()(const color_type& x, const color_type& y, float t) const
     {
@@ -482,17 +480,16 @@ struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
 
     color_type operator()(const color_type& x, const color_type& y, const mu<float>& mu) const
     {
-        static const component_functor_type f{};
         static const auto& range_r = color_space_type::r::syntax::range();
         static const auto& range_g = color_space_type::g::syntax::range();
         static const auto& range_b = color_space_type::b::syntax::range();
         static const auto& range_a = color_space_type::a::syntax::range();
-        return color_type(range_r.clamp(f(x.get_r(), y.get_r(), mu)),
-                          range_g.clamp(f(x.get_g(), y.get_g(), mu)),
-                          range_b.clamp(f(x.get_b(), y.get_b(), mu)),
-                          range_a.clamp(f(x.get_a(), y.get_a(), mu)));
+        return color_type(range_r.clamp(lineary_interpolate(x.get_r(), y.get_r(), mu)),
+                          range_g.clamp(lineary_interpolate(x.get_g(), y.get_g(), mu)),
+                          range_b.clamp(lineary_interpolate(x.get_b(), y.get_b(), mu)),
+                          range_a.clamp(lineary_interpolate(x.get_a(), y.get_a(), mu)));
     }
 
-}; // struct interpolate_functor
+}; // struct lineary_interpolate_functor
 
 } // namespace id

@@ -15,25 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
+/// @file idlib/math/angle.hpp
+/// @brief Angles.
 /// @author Michael Heilmann
 
 #pragma once
 
 namespace id {
 
-/// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
-/// @tparam E for SFINAE
-template <typename T, typename E = void>
-struct invert_functor;
+/// @tparam Syntax the type of the syntax (what values represent angles)
+/// @tparam Semantics the type of the semantics (how are the values interpreted)
+/// @tparam Enabled for SFINAE
+template <typename Syntax, typename Semantics, typename Enabled = void>
+struct angle;
 
-template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
-{
-	return invert_functor<T>()(v);
-}
-
-} // namespace
+} // namespace id

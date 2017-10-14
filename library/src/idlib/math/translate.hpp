@@ -23,7 +23,7 @@
 
 namespace id {
 
-/// @ingroup math functors
+/// @ingroup math
 /// @brief Functor translating geometries.
 /// @details
 /// Consider geometries as sets of points. A geometry \f$a\f$ translated by a translation vector \f$t\f$ is a geometry \f$b\f$ containing all the points of \f$a\f$ translated by \f$t\f$.

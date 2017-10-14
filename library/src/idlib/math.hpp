@@ -25,16 +25,28 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/math/traits.hpp"
+#include "idlib/math/angle.hpp"
+#include "idlib/math/angle-degrees-radians-turns.hpp"
+
+#include "idlib/math/sq.hpp"
+#include "idlib/math/sqrt.hpp"
+
+#include "idlib/math/semantic_cast.hpp"
+
 #include "idlib/math/operators.hpp"
 #include "idlib/math/float.hpp"
 #include "idlib/math/dimensionality.hpp"
-#include "idlib/math/interpolation_method.hpp"
+#include "idlib/math/units.hpp"
+#include "idlib/math/fraction.hpp"
 #include "idlib/math/interpolate.hpp"
-#include "idlib/math/interpolate_floating_point.hpp"
+#include "idlib/math/floating_point.hpp"
 #include "idlib/math/mu.hpp"
 #include "idlib/math/even_odd.hpp"
 #include "idlib/math/one_zero.hpp"
+
+#include "idlib/math/random.hpp"
+
+#include "idlib/math/arithmetic_tuple.hpp"
 
 #include "idlib/math/generator.hpp"
 #include "idlib/math/constant_generator.hpp"
@@ -44,3 +56,6 @@
 #include "idlib/math/is_enclosing.hpp"
 #include "idlib/math/is_intersecting.hpp"
 #include "idlib/math/translate.hpp"
+
+#include "idlib/math/point.hpp"
+#include "idlib/math/vector.hpp"

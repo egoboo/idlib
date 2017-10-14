@@ -1,5 +1,6 @@
 #pragma once
 
+#include "idlib/utility.hpp"
 #include <cstdint>
 
 #include "idlib/utility/header.in"
@@ -44,10 +45,10 @@ int64_t swap_bytes(int64_t x);
 /// @return the @a uint64_t value with its Bytes swapped
 uint64_t swap_bytes(uint64_t x);
 
-/// @brief Swap the Bytes of a @a float value.
-/// @param x the @a float value
-/// @return the @a float value with its Bytes swapped
-float swap_bytes(float x);
+/// @brief Swap the Bytes of a @a single value.
+/// @param x the @a single value
+/// @return the @a single value with its Bytes swapped
+float swap_bytes(single x);
 
 /// @brief Swap the Bytes of a @a double value.
 /// @param x the @a double value

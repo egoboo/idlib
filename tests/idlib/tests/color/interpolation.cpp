@@ -23,13 +23,11 @@ namespace id { namespace tests { namespace color { namespace interpolation {
 namespace lf_interpolation {
 
 using color = id::color<id::Lf>;
-using functor = id::interpolate_functor<id::color<id::Lf>, id::interpolation_method::LINEAR>;
 
 static void test(const color& x, const color& y)
 {
-    static const functor f{};
-    ASSERT_EQ(x, f(x, y, 0.0f));
-    ASSERT_EQ(y, f(x, y, 1.0f));
+    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(lf_interpolation, interpolate_lf)
@@ -45,13 +43,11 @@ TEST(lf_interpolation, interpolate_lf)
 namespace laf_interpolation {
 
 using color = id::color<id::Lf>;
-using functor = id::interpolate_functor<id::color<id::Lf>, id::interpolation_method::LINEAR>;
 
 static void test(const color& x, const color& y)
 {
-    static const functor f{};
-    ASSERT_EQ(x, f(x, y, 0.0f));
-    ASSERT_EQ(y, f(x, y, 1.0f));
+    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(laf_interpolation, interpolate_laf)
@@ -67,13 +63,11 @@ TEST(laf_interpolation, interpolate_laf)
 namespace rgbf_interpolation {
 
 using color = id::color<id::RGBf>;
-using functor = id::interpolate_functor<id::color<id::RGBf>, id::interpolation_method::LINEAR>;
 
 static void test(const color& x, const color& y)
 {
-    static const functor f{};
-    ASSERT_EQ(x, f(x, y, 0.0f));
-    ASSERT_EQ(y, f(x, y, 1.0f));
+    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(rgbf_interpolation, interpolate_rgbf)
@@ -96,13 +90,11 @@ TEST(rgbf_interpolation, interpolate_rgbf)
 namespace rgbaf_interpolation {
 
 using color = id::color<id::RGBAf>;
-using functor = id::interpolate_functor<id::color<id::RGBAf>, id::interpolation_method::LINEAR>;
 
 static void test(const color& x, const color& y)
 {
-    static const functor f{};
-    ASSERT_EQ(x, f(x, y, 0.0f));
-    ASSERT_EQ(y, f(x, y, 1.0f));
+    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(rgbaf_interpolation, interpolate_rgbaf)

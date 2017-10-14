@@ -15,25 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
+/// @file idlib/math/normalize.hpp
+/// @brief "normalize" functor and function
 /// @author Michael Heilmann
-
-#pragma once
 
 namespace id {
 
 /// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
-/// @tparam E for SFINAE
-template <typename T, typename E = void>
-struct invert_functor;
+/// @brief Functor computing a normalized vector.
+/// @remark For a vector \f$v\f$ of dimensionality \f$n\f$ the normalized vector is defined as
+/// \f[
+/// \frac{v}{|v|}
+/// \f]
+/// where \f$|.|\f$ is a norm.
+/// @tparam Vector the vector type
+/// @tparam Norm the norm functor type
+template <typename Vector, typename Norm>
+struct normalize_functor;
 
-template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
-{
-	return invert_functor<T>()(v);
-}
+template <typename Vector, typename Norm>
+auto normalize(const Vector& v, const Norm& n) -> decltype(normalize_functor<Vector, Norm>()(v, n))
+{ return normalize_functor<Vector, Norm>()(v, n); }
 
-} // namespace
+} // namespace id

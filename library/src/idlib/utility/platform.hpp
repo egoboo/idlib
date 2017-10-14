@@ -25,6 +25,11 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
+/// @brief An alias for @a (float).
+using single = float;
+/// @brief An alias for @a (long double).
+using quadruple = long double;
+
 #include "idlib/utility/target.hpp"
 
 /// @brief Format attributes for printf-style functions for GCC/Clang.

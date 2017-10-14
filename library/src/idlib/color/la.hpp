@@ -28,7 +28,7 @@
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
 #include "idlib/math/interpolate.hpp"
-#include "idlib/math/interpolate_floating_point.hpp"
+#include "idlib/math/floating_point.hpp"
 #include "idlib/math/invert.hpp"
 #include "idlib/utility/is_any_of.hpp"
 #include "idlib/color/brighten.hpp"
@@ -303,14 +303,12 @@ struct invert_functor<color<ColorSpace>,
     }
 }; // struct invert_functor
 
-/// @brief Interpolate functor for id::color<id::LAf> values.
+/// @brief Lineary interpolate functor for id::color<id::LAf> values.
 template <typename ColorSpace>
-struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
-                           std::enable_if_t<std::is_same<LAf, ColorSpace>::value>>
+struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<LAf, ColorSpace>::value>>
 {
     using color_space_type = ColorSpace;
     using color_type = color<color_space_type>;
-    using component_functor_type = interpolate_functor<float, interpolation_method::LINEAR>;
 
     color_type operator()(const color_type& x, const color_type& y, float t) const
     {
@@ -319,13 +317,12 @@ struct interpolate_functor<color<ColorSpace>, interpolation_method::LINEAR,
 
     color_type operator()(const color_type& x, const color_type& y, const mu<float>& mu) const
     {
-        static const component_functor_type f{};
         static const auto& range_l = color_space_type::l::syntax::range();
         static const auto& range_a = color_space_type::a::syntax::range();
-        return color_type(range_l.clamp(f(x.get_l(), y.get_l(), mu)),
-                          range_a.clamp(f(x.get_a(), y.get_a(), mu)));
+        return color_type(range_l.clamp(lineary_interpolate(x.get_l(), y.get_l(), mu)),
+                          range_a.clamp(lineary_interpolate(x.get_a(), y.get_a(), mu)));
     }
 
-}; // struct interpolate_functor
+}; // struct lineary_interpolate_functor
 
 } // namespace id

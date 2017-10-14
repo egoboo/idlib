@@ -15,20 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/math/interpolation_method.hpp
-/// @brief Enumeration of interpolation methods.
+/// @file idlib/math/dot_product.hpp
+/// @brief "dot product" functor and function
 /// @author Michael Heilmann
 
 #pragma once
 
 namespace id {
 
-/// @brief An enumeration of interpolation methods.
-enum class interpolation_method
-{
-	/// @brief Linear interpolation.
-	LINEAR,
-	
-}; // enum class
-	
+/// @brief Functor computing the dot product of two vectors.
+/// @tparam Vector the vector type
+template <typename Vector>
+struct dot_product_functor;
+
+template <typename Vector>
+auto dot_product(const Vector& v, const Vector& w) -> decltype(dot_product_functor<Vector>()(v, w))
+{ return dot_product_functor<Vector>()(v, w); }
+
 } // namespace id

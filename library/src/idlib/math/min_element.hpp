@@ -15,25 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
-/// @author Michael Heilmann
-
 #pragma once
 
 namespace id {
 
-/// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
-/// @tparam E for SFINAE
-template <typename T, typename E = void>
-struct invert_functor;
+template <typename T>
+struct min_element_functor;
 
 template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
-{
-	return invert_functor<T>()(v);
-}
+auto min_element(const T& v)
+{ return min_element_functor<T>()(v); }
 
-} // namespace
+} // namespace id

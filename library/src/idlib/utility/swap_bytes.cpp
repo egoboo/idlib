@@ -119,9 +119,9 @@ uint64_t swap_bytes(uint64_t x)
 #endif
 }
 
-float swap_bytes(float x)
+single swap_bytes(single x)
 {
-	bytes<float> b;
+	bytes<single> b;
 	b.value(x);
 	std::reverse(b.begin(), b.end());
 	return b.value();	

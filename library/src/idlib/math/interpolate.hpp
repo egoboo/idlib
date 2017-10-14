@@ -21,17 +21,37 @@
 
 #pragma once
 
-#include "idlib/math/interpolation_method.hpp"
 #include "idlib/math/mu.hpp"
 #include "idlib/math/one_zero.hpp"
 
 namespace id {
 
-/// @brief Functor which interpolates between values.
-/// @tparam T the type of the values to interpolate between
+/// @ingroup math
+/// @brief Functor which lineary interpolates between values.
+/// @tparam V the type of the values to interpolate between
+/// @tparam T the type of the parameter
 /// @tparam M the interpolation method
 /// @tparam E for SFINAE
-template <typename T, interpolation_method M, typename E = void>
-struct interpolate_functor;
+/// @remark
+/// Provides the member typedefs @a value_type and @a parameter_type.
+/// @a value_type is the type of the values to lineary interpolate between and @a parameter_type is the type of the parameter.
+/// @remark
+/// Provides a constant operator() which takes the values @a x and @a y both of type @a value_type to interpolate between as its first two arguments.
+/// Its third argument is the parameter @a t of type @a parameter_type.
+/// The parameter is supposed to be within the bounds of id::zero<T>() (inclusive) and id::one<T>() (inclusive).
+/// If the third argument is not within these bounds, implementations of this functor are supposed to raise an id::domain_error.
+/// @remarks
+/// Provides a constant operator() which takes the values @a x and @a y both of type @a value_type to interpolate between as its first two arguments.
+/// Its third argument is the parameter @a mu of type id::mu<T>.
+template <typename V, typename T, typename E = void>
+struct lineary_interpolate_functor;
+
+template <typename V, typename T>
+auto lineary_interpolate(const V& x, const V& y, const T& t)
+{ return lineary_interpolate_functor<V, T>()(x, y, mu<T>(t)); }
+
+template <typename V, typename T>
+auto lineary_interpolate(const V& x, const V& y, const mu<T>& t)
+{ return lineary_interpolate_functor<V, T>()(x, y, t); }
 
 } // namespace id

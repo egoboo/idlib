@@ -27,6 +27,7 @@
 
 namespace id {
 
+/// @ingroup math
 /// @brief The zero element of a domain of values (e.g. int, float, user-defined types, ...)
 /// over which the operations addition and subtraction are defined has the properties
 /// - \f$0 + x = x\f$
@@ -42,38 +43,15 @@ namespace id {
 /// Specialization for all integral types excluding @a bool are provided.
 /// Specializations for @a float and @a double are provided.
 template <typename T, typename E = void>
-class zero_functor;
+struct zero_functor;
 
 /// @internal
 template <typename T>
-class zero_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_same<T, bool>::value>>
+struct zero_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_same<T, bool>::value>>
 {
-public:
     constexpr T operator()() noexcept
     {
         return 0;
-    }
-};
-
-/// @internal
-template <>
-class zero_functor<float, void>
-{
-public:
-    constexpr float operator()() noexcept
-    {
-        return 0.0f;
-    }
-};
-
-/// @internal
-template <>
-class zero_functor<double, void>
-{
-public:
-    constexpr double operator()() noexcept
-    {
-        return 0.0;
     }
 };
 
@@ -96,28 +74,6 @@ public:
     constexpr T operator()() noexcept
     {
         return 1;
-    }
-};
-
-/// @internal
-template <>
-class one_functor<float, void>
-{
-public:
-    constexpr float operator()() noexcept
-    {
-        return 1.0f;
-    }
-};
-
-/// @internal
-template <>
-class one_functor<double, void>
-{
-public:
-    constexpr double operator()() noexcept
-    {
-        return 1.0;
     }
 };
 

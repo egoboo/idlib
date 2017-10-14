@@ -15,25 +15,35 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
-/// @brief Functionality to invert values.
-/// @author Michael Heilmann
-
 #pragma once
 
 namespace id {
-
-/// @ingroup math
-/// @brief Functor which inverts values.
-/// @tparam T the type of the values
+	
+/// @brief Functor computing the square (NOT the square root).
+/// @remark Specializations for @a single, @a double, and @a quadruple are provided.
+/// @tparam T the type
 /// @tparam E for SFINAE
 template <typename T, typename E = void>
-struct invert_functor;
+struct sq_functor;
 
 template <typename T>
-auto invert(const T& v) -> decltype(invert_functor<T>()(v))
-{
-	return invert_functor<T>()(v);
-}
+auto sq(const T& v)
+{ return sq_functor<T, void>()(v); }
 
-} // namespace
+template <typename T>
+struct sq_functor<T, std::enable_if_t<std::is_floating_point<T>::value>>
+{
+	T operator()(T x) const
+	{ return x * x; }
+}; // struct sq_functor
+
+template <typename T>
+struct sq_functor<T, std::enable_if_t<std::is_same<T, int>::value>>
+{
+	T operator()(T x) const
+	{
+		return x * x;
+	}
+}; // struct sq_functor
+
+} // namespace id

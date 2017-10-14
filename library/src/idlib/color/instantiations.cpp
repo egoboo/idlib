@@ -21,6 +21,8 @@
 #include "idlib/color/la.hpp"
 #include "idlib/color/rgb.hpp"
 #include "idlib/color/rgba.hpp"
+#include "idlib/math/interpolate.hpp"
+#include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
 template struct id::color<id::Ab>;
@@ -38,11 +40,11 @@ template struct id::color<id::RGBf>;
 template struct id::color<id::RGBAb>;
 template struct id::color<id::RGBAf>;
 
-template struct id::interpolate_functor<id::color<id::Af>, id::interpolation_method::LINEAR>;
-template struct id::interpolate_functor<id::color<id::Lf>, id::interpolation_method::LINEAR>;
-template struct id::interpolate_functor<id::color<id::LAf>, id::interpolation_method::LINEAR>;
-template struct id::interpolate_functor<id::color<id::RGBf>, id::interpolation_method::LINEAR>;
-template struct id::interpolate_functor<id::color<id::RGBAf>, id::interpolation_method::LINEAR>;
+template struct id::lineary_interpolate_functor<id::color<id::Af>, single>;
+template struct id::lineary_interpolate_functor<id::color<id::Lf>, single>;
+template struct id::lineary_interpolate_functor<id::color<id::LAf>, single>;
+template struct id::lineary_interpolate_functor<id::color<id::RGBf>, single>;
+template struct id::lineary_interpolate_functor<id::color<id::RGBAf>, single>;
 
 template struct id::invert_functor<id::color<id::Af>>;
 template struct id::invert_functor<id::color<id::Ab>>;
