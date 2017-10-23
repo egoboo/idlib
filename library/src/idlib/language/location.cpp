@@ -23,7 +23,7 @@
 #include "idlib/language/location.hpp"
 #undef IDLIB_PRIVATE
 
-namespace id {
+namespace id { namespace c {
 
 location::location(const std::string& file_name, const size_t line_number)
     : m_file_name(file_name), m_line_number(line_number)
@@ -72,4 +72,4 @@ size_t location::line_number() const noexcept
     return m_line_number;
 }
 
-} // namespace id
+} } // namespace id::c

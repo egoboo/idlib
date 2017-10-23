@@ -22,13 +22,26 @@
 #pragma once
 
 #pragma push_macro("IDLIB_PRIVATE")
-#undef IDLIB_PRIVATE
-#define IDLIB_PRIVATE (1)
+#if !defined(IDLIB_PRIVATE)
+#define IDLIB_PRIVATE 1
+#endif
 
 #include "idlib/language/compilation_error.hpp"
 #include "idlib/language/location.hpp"
 #include "idlib/language/qualified_name.hpp"
 #include "idlib/language/token.hpp"
+
+#include "idlib/language/classify.hpp"
+#include "idlib/language/decoder.hpp"
+#include "idlib/language/encoder.hpp"
+
+#include "idlib/language/decoder-boolean.hpp"
+#include "idlib/language/decoder-character.hpp"
+#include "idlib/language/decoder-integer.hpp"
+#include "idlib/language/decoder-natural.hpp"
+#include "idlib/language/decoder-real.hpp"
+#include "idlib/language/decoder-string.hpp"
+#include "idlib/language/encoders.hpp"
 
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")

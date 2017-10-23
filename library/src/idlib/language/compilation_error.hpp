@@ -28,7 +28,7 @@
 #include "idlib/utility/exception.hpp"
 #include "idlib/language/location.hpp"
 
-namespace id {
+namespace id { namespace c {
 
 /// @brief An enumeration of the different kinds of compilation errors.
 enum class compilation_error_kind
@@ -46,7 +46,7 @@ class compilation_error : public exception
 {
 private:
     /// @brief The location associated with the compilation error.
-    id::location m_location;
+    location m_location;
     /// @brief A description of the compilation error.
     std::string m_description;
     /// @brief The kind of the compilation error.
@@ -59,7 +59,7 @@ public:
     /// @param kind the kind of the compilation error
     /// @param location the location associated with the error
     /// @param description a description of the error
-    compilation_error(const char *file, int line, compilation_error_kind kind, const id::location& location, const std::string& description) :
+    compilation_error(const char *file, int line, compilation_error_kind kind, const location& location, const std::string& description) :
         exception(file, line), m_location(location), m_description(description), m_kind(kind)
     {}
 
@@ -84,14 +84,14 @@ public:
 public:
     /// @brief Get the location associated with the compilation error.
     /// @return the location associated with the compilation error
-    const id::location& location() const
+    const location& get_location() const
     {
         return m_location;
     }
 
     /// @brief Get the kind of the compilation error.
     /// @return the kind of the compilation error
-    compilation_error_kind kind() const
+    compilation_error_kind get_kind() const
     {
         return m_kind;
     }
@@ -121,4 +121,4 @@ public:
 
 };
 
-} // namespace id
+} } // namespace id::c

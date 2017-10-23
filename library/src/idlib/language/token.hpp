@@ -26,7 +26,7 @@
 
 #define ID_TOKEN_WITH_ENDLOCATION (0)
 
-namespace id {
+namespace id { namespace c {
 
 /// @brief Generic token.
 /// @tparam Kind the type of the kinds of this token type.
@@ -120,4 +120,4 @@ public:
 
 }; // class token
 
-} // namespace id
+} } // namespace id::c

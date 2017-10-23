@@ -27,7 +27,7 @@
 #include "idlib/language/compilation_error.hpp"
 #undef IDLIB_PRIVATE
 
-namespace id {
+namespace id { namespace c {
 
 /// @brief Raise an exception indicating that a string can not be parsed into qualified name.
 /// @param file, line the C/C++ source location associated with the exception
@@ -41,8 +41,8 @@ static void no_qualified_name(const char *file, int line, const location& locati
     std::ostringstream message;
     message << file << ":" << line << ": ";
     message << "argument string `" << string << "` does not not represent a valid qualified name";
-    throw id::compilation_error(file, line, compilation_error_kind::lexical,
-                                location, message.str());
+    throw id::c::compilation_error(file, line, id::c::compilation_error_kind::lexical,
+                                   location, message.str());
 }
 
 qualified_name::qualified_name(const std::string& string) :
@@ -79,21 +79,21 @@ bool qualified_name::equal_to(const qualified_name& other) const
     return m_string == other.m_string;
 }
 
-} // namespace id
+} } // namespace id::c
 
 namespace std {
 
-size_t hash<id::qualified_name>::operator()(const id::qualified_name& x) const
+size_t hash<id::c::qualified_name>::operator()(const id::c::qualified_name& x) const
 {
     return hash<string>()(x.string());
 }
 
-bool equal_to<id::qualified_name>::operator()(const id::qualified_name& x, const id::qualified_name& y) const
+bool equal_to<id::c::qualified_name>::operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const
 {
     return equal_to<string>()(x.string(), y.string());
 }
 
-bool less<id::qualified_name>::operator()(const id::qualified_name& x, const id::qualified_name& y) const
+bool less<id::c::qualified_name>::operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const
 {
     // Sort the qualifid names lexicographically.
     return less<string>()(x.string(), y.string());

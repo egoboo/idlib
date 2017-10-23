@@ -29,7 +29,7 @@
 #include "idlib/language/location.hpp"
 #include <type_traits>
 
-namespace id {
+namespace id { namespace c {
 
 /// @brief A qualified name is an element of the set of strings
 /// @code
@@ -77,26 +77,26 @@ static_assert(std::is_move_constructible<qualified_name>::value, "id::qualified_
 static_assert(std::is_copy_assignable<qualified_name>::value, "id::qualified_name must be copy assignable");
 static_assert(std::is_move_assignable<qualified_name>::value, "id::qualified_name must be move assignable");
 
-} // id
+} } // id::c
 
 namespace std {
 
 template <>
-struct hash<id::qualified_name>
+struct hash<id::c::qualified_name>
 {
-    size_t operator()(const id::qualified_name& x) const;
+    size_t operator()(const id::c::qualified_name& x) const;
 };
 
 template <>
-struct equal_to<id::qualified_name>
+struct equal_to<id::c::qualified_name>
 {
-    bool operator()(const id::qualified_name& x, const id::qualified_name& y) const;
+    bool operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const;
 };
 
 template <>
-struct less<id::qualified_name>
+struct less<id::c::qualified_name>
 {
-    bool operator()(const id::qualified_name& x, const id::qualified_name& y) const;
+    bool operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const;
 };
 
 } // namespace std

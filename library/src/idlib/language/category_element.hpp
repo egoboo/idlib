@@ -1,6 +1,6 @@
 #pragma once
 
-namespace id {
+namespace id { namespace c {
 
 /// @tparam Category the category type
 /// @tparam DefaultCategory the default category
@@ -57,4 +57,4 @@ public:
 
 }; // class category_element
 
-} // namespace id
+} } // namespace id::c
