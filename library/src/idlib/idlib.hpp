@@ -30,7 +30,7 @@
 #include "idlib/parsing_expressions.hpp"
 
 // Text utilities.
-#include "idlib/text_range.hpp"
+#include "idlib/text.hpp"
 
 // Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
 // Those constants will either be properly defined or not at all.

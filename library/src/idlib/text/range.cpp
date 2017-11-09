@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/text_range.cpp
+/// @file idlib/text/range.cpp
 /// @brief Information on a text range in a text.
 /// @author Michael Heilmann
 
 #define IDLIB_PRIVATE 1
-#include "idlib/text_range.hpp"
+#include "idlib/text/range.hpp"
 #undef IDLIB_PRIVATE
 
 namespace id {

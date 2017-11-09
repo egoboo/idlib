@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/text_range.hpp
+/// @file idlib/text/range.hpp
 /// @brief Information on a text range in a text.
 /// @author Michael Heilmann
 
@@ -34,16 +34,9 @@
 namespace id {
 
 /// @brief Information on a text range in a text.
-/// @remark A text range (start, length) is empty iff length = 0.
+/// @remarks Consists of the start index and the length of the range.
 class text_range
 {
-private:
-    /// @brief The codepoint at which the text range starts.
-    std::size_t start;
-
-    /// @brief The length of the text range in codepoints.
-    std::size_t length;
-
 public:
     /// @brief Construct this text range with the specified values.
     /// @param start the codepoint at which this text range starts at
@@ -85,6 +78,13 @@ public:
     /// @param length the length of this text range in codepoints
     void set_length(std::size_t length) noexcept;
 #endif
+
+private:
+    /// @brief The codepoint at which the text range starts.
+    std::size_t start;
+
+    /// @brief The length of the text range in codepoints.
+    std::size_t length;
 
 }; // class text_range
 
