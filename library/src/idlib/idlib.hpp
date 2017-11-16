@@ -26,6 +26,9 @@
 // CRTP.
 #include "idlib/crtp.hpp"
 
+// singleton.
+#include "idlib/singleton.hpp"
+
 // parsing expressions.
 #include "idlib/parsing_expressions.hpp"
 
