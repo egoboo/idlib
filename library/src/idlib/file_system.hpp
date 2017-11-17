@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 /// @file idlib/file_system.hpp
-/// @brief Master include file of the Idlib file_system library.
+/// @brief Master include file of the Idlib file system library.
 /// @author Michael Heilmann
 
 #pragma once
