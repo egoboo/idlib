@@ -33,6 +33,8 @@
 
 #include "idlib/math/semantic_cast.hpp"
 
+#include "idlib/math/geometry/include.hpp"
+
 #include "idlib/math/operators.hpp"
 #include "idlib/math/float.hpp"
 #include "idlib/math/dimensionality.hpp"

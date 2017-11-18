@@ -592,25 +592,63 @@ private:
 
 }; // struct maximum_norm_functor
 
+/// @brief The result of a normalization of a vector.
+/// If the old length is equal to the new length and the new length is @a 0
+template <typename Scalar, std::size_t Dimensionality>
+struct normalization_result
+{
+	using scalar_type = Scalar;
+	using vector_type = vector<scalar_type, Dimensionality>;
+	scalar_type m_length;
+	vector_type m_vector;
+	
+	normalization_result(const vector_type& vector, const scalar_type& length)
+		: m_vector(vector), m_length(length)
+	{}
+	
+	scalar_type get_length() const
+	{ return m_length; }
+	
+	vector_type get_vector() const
+	{
+		if (m_length != zero<scalar_type>())
+		{ return m_vector; }
+		else
+		{ throw std::domain_error("unable to normalize zero vector"); }
+	}
+	
+	vector_type get_vector_or_default() const
+	{ return m_vector; }
+};
+
+/// @brief When normalizing a zero vector, raise an exception.
+struct zero_policy_exception {};
+/// @brief When normalizing a zero vector, return zero vector.
+struct zero_policy_retain {};
+
 template <typename Scalar, std::size_t Dimensionality, typename Norm>
 struct normalize_functor<vector<Scalar, Dimensionality>, Norm>
 {
 	using scalar_type = Scalar;
 	using vector_type = vector<scalar_type, Dimensionality>;
 	using norm_type = Norm;
+	using result_type = normalization_result<scalar_type, Dimensionality>;
 
 	auto operator()(const vector_type& v, const norm_type& n) const
 	{ return impl(v, n); }
 
 private:
-	static std::pair<vector_type, scalar_type> impl(const vector_type& v, const norm_type& n)
+	static result_type impl(const vector_type& v, const norm_type& n)
 	{ 
 		auto l = n(v);
 		if (l == zero<scalar_type>())
 		{
-			throw std::runtime_error("can not normalize a vector of length 0");
+			return result_type(v, l);
 		}
-		return std::make_pair(v / l, l);
+		else
+		{
+			return result_type(v / l, one<scalar_type>());
+		}
 	}
 
 }; // struct normalize_functor
