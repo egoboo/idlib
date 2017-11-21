@@ -119,19 +119,19 @@ public:
 };
 
 /// @brief Inherit from this class to define the addition and compount addition assignment operators.
-/// The derived class needs to define a <tt>void add(const Derived&);</tt> function.
-template <typename Derived>
+/// The derived class needs to define a <tt>void add(const RHS&);</tt> function.
+template <typename LHS, typename RHS>
 class plus_expr
 {
 public:
-    Derived& operator+=(const Derived& rhs) // compound addition assignment (does not need to be a member,
+    LHS& operator+=(const RHS& rhs) // compound addition assignment (does not need to be a member,
     {                                       // but often is, to modify the private members)
-        static_cast<Derived *>(this)->add(rhs);
-        return *static_cast<Derived *>(this); // return the result by reference
+        static_cast<LHS *>(this)->add(rhs);
+        return *static_cast<LHS *>(this); // return the result by reference
     }
     // friends defined inside class body are inline and are hidden from non-ADL lookup
-    friend Derived operator+(Derived lhs,        // passing lhs by value helps optimize chained a+b+c
-                             const Derived& rhs) // otherwise, both parameters may be const references
+    friend LHS operator+(LHS lhs,        // passing lhs by value helps optimize chained a+b+c
+                         const RHS& rhs) // otherwise, both parameters may be const references
     {
         lhs += rhs; // reuse compound assignment
         return lhs; // return the result by value (uses move constructor)
@@ -139,19 +139,19 @@ public:
 };
 
 /// @brief Inherit from this class to define the subtraction and compound subtraction assignment operators.
-/// The derived class needs to define a <tt>void subtract(const Derived&);</tt> function.
-template <typename Derived>
+/// The derived class needs to define a <tt>void subtract(const RHS&);</tt> function.
+template <typename LHS, typename RHS>
 class minus_expr
 {
 public:
-    Derived& operator-=(const Derived& rhs) // compound assignment (does not need to be a member,
-    {                                       // but often is, to modify the private members)
-        static_cast<Derived *>(this)->subtract(rhs);
-        return *static_cast<Derived *>(this); // return the result by reference
+    LHS& operator-=(const RHS& rhs) // compound assignment (does not need to be a member,
+    {                               // but often is, to modify the private members)
+        static_cast<LHS *>(this)->subtract(rhs);
+        return *static_cast<LHS *>(this); // return the result by reference
     }
     // friends defined inside class body are inline and are hidden from non-ADL lookup
-    friend Derived operator-(Derived lhs,        // passing lhs by value helps optimize chained a+b+c
-                             const Derived& rhs) // otherwise, both parameters may be const references
+    friend LHS operator-(LHS lhs,        // passing lhs by value helps optimize chained a+b+c
+                         const RHS& rhs) // otherwise, both parameters may be const references
     {
         lhs -= rhs; // reuse compound assignment
         return lhs; // return the result by value (uses move constructor)
@@ -180,6 +180,47 @@ public:
     {
         return static_cast<const Derived *>(this)->unary_minus();
     }
+};
+
+/// @brief Inherit from this class to define the binary star operator.
+/// The derived class needs to define a <tt>void multiply(const RHS&);</tt> function.
+template <typename LHS, typename RHS>
+class binary_star_expr
+{
+public:
+	// friends defined inside class body are inline and are hidden from non-ADL lookup
+	friend LHS operator*(LHS lhs,        // passing lhs by value helps optimize chained a+b+c
+		                const RHS& rhs) // otherwise, both parameters may be const references
+	{
+		lhs *= rhs; // reuse compound assignment
+		return lhs; // return the result by value (uses move constructor)
+	}
+	
+	LHS& operator*=(const RHS& rhs)
+	{
+		static_cast<LHS *>(this)->multiply(rhs);
+		return *static_cast<LHS *>(this);
+	}
+};
+
+/// @brief Inherit from this class to define the binary slash operator.
+/// The derived class needs to define a <tt>void divide(const RHS&);</tt> function.
+template <typename LHS, typename RHS>
+class binary_slash_expr
+{
+	// friends defined inside class body are inline and are hidden from non-ADL lookup
+	friend LHS operator/(LHS lhs,        // passing lhs by value helps optimize chained a+b+c
+		                 const RHS& rhs) // otherwise, both parameters may be const references
+	{
+		lhs /= rhs; // reuse compound assignment
+		return lhs; // return the result by value (uses move constructor)
+	}
+
+	LHS& operator/=(const RHS& rhs)
+	{
+		static_cast<LHS *>(this)->divide(rhs);
+		return *static_cast<LHS *>(this);
+	}
 };
  
 } // namespace id

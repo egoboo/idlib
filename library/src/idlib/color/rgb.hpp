@@ -41,8 +41,8 @@ namespace id {
 template <typename ColorSpace>
 struct color<ColorSpace, std::enable_if_t<internal::is_rgb<ColorSpace>::value>> :
     public equal_to_expr<color<ColorSpace>>,
-    public plus_expr<color<ColorSpace>>,
-    public minus_expr<color<ColorSpace>>
+    public plus_expr<color<ColorSpace>, color<ColorSpace>>,
+    public minus_expr<color<ColorSpace>, color<ColorSpace>>
 {
 public:
     /// @brief The color space type.
