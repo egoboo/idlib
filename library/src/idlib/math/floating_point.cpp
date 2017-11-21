@@ -19,13 +19,13 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template class id::zero_functor<single>;
-template class id::zero_functor<double>;
-template class id::zero_functor<quadruple>;
+template struct id::zero_functor<single>;
+template struct id::zero_functor<double>;
+template struct id::zero_functor<quadruple>;
 
-template class id::one_functor<single>;
-template class id::one_functor<double>;
-template class id::one_functor<quadruple>;
+template struct id::one_functor<single>;
+template struct id::one_functor<double>;
+template struct id::one_functor<quadruple>;
 
 template struct id::lineary_interpolate_functor<single, single>;
 template struct id::lineary_interpolate_functor<double, double>;

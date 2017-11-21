@@ -50,9 +50,7 @@ template <typename T>
 struct zero_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_same<T, bool>::value>>
 {
     constexpr T operator()() noexcept
-    {
-        return 0;
-    }
+    { return 0; }
 };
 
 /// @brief The one element of a domain of values (e.g. int, float, user-defined types, ...)
@@ -64,17 +62,14 @@ struct zero_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_s
 /// Specialization for all integral types excluding @a bool are provided.
 /// Specializations for @a float and @a double are provided.
 template <typename T, typename E = void>
-class one_functor;
+struct one_functor;
 
 /// @internal
 template <typename T>
-class one_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_same<T, bool>::value>>
+struct one_functor<T, std::enable_if_t<std::is_integral<T>::value && !std::is_same<T, bool>::value>>
 {
-public:
     constexpr T operator()() noexcept
-    {
-        return 1;
-    }
+    { return 1; }
 };
 
 /// @brief Get the zero value the type @a T.
@@ -91,8 +86,6 @@ decltype(auto) zero()
 /// @return the one value of the type @a T
 template <typename T>
 decltype(auto) one()
-{
-	return one_functor<T>()();
-}
+{ return one_functor<T>()(); }
 
 } // namespace id
