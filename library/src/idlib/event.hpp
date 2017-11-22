@@ -21,7 +21,4 @@
 
 #pragma once
 
-#include "idlib/event/keyboard_key_event_kind.hpp"
-#include "idlib/event/mouse_button_event_kind.hpp"
-#include "idlib/event/mouse_wheel_event_kind.hpp"
-#include "idlib/event/window_event_kind.hpp"
+/* The Idlib event library was removed from Idlib. */
