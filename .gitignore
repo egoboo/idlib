@@ -44,7 +44,10 @@ Makefile
 *.VC.db
 *.VC.VC.opendb
 /intermediate
-/product
+/products
+*.sln
+*.exe.gta.testdurations
+**/Temporary
 
 # Code::Blocks.
 *.layout
