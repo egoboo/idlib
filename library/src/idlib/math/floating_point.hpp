@@ -24,6 +24,8 @@
 #include "idlib/math/interpolate.hpp"
 #include "idlib/math/mu.hpp"
 #include "idlib/math/one_zero.hpp"
+#include "idlib/math/is_negative.hpp"
+#include "idlib/math/is_positive.hpp"
 
 #include <type_traits>
 #include <cmath>
@@ -214,5 +216,61 @@ struct one_functor<quadruple, void>
     constexpr quadruple operator()() noexcept
     { return 1.0l; }
 }; // struct one_functor
+	
+} // namespace id
+
+namespace id {
+
+/// @internal
+template <>
+struct is_negative_functor<single>
+{
+    bool operator()(single x) noexcept
+    { return x < zero<single>(); }
+}; // struct is_negative_functor
+
+/// @internal
+template <>
+struct is_negative_functor<double>
+{
+    bool operator()(double x) noexcept
+    { return x < zero<single>(); }
+}; // struct is_negative_functor
+
+/// @internal
+template <>
+struct is_negative_functor<quadruple>
+{
+    bool operator()(quadruple x) noexcept
+    { return x < zero<quadruple>(); }
+}; // struct is_negative_functor
+	
+} // namespace id
+
+namespace id {
+
+/// @internal
+template <>
+struct is_positive_functor<single>
+{
+    bool operator()(single x) noexcept
+    { return x > zero<single>(); }
+}; // struct is_positive_functor
+
+/// @internal
+template <>
+struct is_positive_functor<double>
+{
+    bool operator()(double x) noexcept
+    { return x > zero<double>(); }
+}; // struct is_positive_functor
+
+/// @internal
+template <>
+struct is_positive_functor<quadruple>
+{
+    bool operator()(quadruple x) noexcept
+    { return x > zero<quadruple>(); }
+}; // struct is_positive_functor
 	
 } // namespace id
