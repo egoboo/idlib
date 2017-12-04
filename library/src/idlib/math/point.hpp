@@ -437,4 +437,46 @@ private:
 	
 }; // struct semantic_cast_functor
 
+/// @internal
+template <typename V>
+struct random_functor<point<V>>
+{
+	using point_type = point<V>;
+	using scalar_type = typename point_type::scalar_type;
+    static const interval<scalar_type> DEFAULT_INTERVAL;
+
+    point_type operator()() const
+    {
+		rng rng;
+        return (*this)(&rng, DEFAULT_INTERVAL);
+    }
+	
+    point_type operator()(rng *rng) const
+    {
+        return (*this)(rng, DEFAULT_INTERVAL);
+    }
+
+    point_type operator()(const interval<scalar_type>& interval) const
+    {
+		rng rng;
+        return (*this)(&rng, interval);
+    }
+    
+	point_type operator()(rng *rng, const interval<scalar_type>& interval) const
+    { 
+		return impl(rng, interval, std::make_index_sequence<point_type::dimensionality()>{});
+	}
+
+private:
+	template<std::size_t...Is>
+	point_type impl(rng *rng, const interval<scalar_type>& interval, std::index_sequence<Is ...>) const
+	{ return point_type(impl(rng, interval, Is) ...); }
+	
+	scalar_type impl(rng *rng, const interval<scalar_type>& interval, size_t i) const
+	{ return rng->next(interval); }
+}; // struct random_functor
+
+template <typename V>
+const interval<typename point<V>::scalar_type> random_functor<point<V>>::DEFAULT_INTERVAL(zero<typename point<V>::scalar_type>(), one<typename point<V>::scalar_type>());
+
 } // namespace id

@@ -28,10 +28,9 @@ TEST(vector_3i, addition)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
-        auto b = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<vector_3i>(interval);
+        auto b = id::random<vector_3i>(interval);
         auto c = a + b;
         ASSERT_TRUE((c - b) == a);
         ASSERT_TRUE((c - a) == b);
@@ -42,10 +41,9 @@ TEST(vector_3i, subtraction)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
-        auto b = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<vector_3i>(interval);
+        auto b = id::random<vector_3i>(interval);
         auto c = a - b;
         ASSERT_TRUE((c + b) == a);
         ASSERT_TRUE(b == (a - c));
@@ -56,13 +54,12 @@ TEST(vector_3i, scalar_product)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
-        auto b = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<vector_3i>(interval);
+        auto b = id::random<vector_3i>(interval);
         int s;
         do {
-            s = r.next(interval);
+            s = id::random<int>(interval);
         } while (s == id::zero<int>());
         b = a * s;
         ASSERT_TRUE((b / s) == a);
@@ -73,9 +70,8 @@ TEST(vector_3i, negation)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<vector_3i>(interval);
         auto b = -a;
         auto c = -b;
         ASSERT_TRUE(a == c);
@@ -86,9 +82,8 @@ TEST(vector_3i, equality)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        vector_3i a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        vector_3i a = id::random<vector_3i>(interval);
         vector_3i b = a;
         ASSERT_EQ(a, b);
     }

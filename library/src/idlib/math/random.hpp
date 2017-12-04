@@ -15,29 +15,31 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
+#pragma once
+
 #include "idlib/math/interval.hpp"
 
 namespace id {
 
 // Forward declaration.
-struct random_implementation;
+struct rng_implementation;
 	
 /// @ingroup math
 /// @brief Mersenne Twiser random number generator.
 /// @remark This class is not copyable, only movable.
-struct random
+struct rng
 {
 	/// @brief Construct this random number generator.
-	random();
+	rng();
 	/// @brief Destruct this random number generator.
-	~random();
+	~rng();
 	/// @brief Move-construct this random number generator.
-	random(random&&);
-	random(const random&) = delete; // not copyable
+	rng(rng&&);
+	rng(const rng&) = delete; // not copyable
 
 	/// @brief Move-assign this random number generator.
-	random& operator=(random&&); // movable	
-	random& operator=(const random&) = delete; // not copyable
+	rng& operator=(rng&&); // movable	
+	rng& operator=(const rng&) = delete; // not copyable
 
 	
 	/// @{
@@ -63,8 +65,17 @@ struct random
 	/// @}
 	
 private:
-	std::unique_ptr<random_implementation> m_implementation;
+	std::unique_ptr<rng_implementation> m_implementation;
 
-}; // struct random
-    
+}; // struct rng
+
+/// @brief Functor generating a random value.
+/// @tparam T the type of the value
+template <typename T>
+struct random_functor;
+
+template <typename T, typename ... As>
+auto random(As&& ... args) -> decltype(random_functor<T>()(std::forward<As>(args) ...))
+{ return random_functor<T>()(std::forward<As>(args) ...); }
+
 } // namespace id

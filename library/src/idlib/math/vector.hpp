@@ -40,6 +40,7 @@
 #include "idlib/math/min_element.hpp"
 #include "idlib/math/max_element.hpp"
 #include "idlib/math/interpolate.hpp"
+#include "idlib/math/random.hpp"
 
 namespace id {
 
@@ -704,6 +705,48 @@ struct lineary_interpolate_functor<vector<Scalar, Dimensionality>, Scalar, void>
     { return x * mu.get_one_minus_mu() + y * mu.get_mu(); }
 
 }; // struct lineary_interpolate_functor
+
+/// @internal
+template <typename S, size_t D>
+struct random_functor<vector<S, D>>
+{
+    using scalar_type = S;
+
+    using vector_type = vector<scalar_type, D>;
+
+    static const interval<scalar_type> DEFAULT_INTERVAL;
+  
+	vector_type operator()() const
+    {
+		rng rng;
+        return (*this)(&rng, DEFAULT_INTERVAL);
+    }
+	
+	vector_type operator()(rng *rng) const
+	{ return (*this)(rng, DEFAULT_INTERVAL); }
+
+    vector_type operator()(const interval<scalar_type>& interval) const
+    { 
+		rng rng;
+		return (*this)(&rng, interval);
+	}
+	
+    vector_type operator()(rng *rng, const interval<scalar_type>& interval) const
+    {
+        return impl(rng, interval, std::make_index_sequence<D>{});
+    }
+
+private:
+	template<std::size_t...Is>
+	vector_type impl(rng *rng, const interval<scalar_type>& interval, std::index_sequence<Is ...>) const
+	{ return vector_type(impl(rng, interval, Is) ...); }
+	
+	scalar_type impl(rng *rng, const interval<scalar_type>& interval, size_t i) const
+	{ return rng->next(interval); }
+}; // struct random_functor
+
+template <typename S, size_t D>
+const interval<S> random_functor<vector<S, D>>::DEFAULT_INTERVAL(zero<S>(), one<S>());
 
 } // namespace id
 

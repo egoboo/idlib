@@ -19,9 +19,9 @@
 
 namespace id {
 	
-struct random_implementation
+struct rng_implementation
 {
-	random_implementation() :
+	rng_implementation() :
 		generator(time(nullptr))
 	{}
 	
@@ -61,35 +61,35 @@ private:
     /// @brief Mersenne Twister randomizer.
     std::mt19937 generator;
 	
-}; // random_implementation
+}; // rng_implementation
 
-random::random() :
-	m_implementation(std::make_unique<random_implementation>())
+rng::rng() :
+	m_implementation(std::make_unique<rng_implementation>())
 {}
 
-random::~random()
+rng::~rng()
 {}
 
-random::random(random&& other) :
+rng::rng(rng&& other) :
 	m_implementation(std::move(other.m_implementation))
 {}
 
-random& random::operator=(random&& other)
+rng& rng::operator=(rng&& other)
 { 
 	m_implementation = std::move(other.m_implementation);
 	return *this;
 }
 
-single random::next(const interval<single>& interval)
+single rng::next(const interval<single>& interval)
 { return m_implementation->next(interval); }
 
-double random::next(const interval<double>& interval)
+double rng::next(const interval<double>& interval)
 { return m_implementation->next(interval); }
 
-quadruple random::next(const interval<quadruple>& interval)
+quadruple rng::next(const interval<quadruple>& interval)
 { return m_implementation->next(interval); }
 
-int random::next(const interval<int>& interval)
+int rng::next(const interval<int>& interval)
 { return m_implementation->next(interval); }
     
 } // namespace id

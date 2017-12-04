@@ -28,9 +28,8 @@ TEST(max_element, point_3i)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = point_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<point_3i>(interval);
 		// Explicitly find the maximal element.
 		auto e = a[0];
 		for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
@@ -45,9 +44,8 @@ TEST(max_element, vector_3i)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
-        auto a = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        auto a = id::random<vector_3i>(interval);
 		// Explicitly find the maximal element.
 		auto e = a[0];
 		for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)

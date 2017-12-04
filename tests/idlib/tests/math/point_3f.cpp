@@ -28,12 +28,11 @@ TEST(point_3i, addition)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
         // b = a + t0
         // t1 = a - b = a - (a + t0) = -t0
-        point_3i a = point_3i(r.next(interval), r.next(interval), r.next(interval));
-        vector_3i t0 = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        point_3i a = id::random<point_3i>(interval);
+        vector_3i t0 = id::random<vector_3i>(interval);
         point_3i b = a + t0;
         vector_3i t1 = a - b;
         ASSERT_TRUE(-t0 == t1);
@@ -44,12 +43,11 @@ TEST(point_3i, subtraction)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
-		id::random r;
 		auto interval = interval_i(-1000, +1000);
         // b = a - t0
         // t1 = b - a = (a - t0) - a = -t0
-        point_3i a = point_3i(r.next(interval), r.next(interval), r.next(interval));
-        vector_3i t0 = vector_3i(r.next(interval), r.next(interval), r.next(interval));
+        point_3i a = id::random<point_3i>(interval);
+        vector_3i t0 = id::random<vector_3i>(interval);
         point_3i b = a - t0;
         vector_3i t1 = b - a;
         ASSERT_TRUE(-t0 == t1);

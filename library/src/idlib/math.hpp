@@ -35,13 +35,16 @@
 
 #include "idlib/math/geometry/include.hpp"
 
+#include "idlib/math/floating_point.hpp"
+#include "idlib/math/floating_point_random.hpp"
+#include "idlib/math/integer_random.hpp"
+
 #include "idlib/math/operators.hpp"
-#include "idlib/math/float.hpp"
 #include "idlib/math/dimensionality.hpp"
 #include "idlib/math/units.hpp"
 #include "idlib/math/fraction.hpp"
 #include "idlib/math/interpolate.hpp"
-#include "idlib/math/floating_point.hpp"
+
 #include "idlib/math/mu.hpp"
 #include "idlib/math/even_odd.hpp"
 #include "idlib/math/one_zero.hpp"
