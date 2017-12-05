@@ -57,13 +57,12 @@ public:
         : m_min(), m_max()
 	{}
 
-    /// @brief Construct this AxisAlignedBox from the given points.
+    /// @brief Construct this axis aligned box from the given points.
     /// @param a,b the points
 	/// @remarks
     /// Given the points \f$a\f$ and \f$b\f$, the minimum \f$min\f$
     /// and the maximum \f$max\f$ of the axis aligned box are given
     /// by
-    /// The minimal and maximal points of the axis aligned box are
     /// \f{align*}{
     /// min_i = \min\left(a_i,b_i\right) \;\; max_i = \max\left(a_i,b_i\right)
     /// \f}

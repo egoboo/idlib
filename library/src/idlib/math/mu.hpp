@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/interpolate.hpp
+/// @file idlib/math/interpolate.hpp
 /// @brief Functionality to interpolate between values.
 /// @author Michael Heilmann
 

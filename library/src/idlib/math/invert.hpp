@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file id/math/invert.hpp
+/// @file idlib/math/invert.hpp
 /// @brief Functionality to invert values.
 /// @author Michael Heilmann
 
