@@ -24,15 +24,15 @@
 #undef IDLIB_PRIVATE
 
 #define INSTANTIATE(A) \
-	template struct id::A<id::vector<single, 2>>; \
-	template struct id::A<id::vector<single, 3>>; \
-	template struct id::A<id::vector<single, 4>>; \
-	template struct id::A<id::vector<double, 2>>; \
-	template struct id::A<id::vector<double, 3>>; \
-	template struct id::A<id::vector<double, 4>>; \
-	template struct id::A<id::vector<quadruple, 2>>; \
-	template struct id::A<id::vector<quadruple, 3>>; \
-	template struct id::A<id::vector<quadruple, 4>>;
+	template struct id::A<id::point<id::vector<single, 2>>>; \
+	template struct id::A<id::point<id::vector<single, 3>>>; \
+	template struct id::A<id::point<id::vector<single, 4>>>; \
+	template struct id::A<id::point<id::vector<double, 2>>>; \
+	template struct id::A<id::point<id::vector<double, 3>>>; \
+	template struct id::A<id::point<id::vector<double, 4>>>; \
+	template struct id::A<id::point<id::vector<quadruple, 2>>>; \
+	template struct id::A<id::point<id::vector<quadruple, 3>>>; \
+	template struct id::A<id::point<id::vector<quadruple, 4>>>;
 	
 INSTANTIATE(axis_aligned_box)
 INSTANTIATE(axis_aligned_cube)
