@@ -117,7 +117,9 @@ using quadruple = long double;
 #endif
 
 #if defined(__cplusplus)
-    #include <cstdbool>
+    #if !defined (_MSC_VER) || _MSC_VER < 1912
+      #include <cstdbool>
+	#endif
 #else
     #include <stdbool.h>
 #endif
