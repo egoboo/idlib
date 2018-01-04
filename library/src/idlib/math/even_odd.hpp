@@ -1,4 +1,4 @@
-// Copyright Michael Heilmann 2016, 2017.
+// Copyright Michael Heilmann 2016, 2017, 2018.
 //
 // This file is part of Idlib.
 //
