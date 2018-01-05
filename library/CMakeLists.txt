@@ -1,11 +1,13 @@
 # Minimum required CMake version.
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.8)
 
 # Project name and language.
 project(idlib-library CXX)
 
-# C++ 17 is still not supported in CMake 3.8 as an argument to CMAKE_CXX_STANDARD.
-#set(CMAKE_CXX_STANDARD 17)
+# Idlib library compiles against C++ 17.
+if (NOT MSVC)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
 
 # Set the default properties.
 set_project_default_properties()
@@ -23,9 +25,6 @@ add_library(idlib-library STATIC ${SOURCE_FILES} ${HEADER_FILES})
 target_include_directories(idlib-library PRIVATE "${PROJECT_SOURCE_DIR}/src")
 target_include_directories(idlib-library INTERFACE "${PROJECT_SOURCE_DIR}/src")
 
-# == Doxygen ==================================================================================== #
-
-FIND_PACKAGE(Doxygen)
 IF(DOXYGEN_FOUND)
     ADD_CUSTOM_TARGET(idlib-library-doc ${DOXYGEN_EXECUTABLE} COMMENT "build Idlib documentation")
 ELSE(DOXYGEN_FOUND)

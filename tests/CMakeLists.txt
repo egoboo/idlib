@@ -1,9 +1,11 @@
-cmake_minimum_required (VERSION 2.8.7)
+cmake_minimum_required (VERSION 3.8)
 
 project(idlib-test CXX)
 
-# C++ 17 is still not supported in CMake 3.8 as an argument to CMAKE_CXX_STANDARD.
-#set(CMAKE_CXX_STANDARD 17)
+# Idlib tests compiles against C++ 17.
+if (NOT MSVC)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
 
 # Set the default properties.
 set_project_default_properties()
@@ -17,12 +19,17 @@ include_directories(${PROJECT_SOURCE_DIR})
 # Build a list of all tests.
 file(GLOB_RECURSE test_files ${PROJECT_SOURCE_DIR}/idlib/tests/*.cpp)
 
-add_executable(idlib-test-binary ${test_files})
-target_link_libraries(idlib-test-binary idlib-library)
-target_link_libraries(idlib-test-binary gtest gtest_main)
+add_executable(idlib-tests-executable ${test_files})
+target_link_libraries(idlib-tests-executable idlib-library)
+target_link_libraries(idlib-tests-executable gtest gtest_main)
 
 include(CTest)
 enable_testing()
-add_test(idlib-test ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-test-binary)
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-test-binary)
-
+add_test(idlib-tests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-tests-executable)
+if (NOT MSVC)
+  add_custom_target(idlib-check COMMAND ${CMAKE_CTEST_COMMAND} --verbose DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-tests-executable)
+  if (NOT TARGET check)
+	add_custom_target(check)
+  endif()
+  add_dependencies(check idlib-check)
+endif()

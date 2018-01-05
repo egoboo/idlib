@@ -3,6 +3,29 @@
 ## Synopsis
 
 C++ utility library.
+Requires CMake 3.8.x.
+Builds under GCC 6 or higher, CLANG 3.8 or higher, or Microsoft Visual Studio Community 2017.
+
+## Building under Cygwin.
+To compile Idlib, open a terminal, change to the directory in which this README.md file is found, and enter
+```
+cmake CMakeLists.txt
+make all
+```
+To execute the unit tests, enter
+```
+make check
+```
+Cygwin usually ships with a very outdated version of CMake. However, to compile Idlib, CMake 3.10.1 or higher is required.
+To update to this version, download the package `cmake-{version}.tar.gz` and compile and install it.
+```
+tar -xzf cmake-{version}.tar.gz
+cd cmake-{version}
+./configure
+make all
+make install
+```
+where `{version}` is the CMake version number which should be `3.10.1` or higher.
 
 ## License
 Idlib is made available publicly under the

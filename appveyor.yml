@@ -47,7 +47,7 @@ test_script:
         if ($env:platform -eq "Win32") { $platformName = "x86" }
         vstest.console /Logger:Appveyor /ListDiscoverers /UseVsixExtensions:true
         vstest.console /Logger:Appveyor /ListExecutors /UseVsixExtensions:true
-        vstest.console /Logger:Appveyor /Platform:$platformName /inIsolation /UseVsixExtensions:true "products\$env:configuration\$platformName\bin\idlib-test-binary.exe"
+        vstest.console /Logger:Appveyor /Platform:$platformName /inIsolation /UseVsixExtensions:true "products\$env:configuration\$platformName\bin\idlib-tests-executable.exe"
 
 # if one matrix entry fails, all entries fails
 # https://www.appveyor.com/docs/build-configuration#failing-strategy
