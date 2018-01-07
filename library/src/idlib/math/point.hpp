@@ -201,7 +201,7 @@ public:
 private:
 	template <typename C, std::size_t...Is>
 	bool equal_to(const point_type& other, const C& c, std::index_sequence<Is ...>) const
-	{ return and_fold_expr(c((*this)[Is], other[Is]) ...); }
+	{ return and_fold_expr()(c((*this)[Is], other[Is]) ...); }
 
 public:
 	/// @brief Generic component-wise equality test.
