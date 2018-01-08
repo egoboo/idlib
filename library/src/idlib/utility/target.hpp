@@ -203,33 +203,33 @@
 #endif
 
 #if defined(__APPLE__) && defined (__MACH__)
-     // Apple ISX and iOS (Darwin)
-#include <TargetConditionals.h>
-#if TARGET_IPHONE_SIMULATOR == 1
-    // iOS in Xcode simulator
-#define ID_IOSSIMULATOR (1)
-#error iOS in Xcode simulator not yet supported
-#elif TARGET_OS_IPHONE == 1
-    // iOS on iPhone, iPad, etc.
-#define ID_IOS (1)
-#error iOS on iPhone, iPad, etc. not yet supported
-#elif TARGET_OS_MAC == 1
-    /**
-     * @brief
-     *  This preprocessor constant ID_MACOSX is defined to @a 1
-     *  if the target platform was detected as "Mac OSX", otherwise
-     *  it is not defined.
-     */
-#define ID_OSX (1)
-#endif
+     // Apple OSX and iOS (Darwin)
+	#include <TargetConditionals.h>
+	#if TARGET_IPHONE_SIMULATOR == 1
+		// iOS in Xcode simulator
+		#define ID_IOSSIMULATOR (1)
+		#error iOS in Xcode simulator not yet supported
+	#elif TARGET_OS_IPHONE == 1
+		// iOS on iPhone, iPad, etc.
+		#define ID_IOS (1)
+		#error iOS on iPhone, iPad, etc. not yet supported
+	#elif TARGET_OS_MAC == 1
+		/**
+		 * @brief
+         *  This preprocessor constant ID_MACOSX is defined to @a 1
+         *  if the target platform was detected as "Mac OSX", otherwise
+         *  it is not defined.
+         */
+	#define ID_OSX (1)
+	#endif
 #endif
 
-#if defined(__unix__) || defined(__unix) || defined(unix)
-#define ID_LINUX (1)
+#if (!defined(__APPLE__) && !defined(__MACH__)) && (defined(__unix__) || defined(__unix) || defined(unix))
+	#define ID_LINUX (1)
 #elif defined(__linux__) || defined(__linux) || defined(linux)
-#define ID_LINUX (1)
+	#define ID_LINUX (1)
 #elif defined(__gnu_linux)
-#define ID_LINUX (1)
+	#define ID_LINUX (1)
 #endif
 
 #if !defined(ID_WINDOWS) && !defined(ID_LINUX) && !defined(ID_OSX) && !defined(ID_IOS) && !defined(ID_IOSSIMULATOR)

@@ -25,7 +25,7 @@
 #if defined(ID_WINDOWS)
 #include "idlib/file_system/mapped_file_windows.hpp"
 #elif defined(ID_OSX)
-#error("operating system not supported")
+#include "idlib/file_system/mapped_file_osx.hpp"
 #elif defined(ID_LINUX)
 #include "idlib/file_system/mapped_file_linux.hpp"
 #else

@@ -1,6 +1,6 @@
 #include "idlib/utility/swap_bytes.hpp"
 
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 #include <byteswap.h> 
 #endif
 
@@ -46,7 +46,7 @@ uint8_t swap_bytes(uint8_t x)
 
 int16_t swap_bytes(int16_t x)
 {
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 	return bswap_16(x);
 #elif defined(_MSC_VER)
 	return static_cast<int16_t>(swap_bytes(static_cast<uint16_t>(x)));
@@ -57,21 +57,21 @@ int16_t swap_bytes(int16_t x)
 
 uint16_t swap_bytes(uint16_t x)
 {
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 	return __builtin_bswap16(x);
 #elif defined(_MSC_VER)
 	return _byteswap_ushort(x);
 #else
 	bytes<uint16_t> b;
-	b.value = x;
+	b.value(x);
 	std::reverse(b.begin(), b.end());
-	return b.value;		
+	return b.value();		
 #endif
 }
 
 int32_t swap_bytes(int32_t x)
 {
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 	return bswap_32(x);
 #elif defined(_MSC_VER)
 	return static_cast<int32_t>(swap_bytes(static_cast<uint32_t>(x)));
@@ -82,21 +82,21 @@ int32_t swap_bytes(int32_t x)
 
 uint32_t swap_bytes(uint32_t x)
 {
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 	return __builtin_bswap32(x);
 #elif defined(_MSC_VER)
 	return _byteswap_ulong(x);
 #else
 	bytes<uint32_t> b;
-	b.value = x;
+	b.value(x);
 	std::reverse(b.begin(), b.end());
-	return b.value;	
+	return b.value();	
 #endif	
 }
 
 int64_t swap_bytes(int64_t x)
 {
-#if defined(__GNUC__)
+#if defined(ID_LINUX) && defined(__GNUC__)
 	return bswap_64(x);
 #elif defined(_MSC_VER)
 	return static_cast<int64_t>(swap_bytes(static_cast<uint64_t>(x)));
