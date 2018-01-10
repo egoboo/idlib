@@ -26,6 +26,7 @@
 #define IDLIB_PRIVATE (1)
 
 #include "idlib/file_system/access_mode.hpp"
+#include "idlib/file_system/create_directory.hpp"
 #include "idlib/file_system/error.hpp"
 #include "idlib/file_system/extension.hpp"
 #include "idlib/file_system/file.hpp"
