@@ -31,6 +31,7 @@
 #include "idlib/file_system/error.hpp"
 #include "idlib/file_system/extension.hpp"
 #include "idlib/file_system/file.hpp"
+#include "idlib/file_system/is_directory.hpp"
 #include "idlib/file_system/mapped_file.hpp"
 #include "idlib/file_system/working_directory.hpp"
 #include "idlib/file_system/directory_separator.hpp"
