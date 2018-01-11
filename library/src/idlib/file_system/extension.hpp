@@ -82,6 +82,7 @@ struct extension : public equal_to_expr<extension<C>>
 		{
 			return false;
 		}
+		return true;
 	}
 
     const string_type& to_string() const
