@@ -18,18 +18,27 @@
 #include "gtest/gtest.h"
 #include "idlib/file_system.hpp"
 
-namespace id { namespace test {
+namespace id { namespace file_system { namespace tests {
 
-TEST(file_system, extension)
+TEST(extension_tests, tests_rejection)
 {
-    ASSERT_THROW(id::file_system::extension<char>(""), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("/"), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("\\"), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("/"), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("."), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>(":"), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("?"), id::runtime_error);
-    ASSERT_THROW(id::file_system::extension<char>("*"), id::runtime_error);
+	static const std::vector<std::string> es = 
+	{
+      "",
+      " ",
+      "/",
+      "\\",
+      "/",
+      ".",
+      ":",
+      "?",
+      "*",
+	};
+	
+	for (const auto& e : es)
+    {
+		ASSERT_THROW((id::file_system::extension<char>(e)), id::runtime_error);
+	}
 }
 
-} } // namespace id::test
+} } } // namespace id::test::file_system
