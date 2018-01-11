@@ -1,11 +1,9 @@
-#include "idlib/file_system/create_directory_windows.hpp"
+#include "idlib/file_system/create_directory.hpp"
 
 #if defined (ID_WINDOWS)
     #include "idlib/file_system/create_directory_windows.hpp"
-#elif defined (ID_LINUX)
-    #include "idlib/file_system/create_directory_linux.hpp"
-#elif defined (ID_OSX)
-    #include "idlib/file_system/create_directory_osx.hpp"
+#elif defined (ID_POSIX)
+    #include "idlib/file_system/create_directory_posix.hpp"
 #else
     #error("operating system not supported")	
 #endif

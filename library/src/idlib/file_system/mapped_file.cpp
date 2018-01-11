@@ -23,13 +23,11 @@
 #pragma pop_macro("IDLIB_PRIVATE")
 
 #if defined(ID_WINDOWS)
-#include "idlib/file_system/mapped_file_windows.hpp"
-#elif defined(ID_OSX)
-#include "idlib/file_system/mapped_file_osx.hpp"
-#elif defined(ID_LINUX)
-#include "idlib/file_system/mapped_file_linux.hpp"
+	#include "idlib/file_system/mapped_file_windows.hpp"
+#elif defined(ID_POSIX)
+	#include "idlib/file_system/mapped_file_posix.hpp"
 #else
-#error("operating system not supported")	
+	#error("operating system not supported")	
 #endif
 
 #include "idlib/file_system/header.in"

@@ -25,7 +25,6 @@
 #undef IDLIB_PRIVATE
 #define IDLIB_PRIVATE (1)
 
-#include "idlib/utility/target.hpp"
 #include "idlib/utility/platform.hpp"
 
 #include "idlib/utility/fold_expressions.hpp"

@@ -1,8 +1,6 @@
-#include "idlib/file_system/delete_regular_linux.hpp"
+#include "idlib/file_system/delete_regular_posix.hpp"
 
-#if defined (ID_OSX)
-
-#include <unistd.h>
+#if defined (ID_POSIX)
 
 #include "idlib/file_system/header.in"
 

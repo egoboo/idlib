@@ -21,7 +21,7 @@
 #define IDLIB_PRIVATE 1
 #include "idlib/utility/platform.hpp"
 
-#if defined(ID_LINUX)
+#if defined(ID_POSIX)
 
 #include "idlib/file_system/access_mode.hpp"
 #include "idlib/file_system/create_mode.hpp"

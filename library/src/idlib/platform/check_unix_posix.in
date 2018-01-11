@@ -1,0 +1,22 @@
+// The Single Unix Specification requires the existence of <unistd.h>.
+// <unistd.h> provides the _POSIX_VERSION macro which indicates the Posix version.
+// But how can you include <unistd.h> if you don't know yet that you are in fact compiling on a UNIX?
+// Most target platforms provide a macro unix, __unix__, __unix indicate the existence of the file.
+// However, not all compilers provide these macros and extra checks for these compilers need to be added.
+// For example, on OS X, neither of these macros are defined, although OS X is Posix-compliant.
+// </br>
+// This file defines ID_UNIX if <unistd.h> can be included.
+// If <unistd.h> provides _POSIX_VERSION, then this file defines ID_POSIX.
+// </br>
+
+#if !defined(ID_POSIX) && (defined (ID_OSX) || defined(__unix__))
+	#define ID_UNIX (1)
+#endif
+
+#if defined (ID_UNIX)
+	#include <unistd.h>
+#endif
+
+#if defined(_POSIX_VERSION)
+	#define ID_POSIX (1)
+#endif

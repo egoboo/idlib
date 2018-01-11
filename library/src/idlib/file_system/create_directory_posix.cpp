@@ -1,6 +1,6 @@
-#include "idlib/file_system/create_directory_linux.hpp"
+#include "idlib/file_system/create_directory_posix.hpp"
 
-#if defined (ID_LINUX)
+#if defined (ID_POSIX)
 
 #include <sys/stat.h>
 #include <sys/types.h>

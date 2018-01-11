@@ -2,11 +2,11 @@
 
 #include "idlib/utility.hpp"
 
-#if defined(ID_LINUX)
+#if defined(ID_POSIX)
 
 #include "idlib/file_system/header.in"
 
-bool create_directory_impl(const std::string& filename);
+void delete_regular_impl(const std::string& filename);
 
 #include "idlib/file_system/footer.in"
 

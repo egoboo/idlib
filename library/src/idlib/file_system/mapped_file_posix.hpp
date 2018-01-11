@@ -23,7 +23,8 @@
 #include "idlib/utility/platform.hpp"
 #include "idlib/file_system/file.hpp"
 
-#if defined(ID_LINUX)
+#if defined(ID_POSIX)
+
 #include "idlib/file_system/header.in"
 
 /// @brief A Linux memory mapped file.
@@ -79,4 +80,5 @@ public:
 }; // class mapped_file_descriptor_impl
 
 #include "idlib/file_system/footer.in"
+
 #endif

@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "idlib/file_system/mapped_file_linux.hpp"
+#include "idlib/file_system/mapped_file_posix.hpp"
 
-#if defined(ID_LINUX)
+#if defined(ID_POSIX)
 
 #include <sys/mman.h>
 

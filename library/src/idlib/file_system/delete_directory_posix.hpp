@@ -2,7 +2,7 @@
 
 #include "idlib/utility.hpp"
 
-#if defined(ID_OSX)
+#if defined(ID_POSIX)
 
 #include "idlib/file_system/header.in"
 

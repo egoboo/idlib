@@ -1,6 +1,6 @@
-#include "idlib/file_system/is_directory_osx.hpp"
+#include "idlib/file_system/is_directory_posix.hpp"
 
-#if defined (ID_OSX)
+#if defined (ID_POSIX)
 
 #include <sys/types.h>
 #include <sys/stat.h>

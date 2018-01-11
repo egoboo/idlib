@@ -1,0 +1,13 @@
+// Detect Apple OSX, Apple iOS, and the Apple iOS simulator in Xcode.
+#if defined(__APPLE__) && defined (__MACH__)
+	#include <TargetConditionals.h>
+	#if TARGET_IPHONE_SIMULATOR == 1
+		#define ID_IOSSIMULATOR (1)
+		#error iOS in Xcode simulator not yet supported
+	#elif TARGET_OS_IPHONE == 1
+		#define ID_IOS (1)
+		#error iOS on iPhone, iPad, etc. not yet supported
+	#elif TARGET_OS_MAC == 1
+		#define ID_OSX (1)
+	#endif
+#endif

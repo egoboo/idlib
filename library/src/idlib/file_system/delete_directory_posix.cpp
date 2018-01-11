@@ -1,8 +1,6 @@
-#include "idlib/file_system/is_directory_linux.hpp"
+#include "idlib/file_system/is_directory_posix.hpp"
 
-#if defined (ID_LINUX)
-
-#include <unistd.h>
+#if defined (ID_POSIX)
 
 #include "idlib/file_system/header.in"
 

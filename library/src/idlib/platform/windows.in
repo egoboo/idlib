@@ -1,0 +1,5 @@
+#if !defined(DEFINED)
+	#if defined(WIN32) || defined(_WIN32) || defined (__WIN32) || defined(__WIN32__) || defined(__WIN64__) || defined(WIN64) || defined(_WIN64) || defined(__WIN64)
+		#define ID_WINDOWS (1)
+	#endif
+#endif

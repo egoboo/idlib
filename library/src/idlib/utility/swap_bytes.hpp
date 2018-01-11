@@ -1,6 +1,13 @@
 #pragma once
 
-#include "idlib/utility.hpp"
+#include "idlib/platform.hpp"
+
+#pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE 1
+#include "idlib/utility/platform.hpp"
+#pragma pop_macro("IDLIB_PRIVATE")
+
 #include <cstdint>
 
 #include "idlib/utility/header.in"
@@ -48,7 +55,7 @@ uint64_t swap_bytes(uint64_t x);
 /// @brief Swap the Bytes of a @a single value.
 /// @param x the @a single value
 /// @return the @a single value with its Bytes swapped
-float swap_bytes(single x);
+single swap_bytes(single x);
 
 /// @brief Swap the Bytes of a @a double value.
 /// @param x the @a double value

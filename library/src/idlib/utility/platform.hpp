@@ -17,6 +17,7 @@
 
 /// @file idlib/utility/platform.hpp
 /// @brief Functionality protecting the programmer from platform and compiler idiosyncrasies.
+/// @todo Define and use ID_GNUC, define and use ID_CPP.
 /// @author Michael Heilmann
 
 #pragma once
@@ -25,12 +26,12 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
+#include "idlib/platform/platform.hpp"
+
 /// @brief An alias for @a (float).
 using single = float;
 /// @brief An alias for @a (long double).
 using quadruple = long double;
-
-#include "idlib/utility/target.hpp"
 
 /// @brief Format attributes for printf-style functions for GCC/Clang.
 /// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
