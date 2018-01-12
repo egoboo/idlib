@@ -35,7 +35,7 @@ template <typename CharType>
 bool is_suffix(const std::basic_string<CharType>& w, const std::basic_string<CharType>& v)
 {
     if (v.size() > w.size()) return false;
-    return std::equal(v.rbegin(), v.rend(), w.rbegin());
+    return std::equal(v.crbegin(), v.crend(), w.crbegin());
 }
 
 /// @brief Get if a string is a true suffix of another string.
@@ -46,7 +46,7 @@ template <typename CharType>
 bool is_true_suffix(const std::basic_string<CharType>& w, const std::basic_string<CharType>& v)
 {
     if (v.size() >= w.size()) return false;
-    return std::equal(v.rbegin(), v.rend(), w.rbegin());
+    return std::equal(v.crbegin(), v.crend(), w.crbegin());
 }
 
 #include "idlib/utility/footer.in"

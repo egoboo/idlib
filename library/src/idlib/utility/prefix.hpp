@@ -35,7 +35,7 @@ template <typename CharType>
 bool is_prefix(const std::basic_string<CharType>& w, const std::basic_string<CharType>& v)
 {
     if (v.size() > w.size()) return false;
-    return std::equal(v.begin(), v.end(), w.begin());
+    return std::equal(v.cbegin(), v.cend(), w.cbegin());
 }
 
 /// @brief Get if a string is a true prefix of another string.
@@ -46,7 +46,7 @@ template <typename CharType>
 bool is_true_prefix(const std::basic_string<CharType>& w, const std::basic_string<CharType>& v)
 {
     if (v.size() >= w.size()) return false;
-    return std::equal(v.begin(), v.end(), w.begin());
+    return std::equal(v.cbegin(), v.cend(), w.cbegin());
 }
 
 #include "idlib/utility/footer.in"
