@@ -16,9 +16,9 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 /// @file idlib/utility/suffix.hpp
-/// @brief Conversion of characters and strings to lowercase.
-/// @detail A word @a v is a suffix of a word @a w if there exists a decomposition such that w = uv.
-/// @a v is a true suffix of @a w if @a u is not empty.
+/// @brief Test if a string is suffix of another string.
+/// @detail A word @a v is a suffix of a word @a w if there exists a decomposition such that w = pv.
+/// @a v is a true suffix of @a w if @a p is not empty.
 /// @author Michael Heilmann
 
 #pragma once

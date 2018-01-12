@@ -17,8 +17,8 @@
 
 /// @file idlib/utility/prefix.hpp
 /// @brief Test if a string is prefix of another string.
-/// @detail A word @a v is a prefix of a word @a w if there exists a decomposition such that w = vu.
-/// @a v is a true prefix of @a w if @a u is not empty.
+/// @detail A word @a v is a prefix of a word @a w if there exists a decomposition such that w = vp.
+/// @a v is a true prefix of @a w if @a p is not empty.
 /// @author Michael Heilmann
 
 #pragma once
