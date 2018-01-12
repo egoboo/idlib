@@ -38,6 +38,17 @@ bool is_prefix(const std::basic_string<CharType>& w, const std::basic_string<Cha
     return std::equal(v.cbegin(), v.cend(), w.cbegin());
 }
 
+/// @brief Get if a character is a prefix of a string.
+/// @param w the string
+/// @param v the character which is tested if it is a prefix of @a w
+/// @return @a true if @a v is a prefix of @a w, @a false otherwise
+template <typename CharType>
+bool is_prefix(const std::basic_string<CharType>& w, const CharType& v)
+{
+    if (w.length() < 1) return false; // If |w| < 1, then v can not be a prefix of w.
+	return v == w[0];
+}
+
 /// @brief Get if a string is a true prefix of another string.
 /// @param w the string
 /// @param v the string which is tested if it is a true prefix of @a w
@@ -47,6 +58,17 @@ bool is_true_prefix(const std::basic_string<CharType>& w, const std::basic_strin
 {
     if (v.size() >= w.size()) return false;
     return std::equal(v.cbegin(), v.cend(), w.cbegin());
+}
+
+/// @brief Get if a character is a true prefix of a string.
+/// @param w the string
+/// @param v the character which is tested if it is a true prefix of @a w
+/// @return @a true if @a v is a true prefix of @a w, @a false otherwise
+template <typename CharType>
+bool is_true_prefix(const std::basic_string<CharType>& w, const CharType& v)
+{ 
+    if (w.length() < 2) return false; // If |w| < 2, then v can not be a true prefix of w.
+	return v == w[0];
 }
 
 #include "idlib/utility/footer.in"

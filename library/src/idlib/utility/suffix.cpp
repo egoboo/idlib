@@ -25,8 +25,12 @@
 
 template bool is_suffix<char>(const std::basic_string<char>& w, const std::basic_string<char>& v);
 template bool is_suffix<wchar_t>(const std::basic_string<wchar_t>& w, const std::basic_string<wchar_t>& v);
+template bool is_suffix<char>(const std::basic_string<char>& w, const char& v);
+template bool is_suffix<wchar_t>(const std::basic_string<wchar_t>& w, const wchar_t& v);
 
 template bool is_true_suffix<char>(const std::basic_string<char>& w, const std::basic_string<char>& v);
 template bool is_true_suffix<wchar_t>(const std::basic_string<wchar_t>& w, const std::basic_string<wchar_t>& v);
+template bool is_true_suffix<char>(const std::basic_string<char>& w, const char& v);
+template bool is_true_suffix<wchar_t>(const std::basic_string<wchar_t>& w, const wchar_t& v);
 
 #include "idlib/utility/footer.in"
