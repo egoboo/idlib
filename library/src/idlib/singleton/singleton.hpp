@@ -22,9 +22,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/singleton/hpp.hpp
+/// @file idlib/singleton/singleton.hpp
 /// @brief Singleton implementation.
-/// Directly copied from http://en.cppreference.com/w/cpp/algorithm/clamp.
 /// @author Michael Heilmann
 
 #pragma once
