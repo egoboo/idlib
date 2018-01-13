@@ -1,4 +1,4 @@
-#include "idlib/file_system/is_directory_posix.hpp"
+#include "idlib/file_system/delete_directory_posix.hpp"
 
 #if defined (ID_POSIX)
 
