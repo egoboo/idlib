@@ -39,7 +39,7 @@ TEST(directory_iterator_tests, test2)
 	using namespace id::file_system;
 	for (auto it = directory_iterator(get_working_directory()); it != directory_iterator(); ++it)
 	{
-		std::cout << *it << std::endl;
+        ASSERT_TRUE(exists(*it));
 	}
 }
 
