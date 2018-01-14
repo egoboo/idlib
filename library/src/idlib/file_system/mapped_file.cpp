@@ -29,6 +29,8 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
+#include "idlib/platform.hpp"
+
 #if defined(ID_WINDOWS)
 	#include "idlib/file_system/mapped_file_windows.hpp"
 #elif defined(ID_POSIX)

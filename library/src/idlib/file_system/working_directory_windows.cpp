@@ -2,6 +2,8 @@
 
 #if defined(ID_WINDOWS)
 
+#include <memory>
+
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #include <Windows.h>

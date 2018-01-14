@@ -1,5 +1,7 @@
 #include "idlib/file_system/delete_directory.hpp"
 
+#include "idlib/platform.hpp"
+
 #if defined (ID_WINDOWS)
     #include "idlib/file_system/delete_directory_windows.hpp"
 #elif defined (ID_POSIX)

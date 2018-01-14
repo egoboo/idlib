@@ -1,5 +1,7 @@
 #include "idlib/file_system/delete_regular.hpp"
 
+#include "idlib/platform.hpp"
+
 #if defined (ID_WINDOWS)
     #include "idlib/file_system/delete_regular_windows.hpp"
 #elif defined (ID_POSIX)

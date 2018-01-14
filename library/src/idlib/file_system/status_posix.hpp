@@ -5,6 +5,7 @@
 #if defined (ID_POSIX)
 
 #include "idlib/file_system/file_status.hpp"
+#include <string>
 
 #include "idlib/file_system/header.in"
 

@@ -28,6 +28,8 @@
 
 #include "idlib/file_system/directory_separator.hpp"
 
+#include "idlib/platform.hpp"
+
 #include "idlib/file_system/header.in"
 
 std::string get_directory_separator()

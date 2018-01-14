@@ -2,6 +2,8 @@
 
 #if defined (ID_POSIX)
 
+#include <errno.h>
+
 #include "idlib/file_system/header.in"
 
 bool delete_directory_impl(const std::string& pathname)

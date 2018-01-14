@@ -2,6 +2,8 @@
 
 #if defined(ID_LINUX)
 
+#include <memory>
+
 #include <unistd.h>
 
 #include "idlib/file_system/header.in"

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "idlib/utility.hpp"
 #include "idlib/file_system/file_status.hpp"
+#include <string>
 
 #include "idlib/file_system/header.in"
 

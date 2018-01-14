@@ -1,16 +1,16 @@
 #pragma once
 
 #include "idlib/platform.hpp"
-#include <string>
-#include <stdexcept>
 
 #if defined (ID_WINDOWS)
+
+#include <string>
+#include <stdexcept>
+#include <vector>
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #include <Windows.h>
-
-#include <vector>
 
 #pragma push_macro("IDLIB_PRIVATE")
 #undef IDLIB_PRIVATE

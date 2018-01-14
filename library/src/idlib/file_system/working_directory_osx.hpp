@@ -1,8 +1,10 @@
 #pragma once
 
-#include "idlib/utility.hpp"
+#include "idlib/platform.hpp"
 
 #if defined(ID_OSX)
+
+#include <string>
 
 #include "idlib/file_system/header.in"
 

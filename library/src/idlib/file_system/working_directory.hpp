@@ -28,7 +28,8 @@
 
 #pragma once
 
-#include "idlib/utility.hpp"
+#include "idlib/platform.hpp"
+#include <string>
 
 #include "idlib/file_system/header.in"
 

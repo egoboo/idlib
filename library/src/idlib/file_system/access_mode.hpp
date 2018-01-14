@@ -28,7 +28,8 @@
 
 #pragma once
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/platform.hpp"
+#include <cstdint>
 #include "idlib/utility/bitmask_type.hpp"
 
 #include "idlib/file_system/header.in"

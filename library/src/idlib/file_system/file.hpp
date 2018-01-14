@@ -24,10 +24,12 @@
 
 #pragma once
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/platform.hpp"
 
 #include "idlib/file_system/access_mode.hpp"
 #include "idlib/file_system/create_mode.hpp"
+#include <memory>
+#include <string>
 
 #include "idlib/file_system/header.in"
 

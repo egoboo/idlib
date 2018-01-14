@@ -2,6 +2,7 @@
 
 #if defined(ID_OSX)
 
+#include <errno.h>
 #include <unistd.h>
 
 #include "idlib/file_system/header.in"

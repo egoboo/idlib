@@ -1,5 +1,7 @@
 #include "idlib/file_system/status.hpp"
 
+#include "idlib/platform.hpp"
+
 #if defined (ID_WINDOWS)
 	#include "idlib/file_system/status_windows.hpp"
 #elif defined (ID_POSIX)
