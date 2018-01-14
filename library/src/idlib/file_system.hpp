@@ -38,6 +38,7 @@
 #include "idlib/file_system/delete_regular.hpp"
 #include "idlib/file_system/directory_iterator.hpp"
 #include "idlib/file_system/error.hpp"
+#include "idlib/file_system/executable_directory.hpp"
 #include "idlib/file_system/exists.hpp"
 #include "idlib/file_system/extension.hpp"
 #include "idlib/file_system/file.hpp"
