@@ -34,7 +34,7 @@
 
 std::string get_directory_separator()
 {
-#if defined(_WIN32)
+#if defined(ID_WINDOWS)
     return "\\";
 #else
     return "/";
