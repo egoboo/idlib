@@ -4,9 +4,9 @@
 
 #include "idlib/file_system/header.in"
 
-bool delete_directory_impl(const std::string& filename)
+bool delete_directory_impl(const std::string& pathname)
 {
-    if (0 != rmdir(filename.c_str()))
+    if (0 != rmdir(pathname.c_str()))
     {
         errno = 0; // Clear errno.
         return false;

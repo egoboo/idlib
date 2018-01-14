@@ -4,9 +4,9 @@
 
 #include "idlib/file_system/header.in"
 
-void delete_regular_impl(const std::string& filename)
+void delete_regular_impl(const std::string& pathname)
 {
-    unlink(filename.c_str());
+    unlink(pathname.c_str());
 }
 
 #include "idlib/file_system/footer.in"

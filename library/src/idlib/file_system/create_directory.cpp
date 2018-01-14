@@ -10,7 +10,7 @@
 
 #include "idlib/file_system/header.in"
 
-bool create_directory(const std::string& filename)
-{ return create_directory_impl(filename); }
+bool create_directory(const std::string& pathname)
+{ return create_directory_impl(pathname); }
 
 #include "idlib/file_system/footer.in"

@@ -8,9 +8,9 @@
 
 #include "idlib/file_system/header.in"
 
-bool create_directory_impl(const std::string& filename)
+bool create_directory_impl(const std::string& pathname)
 {
-    return (0 != CreateDirectoryA(filename.c_str(), NULL)) ? true : false;
+    return (0 != CreateDirectoryA(pathname.c_str(), NULL)) ? true : false;
 }
 
 #include "idlib/file_system/footer.in"

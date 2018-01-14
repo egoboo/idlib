@@ -8,11 +8,11 @@
 
 #include "idlib/file_system/header.in"
 
-void delete_regular_impl(const std::string& filename)
+void delete_regular_impl(const std::string& pathname)
 {
-    if (!filename.empty())
+    if (!pathname.empty())
     {
-        DeleteFileA(filename.c_str());
+        DeleteFileA(pathname.c_str());
     }
 }
 

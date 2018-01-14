@@ -10,7 +10,7 @@
 
 #include "idlib/file_system/header.in"
 
-void delete_regular(const std::string& filename)
-{ return delete_regular_impl(filename); }
+void delete_regular(const std::string& pathname)
+{ return delete_regular_impl(pathname); }
 
 #include "idlib/file_system/footer.in"

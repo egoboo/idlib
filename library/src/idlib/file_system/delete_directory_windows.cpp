@@ -8,13 +8,13 @@
 
 #include "idlib/file_system/header.in"
 
-bool delete_directory_impl(const std::string& filename)
+bool delete_directory_impl(const std::string& pathname)
 {
-    if (filename.empty())
+    if (pathname.empty())
     {
         return false;
     }
-    return (0 != RemoveDirectoryA(filename.c_str())) ? true : false;
+    return (0 != RemoveDirectoryA(pathname.c_str())) ? true : false;
 }
 
 #include "idlib/file_system/footer.in"

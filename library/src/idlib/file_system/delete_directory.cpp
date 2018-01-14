@@ -10,7 +10,7 @@
 
 #include "idlib/file_system/header.in"
 
-bool delete_directory(const std::string& filename)
-{ return delete_directory_impl(filename); }
+bool delete_directory(const std::string& pathname)
+{ return delete_directory_impl(pathname); }
 
 #include "idlib/file_system/footer.in"
