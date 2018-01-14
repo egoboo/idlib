@@ -22,12 +22,28 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "idlib/file_system/executable_directory_posix.hpp"
 
-#include <string>
+#if defined(ID_POSIX)
+
+#include <stdexcept>
+
+#include <errno.h>
+#include <limits.h> // PATH_MAX
 
 #include "idlib/file_system/header.in"
 
-std::string get_executable_directory();
+std::string get_executable_directory_impl()
+{
+	char temporary[PATH_MAX + 1];
+	if (-1 == readlink("proc/self/exe", temporary, PATH_MAX))
+	{
+		errno = 0;
+		throw std::runtime_error("unable to get executable directory");
+	}
+	return temporary;
+}
 
 #include "idlib/file_system/footer.in"
+
+#endif

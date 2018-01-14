@@ -24,10 +24,16 @@
 
 #pragma once
 
+#include "idlib/platform.hpp"
+
+#if defined (ID_POSIX)
+
 #include <string>
 
 #include "idlib/file_system/header.in"
 
-std::string get_executable_directory();
+std::string get_executable_directory_impl();
 
 #include "idlib/file_system/footer.in"
+
+#endif
