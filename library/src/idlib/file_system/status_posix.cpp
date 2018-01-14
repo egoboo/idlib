@@ -48,7 +48,7 @@ file_status status_impl(const std::string& pathname)
     }
 	else
 	{
-		if (errno = ENOTDIR || errno == ENOENT || errno == ENAMETOOLONG || errno == EACCES)
+		if (errno == ENOTDIR || errno == ENOENT || errno == ENAMETOOLONG || errno == EACCES)
 			// ENOTDIR, ENOENT, ENAMETOOLONG, and EACCES all imply that the file does not exist or is not accessible due to permission constraints
 			return file_status(file_type::not_found);
 		else if (errno == EOVERFLOW) // EOVERFLOW indicates that some file exists but is not accessible due to technical constraints
