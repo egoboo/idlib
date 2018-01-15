@@ -28,11 +28,7 @@
 
 #pragma once
 
-#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
-#endif
-
-#include "idlib/utility/platform.hpp"
+#include "idlib/platform.hpp"
 
 namespace id {
 
