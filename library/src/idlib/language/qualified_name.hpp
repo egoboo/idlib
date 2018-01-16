@@ -34,6 +34,7 @@
 
 #include "idlib/crtp.hpp"
 #include "idlib/language/location.hpp"
+#include <functional>
 #include <type_traits>
 
 namespace id { namespace c {

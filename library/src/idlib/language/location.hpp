@@ -33,6 +33,7 @@
 #endif
 
 #include "idlib/crtp.hpp"
+#include <string>
 #include <type_traits>
 
 namespace id { namespace c {
