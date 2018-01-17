@@ -34,11 +34,14 @@
 
 #include "idlib/file_system/header.in"
 
+/// @brief Flags which determine how a file is accessed.
+/// @remark All bitwise operators (|, ^, &, ~) and their compound-assignment forms are supported between access_mode enum element values.
+/// A value of an expression a o b where o is a bitwise operator and a and b are access_mode enum element values is always access_mode enum element value.
 enum class access_mode : uint8_t 
 {
     none = 0, ///< Neither read nor write access.
     read = (1 << 1), ///< Read access.
-    write = (1 << 2), ///< Write acccess.
+    write = (1 << 2), ///< Write access.
     read_write = read | write, ///< Alias for @code{read|write}.
     write_read = write | read, ///< Alias for @code{write|read}.
     all = read_write, ///< Alias for @ode{read_write}. 
