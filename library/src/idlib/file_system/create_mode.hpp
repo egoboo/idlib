@@ -36,8 +36,9 @@
 /// @brief Enum class of file create modes.
 enum class create_mode
 {
-    open_existing = 0, ///< Open the file if it exists.
-    create_not_existing = (1 << 1), ///< Create the file if it does not exist.
+    open_existing = 0,              ///< Open the file if it exists. Fail if it does not exist.
+    create_not_existing = (1 << 1), ///< Create the file if it does not exist. Open the file if it exists.
+	fail_existing = (1 << 2),       ///< Create the file if it does not exist. Fail if it exists.
 };
 
 #include "idlib/file_system/footer.in"

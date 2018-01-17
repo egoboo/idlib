@@ -63,6 +63,9 @@ void file_descriptor_impl::open(const std::string& pathname, access_mode access_
     case id::file_system::create_mode::open_existing:
         dwCreateMode = OPEN_EXISTING;
         break;
+	case id::file_system::create_mode::fail_existing:
+		dwCreateMode = CREATE_NEW;
+		break;
     default:
         return;
     };
