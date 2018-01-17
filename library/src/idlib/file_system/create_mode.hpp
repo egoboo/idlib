@@ -29,7 +29,6 @@
 #pragma once
 
 #include "idlib/platform.hpp"
-#include "idlib/utility/bitmask_type.hpp"
 
 #include "idlib/file_system/header.in"
 
