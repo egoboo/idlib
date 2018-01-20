@@ -34,6 +34,7 @@
 
 #include "idlib/file_system/access_mode.hpp"
 #include "idlib/file_system/create_directory.hpp"
+#include "idlib/file_system/copy_directory_contents.hpp"
 #include "idlib/file_system/copy_regular_file.hpp"
 #include "idlib/file_system/delete_directory.hpp"
 #include "idlib/file_system/delete_directory_recursive.hpp"
