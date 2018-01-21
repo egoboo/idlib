@@ -90,7 +90,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/products/${EX_CONFIGURATI
 # Adjust the runtime output directory.
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/products/${EX_CONFIGURATION_NAME}/${EX_PLATFORM_NAME}/bin)
 
-# For multi-target generators like MSVC, we specifiy disjoint output paths for targets.
+# For multi-target generators like MSVC, we specify disjoint output paths for targets.
 foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
 	# Suffix for CMake's configuration type specific output path variables.
     string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
