@@ -30,7 +30,7 @@
 #include "idlib/text/range.hpp"
 #undef IDLIB_PRIVATE
 
-namespace id {
+namespace idlib {
 
 text_range::text_range(std::size_t start, std::size_t length) noexcept :
 	start(start), length(length)
@@ -76,4 +76,4 @@ void text_range::set_length(std::size_t length) noexcept
 }
 #endif
 
-} // namespace id
+} // namespace idlib

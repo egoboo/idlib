@@ -26,10 +26,9 @@
 /// @brief "Euclidean norm" functor and function
 /// @author Michael Heilmann
 
-
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor computing the Euclidean norm of a vector.
@@ -45,4 +44,4 @@ template <typename Vector>
 auto euclidean_norm(const Vector& v) -> decltype(euclidean_norm_functor<Vector>()(v))
 { return euclidean_norm_functor<Vector>()(v); }
 
-} // namespace id
+} // namespace idlib

@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief A functor determinating wether two geometries intersect each other.
@@ -45,4 +45,4 @@ auto is_intersecting(const A& a, const B& b) -> decltype(is_intersecting_functor
 	return is_intersecting_functor<A, B>()(a, b);
 }
 
-} // namespace id
+} // namespace idlib

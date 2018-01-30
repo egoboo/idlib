@@ -32,7 +32,7 @@ using string = std::basic_string<symbol>;
 
 TEST(repetition_testing, test_repetition)
 {
-    auto p = id::parsing_expressions::repetition(id::parsing_expressions::sym('x'));
+    auto p = idlib::parsing_expressions::repetition(idlib::parsing_expressions::sym('x'));
     const std::vector<string> words
     {
         "x",

@@ -29,7 +29,7 @@
 
 using symbol = char;
 using string = std::basic_string<symbol>;
-using qualified_name = id::parsing_expressions::qualified_name<symbol>;
+using qualified_name = idlib::parsing_expressions::qualified_name<symbol>;
 
 TEST(qualified_name_testing, test_acceptance)
 {

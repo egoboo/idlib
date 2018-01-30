@@ -136,13 +136,13 @@ namespace std
 {
 
 template <>
-struct iterator_traits<id::file_system::directory_iterator> 
+struct iterator_traits<idlib::file_system::directory_iterator> 
 {
-	using iterator_category = id::file_system::directory_iterator::iterator_category;
-	using difference_type = id::file_system::directory_iterator::difference_type;
-	using value_type = id::file_system::directory_iterator::value_type;
-	using reference = id::file_system::directory_iterator::reference;
-	using pointer = id::file_system::directory_iterator::pointer;
+	using iterator_category = idlib::file_system::directory_iterator::iterator_category;
+	using difference_type = idlib::file_system::directory_iterator::difference_type;
+	using value_type = idlib::file_system::directory_iterator::value_type;
+	using reference = idlib::file_system::directory_iterator::reference;
+	using pointer = idlib::file_system::directory_iterator::pointer;
 }; // struct iterator_traits
 
 } // namespace std

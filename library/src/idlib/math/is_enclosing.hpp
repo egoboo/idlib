@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 	
 /// @ingroup math
 /// @brief A functor determinating wether a geometry is enclosed in another geometry.
@@ -51,4 +51,4 @@ auto is_enclosing(const A& a, const B& b) -> decltype(is_enclosing_functor<A, B>
 	return is_enclosing_functor<A, B>()(a, b);
 }
 
-} // namespace id
+} // namespace idlib

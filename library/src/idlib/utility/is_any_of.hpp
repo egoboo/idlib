@@ -34,7 +34,7 @@
 
 /// @brief
 /// @code
-/// id::is_any_of<T,A0,A1,..., An>::value
+/// idlib::is_any_of<T,A0,A1,..., An>::value
 /// @endcode
 /// is equivalent to
 /// @code

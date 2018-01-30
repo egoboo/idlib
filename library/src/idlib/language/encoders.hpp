@@ -27,9 +27,9 @@
 #include "idlib/language/encoder.hpp"
 #include <string>
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
-/// @brief Specialization of id::decoder for encoding <c>bool</c> values to <c>boolean</c> literals.
+/// @brief Specialization of idlib::decoder for encoding <c>bool</c> values to <c>boolean</c> literals.
 template <>
 struct encoder<bool, void>
 {
@@ -40,7 +40,7 @@ struct encoder<bool, void>
     }
 }; // struct encoder
 
-/// @brief Specialization of id::encoder for encoding <c>uint8_t</c> values to <c>natural</c> literals.
+/// @brief Specialization of idlib::encoder for encoding <c>uint8_t</c> values to <c>natural</c> literals.
 template <>
 struct encoder<uint8_t, void>
 {
@@ -58,7 +58,7 @@ struct encoder<uint8_t, void>
     }
 }; // struct encoder
 
-/// @brief Specialization of id::encoder for encoding <c>int8_t</c> values to <c>integer</c> literals.
+/// @brief Specialization of idlib::encoder for encoding <c>int8_t</c> values to <c>integer</c> literals.
 template <>
 struct encoder<int8_t, void>
 {
@@ -76,7 +76,7 @@ struct encoder<int8_t, void>
     }
 }; // struct encoder
 
-/// @brief Specialization of id::encoder for encoding <c>std::string</c> values to <c>string</c> literals.
+/// @brief Specialization of idlib::encoder for encoding <c>std::string</c> values to <c>string</c> literals.
 /// @todo By no means this is sufficient. Control characters need to be escaped etc. etc.
 template <>
 struct encoder<std::string, void>
@@ -146,4 +146,4 @@ struct encoder<V, std::enable_if_t<std::is_floating_point<V>::value>>
     }
 };
 
-} } // namespace id::c
+} } // namespace idlib::c

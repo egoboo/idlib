@@ -28,7 +28,7 @@
 #include "idlib/tests/parsing_expressions/header.in"
 
 using symbol = char;
-using namespace id::parsing_expressions;
+using namespace idlib::parsing_expressions;
 using namespace std;
 
 TEST(any_sym_testing, test_acceptance)

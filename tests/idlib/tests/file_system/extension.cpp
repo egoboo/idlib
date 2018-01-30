@@ -25,7 +25,7 @@
 #include "gtest/gtest.h"
 #include "idlib/file_system.hpp"
 
-namespace id { namespace file_system { namespace tests {
+namespace idlib { namespace file_system { namespace tests {
 
 TEST(extension_tests, tests_rejection)
 {
@@ -44,8 +44,8 @@ TEST(extension_tests, tests_rejection)
 	
 	for (const auto& e : es)
     {
-		ASSERT_THROW((id::file_system::extension<char>(e)), id::runtime_error);
+		ASSERT_THROW((idlib::file_system::extension<char>(e)), idlib::runtime_error);
 	}
 }
 
-} } } // namespace id::test::file_system
+} } } // namespace idlib::test::file_system

@@ -42,14 +42,14 @@ struct match
 	using iterator_type = Iterator;
 private:
 	bool m_outcome;
-	id::iterator_range<iterator_type> m_range;
+	idlib::iterator_range<iterator_type> m_range;
 public:
-	match(bool outcome, id::iterator_range<iterator_type> range) :
+	match(bool outcome, idlib::iterator_range<iterator_type> range) :
 		m_outcome(outcome), m_range(range)
 	{}
 	/// @brief Get the range of this match.
 	/// @return this range of this match
-	const id::iterator_range<iterator_type>& range() const
+	const idlib::iterator_range<iterator_type>& range() const
 	{
 		return m_range;
 	}
@@ -64,7 +64,7 @@ public:
 template <typename Iterator>
 inline constexpr match<std::decay_t<Iterator>> make_match(bool outcome, const Iterator& begin, const Iterator& end)
 {
-	return match<std::decay_t<Iterator>>(outcome, id::make_iterator_range(begin, end));
+	return match<std::decay_t<Iterator>>(outcome, idlib::make_iterator_range(begin, end));
 }
 
 template <typename Range>

@@ -31,9 +31,9 @@
 #include "idlib/language/location.hpp"
 #include "idlib/language/category_element.hpp"
 
-#define ID_TOKEN_WITH_ENDLOCATION (0)
+#define IDLIB_TOKEN_WITH_ENDLOCATION (0)
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @brief Generic token.
 /// @tparam Kind the type of the kinds of this token type.
@@ -44,7 +44,7 @@ private:
 	/// @brief The start location of this token.
 	location m_start_location;
 
-#if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
+#if defined(IDLIB_TOKEN_WITH_END_LOCATION) && 1 == IDLIB_TOKEN_WITH_END_LOCATION
     /// @brief The end location of this token.
     location m_end_location;
 #endif
@@ -60,20 +60,20 @@ public:
 	/// @param lexeme the lexeme of this token. Default is the empty string.
 	token(Kind kind,
           const location& start_location,
-      #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION  
+      #if defined(IDLIB_TOKEN_WITH_END_LOCATION) && 1 == IDLIB_TOKEN_WITH_END_LOCATION  
           const location& end_location,
       #endif
           const std::string& lexeme = std::string())
 		: category_element<Kind, DefaultKind>(kind),
           m_start_location(start_location),
-    #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION  
+    #if defined(IDLIB_TOKEN_WITH_END_LOCATION) && 1 == IDLIB_TOKEN_WITH_END_LOCATION  
           m_end_location(end_location),
     #endif
           m_lexeme(lexeme)
 	{}
 	
 public:
-#if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
+#if defined(IDLIB_TOKEN_WITH_END_LOCATION) && 1 == IDLIB_TOKEN_WITH_END_LOCATION
     /// @brief @brief Get the end location of this token.
     /// @return the end location of this token
     /// @see set_end_location
@@ -127,4 +127,4 @@ public:
 
 }; // class token
 
-} } // namespace id::c
+} } // namespace idlib::c

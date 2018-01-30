@@ -116,7 +116,7 @@ public:
 };
 
 /// @internal
-/// @brief See id::ordered_choice for more information.
+/// @brief See idlib::ordered_choice for more information.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>

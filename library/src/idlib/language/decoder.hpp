@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 	
 /// @brief Functor decoding value FROM its string representation.
 /// @tparam V the target type to convert the string representation into
@@ -42,4 +42,4 @@ namespace id { namespace c {
 template <typename V, typename E = void>
 struct decoder;
 
-} } // namespace id::c
+} } // namespace idlib::c

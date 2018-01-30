@@ -38,7 +38,7 @@
 /// @brief If defined to @a 1, text ranges are mutable i.e. provide setters.
 #define ID_TEXT_RANGE_MUTABLE (0)
 
-namespace id {
+namespace idlib {
 
 /// @brief Information on a text range in a text.
 /// @remarks Consists of the start index and the length of the range.
@@ -95,9 +95,9 @@ private:
 
 }; // class text_range
 
-static_assert(std::is_copy_constructible<text_range>::value, "id::text_range must be copy constructible");
-static_assert(std::is_move_constructible<text_range>::value, "id::text_range must be move constructible");
-static_assert(std::is_copy_assignable<text_range>::value, "id::text_range must be copy assignable");
-static_assert(std::is_move_assignable<text_range>::value, "id::text_range must be move assignable");
+static_assert(std::is_copy_constructible<text_range>::value, "idlib::text_range must be copy constructible");
+static_assert(std::is_move_constructible<text_range>::value, "idlib::text_range must be move constructible");
+static_assert(std::is_copy_assignable<text_range>::value, "idlib::text_range must be copy assignable");
+static_assert(std::is_move_assignable<text_range>::value, "idlib::text_range must be move assignable");
 
-} // namespace id
+} // namespace idlib

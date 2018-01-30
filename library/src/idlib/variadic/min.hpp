@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id { namespace variadic { 
+namespace idlib { namespace variadic { 
 
 namespace detail {
 
@@ -45,4 +45,4 @@ template <class A, class...As> // requires SameType<A, As...>
 inline constexpr A const &min(A const &a, As const &...as)
 { return detail::min(a, as...); }
 
-} } // namespace id::variadic
+} } // namespace idlib::variadic

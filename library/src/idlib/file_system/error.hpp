@@ -38,7 +38,7 @@
 #include "idlib/file_system/header.in"
 
 /// @brief Base exception for any kind of file system exception.
-class error : public id::runtime_error
+class error : public idlib::runtime_error
 {
 public:
     /// @brief Construct this exception.
@@ -46,14 +46,14 @@ public:
     /// @param line the line within the C++ source file associated with this exception
     /// @param message the messae
     explicit error(const char *file, int line, const std::string& message) :
-        id::runtime_error(file, line, message)
+        idlib::runtime_error(file, line, message)
     {}
 
 public:
     friend void swap(error& a, error& b)
     {
         using std::swap;
-        swap(static_cast<id::runtime_error&>(a), static_cast<id::runtime_error&>(b));
+        swap(static_cast<idlib::runtime_error&>(a), static_cast<idlib::runtime_error&>(b));
     }
 
     virtual std::string to_string() const override

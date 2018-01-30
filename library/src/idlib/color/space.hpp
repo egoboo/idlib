@@ -30,7 +30,7 @@
 
 #include "idlib/type.hpp"
 
-namespace id {
+namespace idlib {
 
 namespace semantics {
 
@@ -512,4 +512,4 @@ using is_rgba_v = typename is_rgba<ColorSpace>::value;
 
 } // namespace internal
 
-} // namespace id
+} // namespace idlib

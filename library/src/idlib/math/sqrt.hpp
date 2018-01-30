@@ -26,7 +26,7 @@
 
 #include <cmath>
 
-namespace id {
+namespace idlib {
 	
 /// @brief Functor computing the square root (NOT the square).
 /// @remark Specializations for @a single, @a double, and @a quadruple are provided.
@@ -35,7 +35,7 @@ namespace id {
 template <typename T, typename E = void>
 struct sqrt_functor;
 
-/// @brief The function corresponding to id::sqrt_functor.
+/// @brief The function corresponding to idlib::sqrt_functor.
 template <typename T>
 auto sqrt(const T& v)
 { return sq_functor<T>()(v); }
@@ -47,4 +47,4 @@ struct sqrt_functor<T, std::enable_if_t<std::is_floating_point<T>::value>>
 	{ return std::sqrt(x); }
 }; // struct sq_functor
 
-} // namespace id
+} // namespace idlib

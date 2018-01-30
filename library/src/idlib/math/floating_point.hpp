@@ -37,7 +37,7 @@
 #include <type_traits>
 #include <cmath>
 
-namespace id {
+namespace idlib {
 	
 /// @ingroup math
 /// @brief Get if a floating point value is not a number.
@@ -133,9 +133,9 @@ equal_to(T x, T y)
 	return equality_check_result::undetermined;
 }
 	
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Interpolate functor specialization for floating point types.
@@ -166,9 +166,9 @@ struct lineary_interpolate_functor<T, T, std::enable_if_t<std::is_floating_point
 
 }; // struct interpolate_functor
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @internal
 template <>
@@ -196,9 +196,9 @@ public:
     { return 0.0l; }
 }; // struct zero_functor
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @internal
 template <>
@@ -224,9 +224,9 @@ struct one_functor<quadruple, void>
     { return 1.0l; }
 }; // struct one_functor
 	
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @internal
 template <>
@@ -252,9 +252,9 @@ struct is_negative_functor<quadruple>
     { return x < zero<quadruple>(); }
 }; // struct is_negative_functor
 	
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @internal
 template <>
@@ -280,4 +280,4 @@ struct is_positive_functor<quadruple>
     { return x > zero<quadruple>(); }
 }; // struct is_positive_functor
 	
-} // namespace id
+} // namespace idlib

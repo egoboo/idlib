@@ -47,7 +47,8 @@ public:
     /// @brief Construct this range.
     /// @param min the minimum value
     /// @param max the maximum value
-    /// @throw id::invalid_argument_exception @a min is greater than @a max
+    /// @throw idlib::invalid_argument_exception @a min is greater than @a max
+    /// @todo Actually raise an exception.
     range(const type& min, const type& max) :
         m_min(min), m_max(max)
     {}
@@ -75,7 +76,7 @@ public:
     /// @param value the value
     /// @return the clamped value
     const type& clamp(const type& value) const
-    { return id::clamp(value, min(), max()); }
+    { return idlib::clamp(value, min(), max()); }
     
 }; // struct range
 

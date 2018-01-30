@@ -25,11 +25,11 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace math { namespace test {
+namespace idlib { namespace math { namespace test {
 	
-using interval_i = id::interval<int>;
-using vector_3i = id::vector<int, 3>;
-using point_3i = id::point<vector_3i>;
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
+using point_3i = idlib::point<vector_3i>;
 
 TEST(point_3i, addition)
 {
@@ -38,8 +38,8 @@ TEST(point_3i, addition)
 		auto interval = interval_i(-1000, +1000);
         // b = a + t0
         // t1 = a - b = a - (a + t0) = -t0
-        point_3i a = id::random<point_3i>(interval);
-        vector_3i t0 = id::random<vector_3i>(interval);
+        point_3i a = idlib::random<point_3i>(interval);
+        vector_3i t0 = idlib::random<vector_3i>(interval);
         point_3i b = a + t0;
         vector_3i t1 = a - b;
         ASSERT_TRUE(-t0 == t1);
@@ -53,8 +53,8 @@ TEST(point_3i, subtraction)
 		auto interval = interval_i(-1000, +1000);
         // b = a - t0
         // t1 = b - a = (a - t0) - a = -t0
-        point_3i a = id::random<point_3i>(interval);
-        vector_3i t0 = id::random<vector_3i>(interval);
+        point_3i a = idlib::random<point_3i>(interval);
+        vector_3i t0 = idlib::random<vector_3i>(interval);
         point_3i b = a - t0;
         vector_3i t1 = b - a;
         ASSERT_TRUE(-t0 == t1);
@@ -63,8 +63,8 @@ TEST(point_3i, subtraction)
 
 TEST(point_3i, zero)
 {
-    auto v = id::zero<point_3i>();
-    ASSERT_TRUE(v[0] == id::zero<int>() && v[1] == id::zero<int>() && v[2] == id::zero<int>());
+    auto v = idlib::zero<point_3i>();
+    ASSERT_TRUE(v[0] == idlib::zero<int>() && v[1] == idlib::zero<int>() && v[2] == idlib::zero<int>());
 }
 
-} } } // namespace id::math::test
+} } } // namespace idlib::math::test

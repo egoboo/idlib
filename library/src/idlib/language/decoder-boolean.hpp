@@ -35,9 +35,9 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
-/// @brief Specialization of id::c::decoder for decoding <c>boolean</c> literals to @a bool values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>boolean</c> literals to @a bool values.
 /// @tparam V the type of the values to decode the <c>boolean</c> literals to
 template <>
 struct decoder<bool, void>
@@ -61,4 +61,4 @@ struct decoder<bool, void>
 	}
 }; // struct decoder
 
-} } // namespace id::c
+} } // namespace idlib::c

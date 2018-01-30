@@ -35,7 +35,7 @@
 #include "idlib/utility/exception.hpp"
 #include "idlib/language/location.hpp"
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @brief An enumeration of the different kinds of compilation errors.
 enum class compilation_error_kind
@@ -128,4 +128,4 @@ public:
 
 };
 
-} } // namespace id::c
+} } // namespace idlib::c

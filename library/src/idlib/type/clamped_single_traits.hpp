@@ -39,9 +39,9 @@ struct clamped_single_traits
     using underlying_type = float;
     /// @brief Get the range.
     /// @return the range
-    static const id::type::range<underlying_type>& range()
+    static const idlib::type::range<underlying_type>& range()
     {
-        static const id::type::range<underlying_type> r(0.0f, 1.0f);
+        static const idlib::type::range<underlying_type> r(0.0f, 1.0f);
         return r;
     }
 }; // struct clamped_single_traits

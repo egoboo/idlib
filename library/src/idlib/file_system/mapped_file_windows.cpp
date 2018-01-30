@@ -32,7 +32,7 @@ static const char dummy = 0;
 void mapped_file_descriptor_impl::open_read(const std::string& pathname, create_mode create_mode) noexcept
 {
     close();
-    m_file_descriptor.open(pathname, id::file_system::access_mode::read, create_mode);
+    m_file_descriptor.open(pathname, idlib::file_system::access_mode::read, create_mode);
     if (!m_file_descriptor.is_open())
     {
         return;
@@ -72,7 +72,7 @@ void mapped_file_descriptor_impl::open_read(const std::string& pathname, create_
 void mapped_file_descriptor_impl::open_write(const std::string& pathname, create_mode create_mode, size_t size) noexcept
 {
     close();
-    m_file_descriptor.open(pathname, id::file_system::access_mode::read_write, create_mode);
+    m_file_descriptor.open(pathname, idlib::file_system::access_mode::read_write, create_mode);
     if (!m_file_descriptor.is_open())
     { 
 		return;

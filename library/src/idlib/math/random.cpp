@@ -24,7 +24,7 @@
 
 #include "idlib/math/random.hpp"
 
-namespace id {
+namespace idlib {
 	
 struct rng_implementation
 {
@@ -99,4 +99,4 @@ quadruple rng::next(const interval<quadruple>& interval)
 int rng::next(const interval<int>& interval)
 { return m_implementation->next(interval); }
     
-} // namespace id
+} // namespace idlib

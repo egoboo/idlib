@@ -35,7 +35,7 @@
 #include "idlib/variadic/min.hpp"
 #include "idlib/variadic/max.hpp"
 
-// Includes of functors id::vector provides a plugin for.
+// Includes of functors idlib::vector provides a plugin for.
 #include "idlib/math/one_zero.hpp"
 #include "idlib/math/euclidean_norm.hpp"
 #include "idlib/math/manhattan_norm.hpp"
@@ -49,7 +49,7 @@
 #include "idlib/math/interpolate.hpp"
 #include "idlib/math/random.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief A vector.
@@ -373,9 +373,9 @@ public:
 
 }; // struct vector
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 template <typename Scalar, size_t Dimensionality>
 struct zero_functor<vector<Scalar, Dimensionality>>
@@ -397,7 +397,7 @@ struct one_functor<vector<Scalar, Dimensionality>>
 	{ return vector_type::generate(constant_generator<scalar_type>(one<scalar_type>())); }
 };
 
-/// @brief Specialization of id::cross_product_functor for 3-dimensional vectors.
+/// @brief Specialization of idlib::cross_product_functor for 3-dimensional vectors.
 /// Computes the cross product of two 3-dimensional vectors.
 /// @remark For any two vectors \f$v, w\f$ in a 3-dimensional vector space the cross product is defined as
 /// \f[
@@ -517,7 +517,7 @@ struct dot_product_functor<vector<Scalar, Dimensionality>>
 private:
 	template <std::size_t...Is>
 	static scalar_type impl(const vector_type& v, const vector_type& w, std::index_sequence<Is...>)
-	{ return id::plus_fold_expr()((v[Is] * w[Is])...); }
+	{ return idlib::plus_fold_expr()((v[Is] * w[Is])...); }
 
 	static scalar_type impl(const vector_type& v, const vector_type& w)
 	{ return impl(v, w, std::make_index_sequence<vector_type::dimensionality()>{}); }
@@ -535,7 +535,7 @@ struct squared_euclidean_norm_functor<vector<Scalar, Dimensionality>>
 private:
 	template <std::size_t...Is>
 	static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
-	{ return id::plus_fold_expr()((v[Is] * v[Is])...); }
+	{ return idlib::plus_fold_expr()((v[Is] * v[Is])...); }
 
 	static scalar_type impl(const vector_type& v)
 	{ return impl(v, std::make_index_sequence<vector_type::dimensionality()>{}); }
@@ -554,7 +554,7 @@ struct euclidean_norm_functor<vector<Scalar, Dimensionality>>
 private:
 	template <std::size_t...Is>
 	static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
-	{ return std::sqrt(id::plus_fold_expr()((v[Is] * v[Is])...)); }
+	{ return std::sqrt(idlib::plus_fold_expr()((v[Is] * v[Is])...)); }
 
 	static scalar_type impl(const vector_type& v)
 	{ return impl(v, std::make_index_sequence<vector_type::dimensionality()>{}); }
@@ -573,7 +573,7 @@ struct manhattan_norm_functor<vector<Scalar, Dimensionality>>
 private:
 	template <std::size_t...Is>
 	static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
-	{ return id::plus_fold_expr()(std::abs(v[Is])...); }
+	{ return idlib::plus_fold_expr()(std::abs(v[Is])...); }
 
 	static scalar_type impl(const vector_type& v)
 	{ return impl(v, std::make_index_sequence<vector_type::dimensionality()>{}); }
@@ -660,7 +660,7 @@ private:
 
 }; // struct normalize_functor
 
-/// @brief Specialization of id::max_element_functor for id::vector<Scalar, Dimensionality> values.
+/// @brief Specialization of idlib::max_element_functor for idlib::vector<Scalar, Dimensionality> values.
 template <typename Scalar, std::size_t Dimensionality>
 struct max_element_functor<vector<Scalar, Dimensionality>>
 {
@@ -679,7 +679,7 @@ private:
 	
 }; // struct max_element_functor
 
-/// @brief Specialization of id::min_element_functor for id::vector<Scalar, Dimensionality> values.
+/// @brief Specialization of idlib::min_element_functor for idlib::vector<Scalar, Dimensionality> values.
 template <typename Scalar, std::size_t Dimensionality>
 struct min_element_functor<vector<Scalar, Dimensionality>>
 {
@@ -698,7 +698,7 @@ private:
 
 }; // struct min_element_functor
 
-/// @brief Specialization of id::lineary_interpolate_functor for lineary interpolation of id::vector<Scalar, Dimensionality> values.
+/// @brief Specialization of idlib::lineary_interpolate_functor for lineary interpolation of idlib::vector<Scalar, Dimensionality> values.
 template <typename Scalar, size_t Dimensionality>
 struct lineary_interpolate_functor<vector<Scalar, Dimensionality>, Scalar, void>
 {
@@ -755,16 +755,16 @@ private:
 template <typename S, size_t D>
 const interval<S> random_functor<vector<S, D>>::DEFAULT_INTERVAL(zero<S>(), one<S>());
 
-} // namespace id
+} // namespace idlib
 
 namespace std {
 
 template<typename Scalar, std::size_t Dimensionality, std::size_t...Is>
-id::vector<Scalar, Dimensionality> abs(const id::vector<Scalar, Dimensionality>& v, index_sequence<Is...>)
-{ return id::vector<Scalar, Dimensionality>(std::abs(v[Is])...); }
+idlib::vector<Scalar, Dimensionality> abs(const idlib::vector<Scalar, Dimensionality>& v, index_sequence<Is...>)
+{ return idlib::vector<Scalar, Dimensionality>(std::abs(v[Is])...); }
 
 template<typename Scalar, std::size_t Dimensionality>
-id::vector<Scalar, Dimensionality> abs(const id::vector<Scalar, Dimensionality>& v)
+idlib::vector<Scalar, Dimensionality> abs(const idlib::vector<Scalar, Dimensionality>& v)
 { return abs(v, make_index_sequence<Dimensionality>{}); }
 
 } // namespace std

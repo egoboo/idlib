@@ -29,7 +29,7 @@
 
 TEST(parsing_expressions,test_difference)
 {
-    using namespace id::parsing_expressions;
+    using namespace idlib::parsing_expressions;
     using namespace std;
     auto p = difference(digit<char>(), 
                                     ordered_choice(sym('1'),

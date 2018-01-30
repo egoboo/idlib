@@ -32,7 +32,7 @@
 
 #include <type_traits>
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief The zero element of a domain of values (e.g. int, float, user-defined types, ...)
@@ -95,4 +95,4 @@ template <typename T>
 decltype(auto) one()
 { return one_functor<T>()(); }
 
-} // namespace id
+} // namespace idlib

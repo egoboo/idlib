@@ -30,7 +30,7 @@
 
 #include "idlib/platform.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief
 /// Inherit from this class to define the postfix increment and prefix increment operators.
@@ -226,4 +226,4 @@ class binary_slash_expr
 	}
 };
  
-} // namespace id
+} // namespace idlib

@@ -25,13 +25,13 @@
 #include "gtest/gtest.h"
 #include "idlib/file_system.hpp"
 
-namespace id { namespace file_system { namespace tests {
+namespace idlib { namespace file_system { namespace tests {
 
 TEST(working_directory_tests, test_return_value)
 {
-	auto s = id::file_system::get_working_directory();
+	auto s = idlib::file_system::get_working_directory();
 	ASSERT_FALSE((s.size() == 1 && s[0] == '.') || (s.size() == 2 && s[0] == '.' && s[1] == '.'));
 	ASSERT_FALSE(s.size() == 0);
 }
 
-} } } // namespace id::test::file_system
+} } } // namespace idlib::test::file_system

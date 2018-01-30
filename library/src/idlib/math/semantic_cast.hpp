@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @tparam T the target typedef
 /// @tparam S the source typedef
@@ -45,4 +45,4 @@ template <typename T, typename S>
 auto semantic_cast(const S& s)
 { return semantic_cast_functor<T, S, void>()(s); }
 
-} // namespace id
+} // namespace idlib

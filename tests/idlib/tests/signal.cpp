@@ -25,12 +25,12 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace signal {
+namespace idlib { namespace tests { namespace signal {
 
 // Connection, invocation, and explicit disconnection.
 TEST(signal_testing, test_signal_0)
 {
-    id::signal<void(const std::string&)> signal;
+    idlib::signal<void(const std::string&)> signal;
     // (1) Invoke with no subscriber.
     signal("Hello, World!");
     // (2) Invoke with one subscriber.
@@ -45,9 +45,9 @@ TEST(signal_testing, test_signal_0)
 // Implicit disconnection (upon destruction of a signal).
 TEST(signal_testing, test_signal_1)
 {
-    id::connection connection;
+    idlib::connection connection;
     {
-        id::signal<void(const std::string&)> signal;
+        idlib::signal<void(const std::string&)> signal;
         bool invoked = false;
         auto function = [&invoked](const std::string& s) { invoked = true; };
         connection = signal.subscribe(function);
@@ -59,10 +59,10 @@ TEST(signal_testing, test_signal_1)
 // Scoped disconnection (upon destruction of a scoped connection).
 TEST(signal_testing, test_signal_2) {
     bool invoked = false;
-    id::signal<void(const std::string&)> signal;
+    idlib::signal<void(const std::string&)> signal;
     {
         auto function = [&invoked](const std::string& s) { invoked = true; };
-        id::scoped_connection scoped_connection(signal.subscribe(function));
+        idlib::scoped_connection scoped_connection(signal.subscribe(function));
         ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal("Hello, World!");
@@ -71,10 +71,10 @@ TEST(signal_testing, test_signal_2) {
 
 TEST(signal_testing, test_signal_3) {
     bool invoked = false;
-    id::signal<void(const std::string&, const std::string&)> signal;
+    idlib::signal<void(const std::string&, const std::string&)> signal;
     {
         auto function = [&invoked](const std::string& s0, const std::string& s1) { invoked = true; };
-        id::scoped_connection scoped_connection(signal.subscribe(function));
+        idlib::scoped_connection scoped_connection(signal.subscribe(function));
         ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal("Hello, ", "World!");
@@ -84,14 +84,14 @@ TEST(signal_testing, test_signal_3) {
 TEST(signal_testing, test_signal_4)
 {
     bool invoked = false;
-    id::signal<void(float, float)> signal;
+    idlib::signal<void(float, float)> signal;
     {
         auto function = [&invoked](float s0, float s1) { invoked = true; };
-        id::scoped_connection scoped_connection(signal.subscribe(function));
+        idlib::scoped_connection scoped_connection(signal.subscribe(function));
         ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal(1.0f, 2.0f);
     ASSERT_EQ(false, invoked);
 }
 
-} } } // namespace id::tests::signal
+} } } // namespace idlib::tests::signal

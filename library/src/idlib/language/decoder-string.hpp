@@ -37,9 +37,9 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
-/// @brief Specialization of id::c::decoder for decoding <c>string</c> literals to @a std::string values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>string</c> literals to @a std::string values.
 template <>
 struct decoder<std::string, void>
 {
@@ -50,4 +50,4 @@ struct decoder<std::string, void>
 	}
 }; // struct decoder
 
-} } // namespace id::c
+} } // namespace idlib::c

@@ -24,11 +24,11 @@
 
 #include "gtest/gtest.h"
 
-namespace id { namespace tests { namespace compilation {
+namespace idlib { namespace tests { namespace compilation {
 
 TEST(compilation_testing, test_compilation)
 {
     ASSERT_EQ(1, 1);
 }
 
-} } } // namespace id::tests::compilation
+} } } // namespace idlib::tests::compilation

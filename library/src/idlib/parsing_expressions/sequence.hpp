@@ -60,7 +60,7 @@ private:
                 >
         ) const
     {
-		return make_match(true, id::make_iterator_range(at, at));
+		return make_match(true, idlib::make_iterator_range(at, at));
     }
 
     // Drives the iteration.
@@ -92,7 +92,7 @@ private:
         {
             return for_each(std::forward<Tuple>(t), f, result.range().end(), end, std::integral_constant<size_t, Index + 1>()); // Advance.
         }
-		return make_match(false, id::make_iterator_range(at, at));
+		return make_match(false, idlib::make_iterator_range(at, at));
     }
 
 public:
@@ -118,7 +118,7 @@ public:
 };
 
 /// @internal
-/// @brief See id::sequence for more information.
+/// @brief See idlib::sequence for more information.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expression, typename ... Expressions>
@@ -146,9 +146,9 @@ public:
                                   end);
         if (result)
         {
-			return make_match(true, id::make_iterator_range(at, result.range().end()));
+			return make_match(true, idlib::make_iterator_range(at, result.range().end()));
         }
-		return make_match(false, id::make_iterator_range(at, at));
+		return make_match(false, idlib::make_iterator_range(at, at));
     }
 };
 

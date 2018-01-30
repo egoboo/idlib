@@ -22,7 +22,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file id/math/frction.hpp
+/// @file idlib/math/frction.hpp
 /// @brief Functor providing floating-point representations/approximations of important fractions.
 /// @author Michael Heilmann
 
@@ -30,7 +30,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor returning a representation of the fraction \f$\frac{n}{d}\f$.
 /// @tparam T the type
@@ -150,9 +150,9 @@ struct fraction_functor<double, 1, 4, void>
 	{ return 0.25; }
 };
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor returning a representation/approximation of \f$\pi\f$.
 /// @remark Specializations for single and double are provided.
@@ -177,9 +177,9 @@ struct pi_functor<double>
 	{ return 3.1415926535897932384626433832795; }
 };
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 	
 /// @brief Functor returning a representation/approximation of \f$\frac{1}{\pi}\f$.
 /// @remark Specializations for single and double are provided.
@@ -204,9 +204,9 @@ struct inv_pi_functor<double>
 	{ return 0.31830988618379067153776752674503; }
 };
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 	
 /// @brief Functor returning a representation/approximation of \f$2\pi\f$.
 /// @remark Specializations for single and double are provided.
@@ -231,9 +231,9 @@ struct two_pi_functor<double>
 	{ return 6.283185307179586476925286766559; }
 };
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 	
 /// @brief Functor returning a representation/approximation of \f$\frac{1}{2\pi}\f$.
 /// @remark Specializations for single and double are provided.
@@ -258,9 +258,9 @@ struct inv_two_pi_functor<double>
 	{ return 0.15915494309189533576888376337251; }
 };
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor returning a representation/approximation of \f$\frac{\pi}{d}\f$.
 /// @remark Specializations for
@@ -302,9 +302,9 @@ struct pi_over_functor<double, 4>
 	{ return 0.78539816339744830961566084581988; }
 }; // struct pi_over_functor
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor returning a representation/approximation of \f$\sqrt{2}\f$.
 /// @remark Specializations for single and double are provided.
@@ -329,9 +329,9 @@ struct sqrt_two_functor<double>
 	{ return 1.4142135623730950488016887242097; }
 }; // struct sqrt_two_functor
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor returning a representation/approximation of \f$\frac{1}{\sqrt{2}}\f$.
 /// @remark Specializations for single and double are provided.
@@ -356,4 +356,4 @@ struct inv_sqrt_two_functor<double>
 	{ return 0.70710678118654752440084436210485; }
 }; // struct inv_sqrt_two_functor
 
-} // namespace id
+} // namespace idlib

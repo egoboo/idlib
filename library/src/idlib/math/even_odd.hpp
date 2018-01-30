@@ -32,7 +32,7 @@
 
 #include <type_traits>
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor which determines wether a value is even.
@@ -61,8 +61,8 @@ public:
 /// @brief Get if the specified value is odd.
 /// @param x the value
 /// @return @a true if @a x is odd, @a false otherwise
-/// @remark This is a forwarding function forwarding to id::is_even_functor.
-/// To support your custom type, add a specialization of the id::is_even_functor.
+/// @remark This is a forwarding function forwarding to idlib::is_even_functor.
+/// To support your custom type, add a specialization of the idlib::is_even_functor.
 template <typename T>
 constexpr bool is_even(T&& x) noexcept
 {
@@ -72,12 +72,12 @@ constexpr bool is_even(T&& x) noexcept
 /// @brief Get if the specified value is even.
 /// @param x the value
 /// @return @a true if @a x is even, @a false otherwise
-/// @remark This is a forwarding function forwarding to id::is_even_functor.
-/// To support your custom type, add a specialization of the id::is_even_functor.
+/// @remark This is a forwarding function forwarding to idlib::is_even_functor.
+/// To support your custom type, add a specialization of the idlib::is_even_functor.
 template <typename T>
 constexpr bool is_odd(T&& x) noexcept
 {
     return !is_even(std::forward<T>(x));
 }
 
-} // namespace id
+} // namespace idlib

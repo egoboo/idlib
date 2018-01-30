@@ -32,7 +32,7 @@
 #include <atomic>
 #include <mutex>
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor for creating an object of type @a Type.
 /// @a default_create_functor is the default new policy for @a singleton when no new policy is provided.
@@ -59,7 +59,7 @@ struct default_delete_functor
     }
 };
 
-/// @brief If defined to @a 1, the singleton inherits from id::non_copyable.
+/// @brief If defined to @a 1, the singleton inherits from idlib::non_copyable.
 #define ID_SINGLETON_NONCOPYABLE (1)
 
 /// @brief Double-checked locking singleton with subtyping.
@@ -225,4 +225,4 @@ std::mutex singleton<Type, Create, Destroy>::mutex;
 template <typename Type, typename Create, typename Destroy>
 std::atomic<Type *> singleton<Type, Create, Destroy>::instance(nullptr);
 
-} // namespace id
+} // namespace idlib

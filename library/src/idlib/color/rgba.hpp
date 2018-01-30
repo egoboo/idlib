@@ -42,7 +42,7 @@
 #include "idlib/color/darken.hpp"
 #include "idlib/type.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A color in RGBA color space.
 template <typename ColorSpace>
@@ -404,15 +404,15 @@ public:
 
 }; // struct color
 
-/// @brief Brighten functor for id::color<id::RGBAb> and id::color<id::RGBAf> values.
+/// @brief Brighten functor for idlib::color<idlib::RGBAb> and idlib::color<idlib::RGBAf> values.
 template <typename ColorSpace>
 struct brighten_functor<color<ColorSpace>,
                         std::enable_if_t<is_any_of<ColorSpace, RGBAb, RGBAf>::value>>
 {
     using color_space_type = ColorSpace;
     using color_type = color<color_space_type>;
-    using pure_color_type = id::color<pure_color_space_t<color_space_type>>;
-    using pure_opacity_type = id::color<pure_opacity_space_t<color_space_type>>;
+    using pure_color_type = idlib::color<pure_color_space_t<color_space_type>>;
+    using pure_opacity_type = idlib::color<pure_opacity_space_t<color_space_type>>;
 
     color_type operator()(const color_type& c, float f)
     {
@@ -428,15 +428,15 @@ struct brighten_functor<color<ColorSpace>,
 
 }; // struct brighten_functor
 
-/// @brief Darken functor for id::color<id::RGBAb> and id::color<id::RGBAf> values.
+/// @brief Darken functor for idlib::color<idlib::RGBAb> and idlib::color<idlib::RGBAf> values.
 template <typename ColorSpace>
 struct darken_functor<color<ColorSpace>,
                       std::enable_if_t<is_any_of<ColorSpace, RGBAb, RGBAf>::value>>
 {
     using color_space_type = ColorSpace;
     using color_type = color<color_space_type>;
-    using pure_color_type = id::color<pure_color_space_t<color_space_type>>;
-    using pure_opacity_type = id::color<pure_opacity_space_t<color_space_type>>;
+    using pure_color_type = idlib::color<pure_color_space_t<color_space_type>>;
+    using pure_opacity_type = idlib::color<pure_opacity_space_t<color_space_type>>;
 
     color_type operator()(const color_type& c, float f)
     {
@@ -452,7 +452,7 @@ struct darken_functor<color<ColorSpace>,
 
 }; // struct darken_functor
 
-/// @brief Inversion functor for id::color<id::RGBAf> values.
+/// @brief Inversion functor for idlib::color<idlib::RGBAf> values.
 /// @remark Given a color \f$(r,g,b,a)\f$ in real-valued, normalized RGBA space,
 /// then corresponding inverted color is \f$(1-r,1-g,1-b,1-a)\f$. Inverting a
 /// color twice yields the same color (modula floating-point precision).
@@ -473,7 +473,7 @@ struct invert_functor<color<ColorSpace>,
     }
 };
 
-/// @brief Lineary interpolate functor for id::color<id::RGBAf> values.
+/// @brief Lineary interpolate functor for idlib::color<idlib::RGBAf> values.
 template <typename ColorSpace>
 struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<ColorSpace, RGBAf>::value>>
 {
@@ -499,4 +499,4 @@ struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<st
 
 }; // struct lineary_interpolate_functor
 
-} // namespace id
+} // namespace idlib

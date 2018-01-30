@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor computing the cross product of two vectors.
 /// @tparam Vector the vector type
@@ -39,4 +39,4 @@ template <typename Vector>
 auto cross_product(const Vector& v, const Vector& w) -> decltype(cross_product_functor<Vector>()(v, w))
 { return cross_product_functor<Vector>()(v, w); }
 
-} // namespace id
+} // namespace idlib

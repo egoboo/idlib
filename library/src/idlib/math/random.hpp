@@ -26,7 +26,7 @@
 
 #include "idlib/math/interval.hpp"
 
-namespace id {
+namespace idlib {
 
 // Forward declaration.
 struct rng_implementation;
@@ -85,4 +85,4 @@ template <typename T, typename ... As>
 auto random(As&& ... args) -> decltype(random_functor<T>()(std::forward<As>(args) ...))
 { return random_functor<T>()(std::forward<As>(args) ...); }
 
-} // namespace id
+} // namespace idlib

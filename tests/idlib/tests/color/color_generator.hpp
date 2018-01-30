@@ -26,15 +26,15 @@
 
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace color {
+namespace idlib { namespace tests { namespace color {
 
 template <typename S, typename E = void>
 struct color_generator;
 
 template <typename S>
-struct color_generator<S, std::enable_if_t<id::is_any_of<S, id::RGBb, id::RGBf, id::RGBAb, id::RGBAf>::value>>
+struct color_generator<S, std::enable_if_t<idlib::is_any_of<S, idlib::RGBb, idlib::RGBf, idlib::RGBAb, idlib::RGBAf>::value>>
 {
-    using C = id::color<S>;
+    using C = idlib::color<S>;
     std::vector<C> operator()() const
     {
         static const std::vector<C> colors =
@@ -53,9 +53,9 @@ struct color_generator<S, std::enable_if_t<id::is_any_of<S, id::RGBb, id::RGBf, 
 };
 
 template <typename S>
-struct color_generator<S, std::enable_if_t<id::is_any_of<S, id::Lb, id::Lf, id::LAb, id::LAf>::value>>
+struct color_generator<S, std::enable_if_t<idlib::is_any_of<S, idlib::Lb, idlib::Lf, idlib::LAb, idlib::LAf>::value>>
 {
-    using C = id::color<S>;
+    using C = idlib::color<S>;
     std::vector<C> operator()() const
     {
         static const std::vector<C> colors =
@@ -67,4 +67,4 @@ struct color_generator<S, std::enable_if_t<id::is_any_of<S, id::Lb, id::Lf, id::
     }
 };
 
-} } } // namespace id::tests::color
+} } } // namespace idlib::tests::color

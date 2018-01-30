@@ -39,7 +39,7 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 namespace internal {
 
@@ -70,7 +70,7 @@ struct to_floating_point<quadruple>
 
 } // namespace internal
 	
-/// @brief Specialization of id::c::decoder for decoding <c>real</c> literals.
+/// @brief Specialization of idlib::c::decoder for decoding <c>real</c> literals.
 /// @tparam V the type of the values to decode the <c>real</c> literal to
 template <typename T>
 struct decoder<T, std::enable_if_t<internal::is_real<T>::value>>
@@ -124,4 +124,4 @@ struct decoder<T, std::enable_if_t<internal::is_real<T>::value>>
     }
 }; // struct decoder
 	
-} } // namespace id::c
+} } // namespace idlib::c

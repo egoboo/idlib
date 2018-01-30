@@ -32,12 +32,12 @@
 
 /// @brief Macro raising an exception if an assertion fails.
 /// @param assertion the assertion
-/// @throw id::assertion_failed_error the assertion fails
+/// @throw idlib::assertion_failed_error the assertion fails
 /// @remark This macro evaluates to the empty statement if #_DEBUG is not defined.
 #if defined(_DEBUG)
     #define ID_ASSERT(assertion) \
 	    if(!(assertion)) { \
-		    throw id::assertion_failed_error(__FILE__, __LINE__, #assertion); \
+		    throw idlib::assertion_failed_error(__FILE__, __LINE__, #assertion); \
         }
 #else
     #define ID_ASSERT(assertion) /* Empty statement. */;

@@ -26,7 +26,7 @@
 
 #include "idlib/math/generator.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A generator returning a constant value.
 /// @tparam R the result type
@@ -55,4 +55,4 @@ private:
     const result_type m_c;
 }; // struct constant_generator
 
-} // namespace id
+} // namespace idlib

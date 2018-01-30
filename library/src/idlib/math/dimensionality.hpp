@@ -26,7 +26,7 @@
 
 #include <cstddef>
 
-namespace id {
+namespace idlib {
 
 /// @brief Test whether @a N fulfils the <em>dimensionality concept</em>.
 /// Provides the member constant value which is equal to @a true, if @a N
@@ -62,4 +62,4 @@ struct is_dimensionality<0>
 template<size_t N>
 constexpr bool is_dimensionality_v = is_dimensionality<N>::value;
 
-} // namespace id
+} // namespace idlib

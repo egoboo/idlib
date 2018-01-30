@@ -25,11 +25,11 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace math { namespace test {
+namespace idlib { namespace math { namespace test {
 
-	using interval_s = id::interval<single>;
-	using vector_3s = id::vector<single, 3>;
-	using point_3s = id::point<vector_3s>;
+	using interval_s = idlib::interval<single>;
+	using vector_3s = idlib::vector<single, 3>;
+	using point_3s = idlib::point<vector_3s>;
 
 	// Generate the tuples (1,0,0), (0,1,0), (0,0,1).
 	template <typename T>
@@ -74,8 +74,8 @@ namespace id { namespace math { namespace test {
 
 template <typename T>
 void do_test(const T& x, const T& y) {
-	ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
-	ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
+	ASSERT_EQ(x, idlib::lineary_interpolate(x, y, 0.0f));
+	ASSERT_EQ(y, idlib::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(linear_interpolation, vector_3s) {
@@ -95,4 +95,4 @@ TEST(linear_interpolation, point_3s) {
 	}
 }
 
-} } } // namespace id::math::test
+} } } // namespace idlib::math::test

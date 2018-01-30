@@ -30,7 +30,7 @@
 
 #include "idlib/math/vector.hpp"
 
-// Includes of functors id::point provides a plugin for.
+// Includes of functors idlib::point provides a plugin for.
 #include "idlib/math/interpolate.hpp"
 #include "idlib/math/enclose.hpp"
 #include "idlib/math/is_enclosing.hpp"
@@ -38,7 +38,7 @@
 #include "idlib/math/translate.hpp"
 #include "idlib/math/semantic_cast.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief A point in the \f$n\f$-dimensional Euclidean space.
@@ -63,7 +63,7 @@ public:
     using point_type = point<vector_type>;
 
 	/// @brief The implementation type. 
-	using implementation_type = id::arithmetic_tuple<scalar_type, vector_type::dimensionality(), zero_functor<scalar_type>>;
+	using implementation_type = idlib::arithmetic_tuple<scalar_type, vector_type::dimensionality(), zero_functor<scalar_type>>;
 
 private:
 	/// @brief The implementation.
@@ -261,9 +261,9 @@ public:
 #endif
 }; // struct point
 
-} // namespace id
+} // namespace idlib
 
-namespace id {
+namespace idlib {
 
 template <typename Vector>
 struct zero_functor<point<Vector>>
@@ -281,7 +281,7 @@ struct zero_functor<point<Vector>>
 
 }; // struct zero_functor
 
-/// @brief Specialization of id::enclose_functor enclosing a point in a point.
+/// @brief Specialization of idlib::enclose_functor enclosing a point in a point.
 /// @detail The point \f$b\f$ enclosing a point \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam Vector the vector type
 template <typename Vector>
@@ -297,7 +297,7 @@ struct enclose_functor<point<Vector>, point<Vector>>
 
 }; // struct enclose_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines if a point contains another point.
 /// @tparam Vector the vector type
 template <typename Vector>
@@ -321,7 +321,7 @@ struct is_enclosing_functor<point<Vector>, point<Vector>>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates a point.
 /// @tparam Vector the vector type
 template <typename Vector>
@@ -338,7 +338,7 @@ struct translate_functor<point<Vector>, Vector>
 	}
 }; // struct translare_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if two points intersect.
 /// @tparam Vector the vector type
 template<typename Vector>
@@ -362,7 +362,7 @@ struct is_intersecting_functor<point<Vector>, point<Vector>>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::max_element_functor for id::point<Vector> values.
+/// @brief Specialization of idlib::max_element_functor for idlib::point<Vector> values.
 template <typename Vector>
 struct max_element_functor<point<Vector>>
 {
@@ -381,7 +381,7 @@ private:
 	
 }; // struct max_element_functor
 	
-/// @brief Specialization of id::min_element_functor for id::point<Vector> values.
+/// @brief Specialization of idlib::min_element_functor for idlib::point<Vector> values.
 template <typename Vector>
 struct min_element_functor<point<Vector>>
 {
@@ -400,12 +400,12 @@ private:
 
 }; // struct min_element_functor
 
-/// @brief Specialization of id::interpolate_functor for linear interpolation of id::point<Vector>.
+/// @brief Specialization of idlib::interpolate_functor for linear interpolation of idlib::point<Vector>.
 template <typename Vector>
 struct lineary_interpolate_functor<point<Vector>, typename Vector::scalar_type, void>
 {
 	using vector_type = Vector;
-    using point_type = id::point<vector_type>;
+    using point_type = idlib::point<vector_type>;
 	
 	using value_type = point_type;
     using parameter_type = typename point_type::scalar_type;
@@ -486,4 +486,4 @@ private:
 template <typename V>
 const interval<typename point<V>::scalar_type> random_functor<point<V>>::DEFAULT_INTERVAL(zero<typename point<V>::scalar_type>(), one<typename point<V>::scalar_type>());
 
-} // namespace id
+} // namespace idlib

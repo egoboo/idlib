@@ -31,7 +31,7 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace test { namespace singleton_construction {
+namespace idlib { namespace test { namespace singleton_construction {
 
 class foo;
 
@@ -43,8 +43,8 @@ struct foo_destroy_functor {
 	void operator()(foo *p) const;
 };
 
-class foo : public id::singleton<foo, foo_create_functor,
-	                                  foo_destroy_functor> {
+class foo : public idlib::singleton<foo, foo_create_functor,
+	                                foo_destroy_functor> {
 protected:
 	friend struct foo_create_functor;
 	friend struct foo_destroy_functor;
@@ -67,4 +67,4 @@ TEST(singleton, construction) {
     foo::uninitialize();
 }
 
-} } } // namespace id::test::singleton_construction
+} } } // namespace idlib::test::singleton_construction

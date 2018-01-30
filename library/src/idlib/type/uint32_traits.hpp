@@ -39,10 +39,10 @@ struct uint32_traits
     using underlying_type = uint32_t;
     /// @brief Get the range.
     /// @return the range
-    static const id::type::range<underlying_type>& range()
+    static const idlib::type::range<underlying_type>& range()
     {
-        static const id::type::range<underlying_type> r(std::numeric_limits<underlying_type>::min(),
-                                                        std::numeric_limits<underlying_type>::max());
+        static const idlib::type::range<underlying_type> r(std::numeric_limits<underlying_type>::min(),
+                                                           std::numeric_limits<underlying_type>::max());
         return r;
     }
 }; // struct uint32_traits

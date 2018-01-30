@@ -29,7 +29,7 @@
 
 TEST(period_expression_testing, test_period_expression)
 {
-    auto p = id::parsing_expressions::sym<char>('.');
+    auto p = idlib::parsing_expressions::sym<char>('.');
     std::string w;
     std::string::const_iterator s, e;
     //
@@ -42,7 +42,7 @@ TEST(period_expression_testing, test_period_expression)
 
 TEST(whitespace_expression_testing, test_whitespace_expression)
 {
-    auto p = id::parsing_expressions::whitespace<char>();
+    auto p = idlib::parsing_expressions::whitespace<char>();
     std::string w;
     std::string::const_iterator s, e;
     //
@@ -61,7 +61,7 @@ TEST(whitespace_expression_testing, test_whitespace_expression)
 
 TEST(newline_expression_testing, test_newline_expression)
 {
-    auto p = id::parsing_expressions::newline<char>();
+    auto p = idlib::parsing_expressions::newline<char>();
     std::string w;
     std::string::const_iterator s, e;
     //
@@ -80,7 +80,7 @@ TEST(newline_expression_testing, test_newline_expression)
 
 TEST(digit_symbol_testing, test_digit_expression)
 {
-    auto p = id::parsing_expressions::digit<char>();
+    auto p = idlib::parsing_expressions::digit<char>();
     for (char symbol = '0'; symbol <= '9'; ++symbol)
     {
         auto w = std::string(1, symbol);
@@ -93,7 +93,7 @@ TEST(digit_symbol_testing, test_digit_expression)
     
 TEST(alpha_lowercase_expression_testing, test_alpha_lowercase_expression)
 {
-    auto p = id::parsing_expressions::alpha_lowercase<char>();
+    auto p = idlib::parsing_expressions::alpha_lowercase<char>();
     for (char symbol = 'a'; symbol <= 'z'; ++symbol)
     {
         auto w = std::string(1, symbol);
@@ -106,7 +106,7 @@ TEST(alpha_lowercase_expression_testing, test_alpha_lowercase_expression)
 
 TEST(alpha_uppercase_expression_testing, test_alpha_uppercase_expression)
 {
-    auto p = id::parsing_expressions::alpha_uppercase<char>();
+    auto p = idlib::parsing_expressions::alpha_uppercase<char>();
     for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
     {
         auto w = std::string(1, symbol);
@@ -122,7 +122,7 @@ TEST(single_symbol_testing, test_single_symbol)
     //
     for (char symbol = 'a'; symbol <= 'z'; ++symbol)
     {
-        auto p = id::parsing_expressions::sym(symbol);
+        auto p = idlib::parsing_expressions::sym(symbol);
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
         ASSERT_TRUE(p(s, e));
@@ -132,7 +132,7 @@ TEST(single_symbol_testing, test_single_symbol)
     //
     for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
     {
-        auto p = id::parsing_expressions::sym(symbol);
+        auto p = idlib::parsing_expressions::sym(symbol);
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
         ASSERT_TRUE(p(s, e));
@@ -143,7 +143,7 @@ TEST(single_symbol_testing, test_single_symbol)
 
 TEST(alpha_expression_testing, test_alpha_expression)
 {
-    auto p = id::parsing_expressions::alpha<char>();
+    auto p = idlib::parsing_expressions::alpha<char>();
     //
     for (char symbol = 'a'; symbol <= 'z'; ++symbol)
     {

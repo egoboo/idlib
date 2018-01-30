@@ -38,41 +38,41 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 	
-/// @brief Specialization of id::c::decoder for decoding <c>integer</c> literals to <c>int</c> values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>integer</c> literals to <c>int</c> values.
 template <>
 struct decoder<int, void>
 {
     bool operator()(const std::string& s, int& v) const;
 }; // struct decoder
 
-/// @brief Specialization of id::c::decoder for decoding <c>integer</c> literals to <c>long</c> values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>integer</c> literals to <c>long</c> values.
 template <>
 struct decoder<long, void>
 {
     bool operator()(const std::string& s, long& v) const;
 }; // struct decoder
 
-/// @brief Specialization of id::c::decoder for decoding <c>integer</c> literals to <c>long long</c> values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>integer</c> literals to <c>long long</c> values.
 template <>
 struct decoder<long long, void>
 {
     bool operator()(const std::string& s, long long& v) const;
 }; // struct decoder
 	
-/// @brief Specialization of id::c::decoder for decoding <c>integer</c> literals to <c>signed char</c> values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>integer</c> literals to <c>signed char</c> values.
 template <>
 struct decoder<signed char, void>
 {
     bool operator()(const std::string& s, signed char& v) const;
 }; // struct decoder
 
-/// @brief Specialization of id::c::decoder for decoding <c>integer</c> literals to <c>short</c> values.
+/// @brief Specialization of idlib::c::decoder for decoding <c>integer</c> literals to <c>short</c> values.
 template <>
 struct decoder<short, void>
 {
     bool operator()(const std::string& s, short& v) const;
 }; // struct decoder
 
-} } // namespace id::c
+} } // namespace idlib::c

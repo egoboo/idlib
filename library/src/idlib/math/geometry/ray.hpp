@@ -32,7 +32,7 @@
 #include "idlib/crtp.hpp"
 #include "idlib/math/floating_point.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A ray has an origin point \f$O\f$ and an unit direction vector \$\vec{d}\f$.
 /// The set of points of a ray is given by \f$\left\{ O + t \vec{d} | t \in \subseteq \mathbb{R}_{\geq 0} \right\}$.
@@ -57,7 +57,7 @@ public:
     /// @brief Construct this ray with the specified origin point \f$O\f$ and axis vector \f$\vec{a}\f$.
     /// @param origin the origin point \f$O\f$
     /// @param direction the direction vector \f$\vec{d}\f$
-    /// @throw id::runtime_error if the direction vector \f$\vec{d}\f$ is the zero vector
+    /// @throw idlib::runtime_error if the direction vector \f$\vec{d}\f$ is the zero vector
     ray(const point_type& origin, const vector_type& direction)
         : m_origin(origin), m_direction(direction)
 	{
@@ -87,7 +87,7 @@ public:
 
 	/// @brief Set the direction vector of this ray.
 	/// @param direction the direction vector
-	/// @throw id::runtime_error the direction vecotr is the zero vector
+	/// @throw idlib::runtime_error the direction vecotr is the zero vector
 	void set_direction(const vector_type& direction)
 	{
 		auto result = normalize(m_direction, euclidean_norm_functor<vector_type>{});
@@ -113,7 +113,7 @@ private:
 
 }; // struct ray
 
-/// @brief Specialization of id::enclose_functor.
+/// @brief Specialization of idlib::enclose_functor.
 /// Encloses a ray in a ray.
 /// @detail The ray \f$b\f$ enclosing a ray \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam P the point type of the rays
@@ -124,7 +124,7 @@ struct enclose_functor<ray<P>, ray<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates a ray.
 /// @tparam P the point type of the ray
 template <typename P>
@@ -134,4 +134,4 @@ struct translate_functor<ray<P>, typename P::vector_type>
 	{ return ray<P>(x.get_origin() + t, x.get_direction()); }
 }; // struct translate_functor
 
-} // namespace id
+} // namespace idlib

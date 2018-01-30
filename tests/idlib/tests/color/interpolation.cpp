@@ -25,16 +25,16 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace color { namespace interpolation {
+namespace idlib { namespace tests { namespace color { namespace interpolation {
 
 namespace lf_interpolation {
 
-using color = id::color<id::Lf>;
+using color = idlib::color<idlib::Lf>;
 
 static void test(const color& x, const color& y)
 {
-    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
-    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
+    ASSERT_EQ(x, idlib::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, idlib::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(lf_interpolation, interpolate_lf)
@@ -49,12 +49,12 @@ TEST(lf_interpolation, interpolate_lf)
 
 namespace laf_interpolation {
 
-using color = id::color<id::Lf>;
+using color = idlib::color<idlib::Lf>;
 
 static void test(const color& x, const color& y)
 {
-    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
-    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
+    ASSERT_EQ(x, idlib::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, idlib::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(laf_interpolation, interpolate_laf)
@@ -69,12 +69,12 @@ TEST(laf_interpolation, interpolate_laf)
 
 namespace rgbf_interpolation {
 
-using color = id::color<id::RGBf>;
+using color = idlib::color<idlib::RGBf>;
 
 static void test(const color& x, const color& y)
 {
-    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
-    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
+    ASSERT_EQ(x, idlib::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, idlib::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(rgbf_interpolation, interpolate_rgbf)
@@ -96,12 +96,12 @@ TEST(rgbf_interpolation, interpolate_rgbf)
 
 namespace rgbaf_interpolation {
 
-using color = id::color<id::RGBAf>;
+using color = idlib::color<idlib::RGBAf>;
 
 static void test(const color& x, const color& y)
 {
-    ASSERT_EQ(x, id::lineary_interpolate(x, y, 0.0f));
-    ASSERT_EQ(y, id::lineary_interpolate(x, y, 1.0f));
+    ASSERT_EQ(x, idlib::lineary_interpolate(x, y, 0.0f));
+    ASSERT_EQ(y, idlib::lineary_interpolate(x, y, 1.0f));
 }
 
 TEST(rgbaf_interpolation, interpolate_rgbaf)
@@ -121,4 +121,4 @@ TEST(rgbaf_interpolation, interpolate_rgbaf)
 
 }
 
-} } } } // namespace id::tests::color::interpolation
+} } } } // namespace idlib::tests::color::interpolation

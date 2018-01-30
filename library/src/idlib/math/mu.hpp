@@ -31,7 +31,7 @@
 #include "idlib/math/one_zero.hpp"
 #include "idlib/utility/out_of_bounds_error.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Representation of \f$\mu\f$ (mu).
@@ -94,4 +94,4 @@ public:
 
 }; // class mu
 
-} // namespace id
+} // namespace idlib

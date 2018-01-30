@@ -37,14 +37,14 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief An interval.
 template <typename Value, typename Enabled = void>
 struct interval;
 
-/// @brief Specialization of id::interval for floating point values.
+/// @brief Specialization of idlib::interval for floating point values.
 template <typename Value>
 struct interval<Value, std::enable_if_t<std::is_floating_point<Value>::value>>
 {
@@ -76,13 +76,13 @@ public:
     /// @param l the lowerbound
     /// @param u the upperbound
     /// @pre <c>l &lt;= u</c>
-    /// @throw id::invalid_argument_error <c>!(l &lt;= u)</c>
+    /// @throw idlib::invalid_argument_error <c>!(l &lt;= u)</c>
     interval(const value_type& l, const value_type& u) :
         l(l), u(u)
 	{
         if (!(l <= u))
 		{
-            throw id::invalid_argument_error(__FILE__, __LINE__, "precondition `l <= u` failed");
+            throw idlib::invalid_argument_error(__FILE__, __LINE__, "precondition `l <= u` failed");
         }
     }
 
@@ -209,7 +209,7 @@ public:
 
 }; // struct interval
 
-   /// @brief Specialization of id::interval for floating point values.
+   /// @brief Specialization of idlib::interval for floating point values.
 template <typename Value>
 struct interval<Value, std::enable_if_t<std::is_same<Value, int>::value>>
 {
@@ -242,13 +242,13 @@ public:
 	/// @param l the lowerbound
 	/// @param u the upperbound
 	/// @pre <c>l &lt;= u</c>
-	/// @throw id::invalid_argument_error <c>!(l &lt;= u)</c>
+	/// @throw idlib::invalid_argument_error <c>!(l &lt;= u)</c>
 	interval(const value_type& l, const value_type& u) :
 		l(l), u(u)
 	{
 		if (!(l <= u))
 		{
-			throw id::invalid_argument_error(__FILE__, __LINE__, "precondition `l <= u` failed");
+			throw idlib::invalid_argument_error(__FILE__, __LINE__, "precondition `l <= u` failed");
 		}
 	}
 
@@ -385,4 +385,4 @@ public:
 
 }; // struct interval
 
-} // namespace id
+} // namespace idlib

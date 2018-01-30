@@ -31,7 +31,7 @@
 #include "idlib/parsing_expressions/header.in"
 
 /// @internal
-/// @brief See id::difference for more information.
+/// @brief See idlib::difference for more information.
 /// @tparam Expression1 the expression type of the first expression
 /// @tparam Expression2 the expression type of the second expression
 template <typename Expression1, typename Expression2>

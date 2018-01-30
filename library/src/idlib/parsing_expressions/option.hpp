@@ -38,7 +38,7 @@
 #include "idlib/parsing_expressions/header.in"
 
 /// @internal
-/// @brief See id::option for more information.
+/// @brief See idlib::option for more information.
 /// @tparam Expr the expression type
 template <typename Expr>
 struct option_expr

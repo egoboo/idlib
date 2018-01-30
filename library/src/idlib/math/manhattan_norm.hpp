@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor computing the Manhattan norm of a vector.
@@ -44,4 +44,4 @@ template <typename Vector>
 auto manhattan_norm(const Vector& v) -> decltype(manhattan_norm_functor<Vector>()(v))
 { return manhattan_norm_functor<Vector>()(v); }
 
-} // namespace id
+} // namespace idlib

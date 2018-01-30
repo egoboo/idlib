@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @brief Functor encoding a value TO its string representation.
 /// @tparam V the source type
@@ -42,4 +42,4 @@ namespace id { namespace c {
 template <typename V, typename E = void>
 struct encoder;
 	
-} } // namespace id::c
+} } // namespace idlib::c

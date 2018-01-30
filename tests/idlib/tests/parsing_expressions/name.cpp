@@ -33,7 +33,7 @@ using string = std::basic_string<char>;
 /// @code{'x.'} was accepted.
 TEST(name_expression_regression_testing, test_name_expression_regression)
 {
-	using namespace id::parsing_expressions;
+	using namespace idlib::parsing_expressions;
     auto p = name<char>();
     const std::vector<string> words
     {
@@ -51,7 +51,7 @@ TEST(name_expression_regression_testing, test_name_expression_regression)
 TEST(name_expression_testing, test_name_expression)
 {
     const std::vector<string> words{"org","org_","_1", "_0", "a0"};
-    auto p = id::parsing_expressions::name<char>();
+    auto p = idlib::parsing_expressions::name<char>();
     for (const auto& word : words)
     {
         auto s = word.cbegin(),

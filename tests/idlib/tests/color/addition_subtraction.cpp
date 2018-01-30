@@ -25,11 +25,11 @@
 #include "gtest/gtest.h"
 #include "idlib/tests/color/color_generator.hpp"
 
-namespace id { namespace tests { namespace color { namespace addition_subtraction {
+namespace idlib { namespace tests { namespace color { namespace addition_subtraction {
 
 TEST(addition_subtraction_ab, add_subtract_ab)
 {
-    using color = id::color<id::Ab>;
+    using color = idlib::color<idlib::Ab>;
     color::transparent() + color::transparent();
     color::transparent() + color::opaque();
     color::opaque() + color::transparent();
@@ -42,7 +42,7 @@ TEST(addition_subtraction_ab, add_subtract_ab)
 
 TEST(addition_subtraction_af, add_subtract_af)
 {
-    using color = id::color<id::Af>;
+    using color = idlib::color<idlib::Af>;
     color::transparent() + color::transparent();
     color::transparent() + color::opaque();
     color::opaque() + color::transparent();
@@ -56,7 +56,7 @@ TEST(addition_subtraction_af, add_subtract_af)
 
 TEST(addition_subtraction_lb, add_subtract_lb)
 {
-    using color = id::color<id::Lb>;
+    using color = idlib::color<idlib::Lb>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -69,7 +69,7 @@ TEST(addition_subtraction_lb, add_subtract_lb)
 
 TEST(addition_subtraction_lf, add_subtract_lf)
 {
-    using color = id::color<id::Lf>;
+    using color = idlib::color<idlib::Lf>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -82,7 +82,7 @@ TEST(addition_subtraction_lf, add_subtract_lf)
 
 TEST(addition_subtraction_lab, add_subtract_lab)
 {
-    using color = id::color<id::LAb>;
+    using color = idlib::color<idlib::LAb>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -95,7 +95,7 @@ TEST(addition_subtraction_lab, add_subtract_lab)
 
 TEST(addition_subtraction_laf, add_subtract_laf)
 {
-    using color = id::color<id::LAf>;
+    using color = idlib::color<idlib::LAf>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -108,7 +108,7 @@ TEST(addition_subtraction_laf, add_subtract_laf)
 
 TEST(addition_subtraction_rgbb, add_subtract_rgbb)
 {
-    using color = id::color<id::RGBAf>;
+    using color = idlib::color<idlib::RGBAf>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -121,7 +121,7 @@ TEST(addition_subtraction_rgbb, add_subtract_rgbb)
 
 TEST(addition_subtraction_rgbf, add_subtract_rgbf)
 {
-    using color = id::color<id::RGBf>;
+    using color = idlib::color<idlib::RGBf>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -134,7 +134,7 @@ TEST(addition_subtraction_rgbf, add_subtract_rgbf)
 
 TEST(addition_subtraction_rgbab, add_subtract_rgbab)
 {
-    using color = id::color<id::RGBAb>;
+    using color = idlib::color<idlib::RGBAb>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -147,7 +147,7 @@ TEST(addition_subtraction_rgbab, add_subtract_rgbab)
 
 TEST(addition_subtraction_rgbaf, add_subtract_rgbaf)
 {
-    using color = id::color<id::RGBAf>;
+    using color = idlib::color<idlib::RGBAf>;
     color::black() + color::black();
     color::black() + color::white();
     color::white() + color::black();
@@ -158,4 +158,4 @@ TEST(addition_subtraction_rgbaf, add_subtract_rgbaf)
     color::white() - color::white();
 }
 
-} } } } // namespace id::tests::color::addition_subtraction
+} } } } // namespace idlib::tests::color::addition_subtraction

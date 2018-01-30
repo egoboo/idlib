@@ -33,7 +33,7 @@ using vector = std::vector<T>;
 
 TEST(sequence_testing, test_sequence)
 {
-    auto p = id::parsing_expressions::sequence(id::parsing_expressions::sym('a'), id::parsing_expressions::sym('b'));
+    auto p = idlib::parsing_expressions::sequence(idlib::parsing_expressions::sym('a'), idlib::parsing_expressions::sym('b'));
     const vector<string> words
     {
         "ab",

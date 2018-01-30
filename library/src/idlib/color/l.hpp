@@ -42,7 +42,7 @@
 #include "idlib/color/darken.hpp"
 #include "idlib/type.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A color in L color space.
 template <typename ColorSpace>
@@ -190,7 +190,7 @@ public:
 
 }; // struct color
 
-/// @brief Brighten functor for id::color<id::Lb> and id::color<id::Lf> values.
+/// @brief Brighten functor for idlib::color<idlib::Lb> and idlib::color<idlib::Lf> values.
 template <typename ColorSpace>
 struct brighten_functor<color<ColorSpace>,
                         std::enable_if_t<is_any_of<ColorSpace, Lb, Lf>::value>>
@@ -212,7 +212,7 @@ struct brighten_functor<color<ColorSpace>,
 
 }; // struct brighten_functor
 
-/// @brief Darken functor for id::color<id::Lb> and id::color<id::Lf> values.
+/// @brief Darken functor for idlib::color<idlib::Lb> and idlib::color<idlib::Lf> values.
 template <typename ColorSpace>
 struct darken_functor<color<ColorSpace>,
                       std::enable_if_t<is_any_of<ColorSpace, Lb, Lf>::value>>
@@ -234,7 +234,7 @@ struct darken_functor<color<ColorSpace>,
 
 }; // struct darken_functor
 
-/// @brief Inversion functor for id::color<id::Lf> and id::color<id::Lb> values.
+/// @brief Inversion functor for idlib::color<idlib::Lf> and idlib::color<idlib::Lb> values.
 /// @remark Given a color \f$(l)\f$ in real-valued, normalized L space,
 /// then corresponding inverted color is \f$(1-l)\f$. Inverting a
 /// color twice yields the same color (modula floating-point precision).
@@ -253,7 +253,7 @@ struct invert_functor<color<ColorSpace>,
 
 }; // struct invert_functor
 
-/// @brief Lineary interpolate functor for id::color<id::Lf> values.
+/// @brief Lineary interpolate functor for idlib::color<idlib::Lf> values.
 template <typename ColorSpace>
 struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<ColorSpace, Lf>::value>>
 {
@@ -273,4 +273,4 @@ struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<st
 
 }; // struct lineary_interpolate_functor
 
-} // namespace id
+} // namespace idlib

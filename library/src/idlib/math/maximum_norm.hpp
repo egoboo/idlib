@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor computing the maximum norm of a vector.
@@ -44,4 +44,4 @@ template <typename Vector>
 auto maximum_norm(const Vector& v) -> decltype(maximum_norm_functor<Vector>()(v))
 { return maximum_norm_functor<Vector>()(v); }
 
-} // namespace id
+} // namespace idlib

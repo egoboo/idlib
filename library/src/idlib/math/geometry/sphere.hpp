@@ -32,7 +32,7 @@
 #include "idlib/crtp.hpp"
 #include "idlib/math/floating_point.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A sphere has a center point \f$C\f$ and a radius \f$r \geq 0\f$.
 /// The set of points of a sphere is given by \f$\left{ P | 0 \leq d(C,P) \leq r\right}\f$.
@@ -154,7 +154,7 @@ private:
 
 }; // struct sphere
 
-/// @brief Specialization of id::enclose_functor enclosing a sphere into a sphere.
+/// @brief Specialization of idlib::enclose_functor enclosing a sphere into a sphere.
 /// @detail The sphere \f$b\f$ enclosing a sphere \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam P the point type of the spheres
 template <typename P>
@@ -164,7 +164,7 @@ struct enclose_functor<sphere<P>, sphere<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines wether a sphere contains a point.
 /// @remark A sphere \f$(c,r)\f$ with the center $c$ and the radius $r$
 /// contains a point \f$p\f$ if \f$|p - c| \leq r\f$ holds.
@@ -177,7 +177,7 @@ struct is_enclosing_functor<sphere<P>, P>
 	bool operator()(const sphere<P>& a, const P& b) const
 	{
 		// Get the squared distance from the point to the center of the sphere.
-		auto distance_squared = id::squared_euclidean_norm(a.get_center() - b);
+		auto distance_squared = idlib::squared_euclidean_norm(a.get_center() - b);
 		// Get the squared radius of the sphere.
 		auto radius_squared = a.get_radius_squared();
 		// If the squared distance beween the point and the center of the sphere
@@ -192,7 +192,7 @@ struct is_enclosing_functor<sphere<P>, P>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determine if a sphere contains another sphere.
 /// @remark
 /// A sphere \f$S\f$ with center \f$c\f$ and radius \f$r\f$ contains
@@ -208,7 +208,7 @@ struct is_enclosing_functor<sphere<P>, sphere<P>>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates an sphere.
 /// @tparam P the point type of the sphere
 template <typename P>
@@ -218,7 +218,7 @@ struct translate_functor<sphere<P>, typename P::vector_type>
 	{ return sphere<P>(x.get_center() + t, x.get_radius()); }
 }; // struct translate_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if two spheres intersect.
 /// @remark Two spheres \f$X\f$ and \f$Yf$ with the
 /// centers \f$X_C\f$ and \f$Y_Y\f$ and the radii \f$X_r\f$
@@ -249,7 +249,7 @@ struct is_intersecting_functor<sphere<P>, sphere<P>>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if a sphere and a point intersect.
 /// @remark A sphere \f$A\f$ with the center $C$ and the radius $r$
 /// and a point \f$P\f$ intersect if \f$|P - C| \leq r\f$ holds.
@@ -277,7 +277,7 @@ struct is_intersecting_functor<sphere<P>, P>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if a point and a sphere intersect.
 /// @remark The method for determinating if a sphere and a point intersect is
 /// commutative. By swapping the arguments that method can be reused to determine if a
@@ -289,4 +289,4 @@ struct is_intersecting_functor<P, sphere<P>>
 	{ return is_intersecting(b, a); }
 }; // struct is_intersecting_functor
 
-} // namespace id
+} // namespace idlib

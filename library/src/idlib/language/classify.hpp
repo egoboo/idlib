@@ -34,7 +34,7 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c { namespace internal {
+namespace idlib { namespace c { namespace internal {
 	
 /// The configuration framework knows five categories of types:
 /// - integer types,
@@ -129,4 +129,4 @@ struct is_string <T, std::enable_if_t<std::is_same<T, std::string>::value>>
     static constexpr bool value = true;
 }; // struct is_string
 
-} } } // namespace id::c
+} } } // namespace idlib::c

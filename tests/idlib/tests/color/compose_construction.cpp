@@ -25,38 +25,38 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace color {
+namespace idlib { namespace tests { namespace color {
 
 namespace compose_construction {
 
 TEST(compose_construction_rgbb_lb, compose_construct_rgbb_lb)
 {
-    using source = id::color<id::Lb>;
-    using target = id::color<id::RGBb>;
+    using source = idlib::color<idlib::Lb>;
+    using target = idlib::color<idlib::RGBb>;
     ASSERT_EQ(target::white(), target(source::white()));
     ASSERT_EQ(target::black(), target(source::black()));
 }
 
 TEST(compose_construction_rgbf_lf, compose_construct_rgbf_Lf)
 {
-    using source = id::color<id::Lf>;
-    using target = id::color<id::RGBf>;
+    using source = idlib::color<idlib::Lf>;
+    using target = idlib::color<idlib::RGBf>;
     ASSERT_EQ(target::white(), target(source::white()));
     ASSERT_EQ(target::black(), target(source::black()));
 }
 
 TEST(compose_construction_rgbab_lab, compose_construct_rgbab_lab)
 {
-    using source = id::color<id::LAb>;
-    using target = id::color<id::RGBAb>;
+    using source = idlib::color<idlib::LAb>;
+    using target = idlib::color<idlib::RGBAb>;
     ASSERT_EQ(target::white(), target(source::white()));
     ASSERT_EQ(target::black(), target(source::black()));
 }
 
 TEST(compose_construction_rgbaf_laf, compose_construct_rgbaf_laf)
 {
-    using source = id::color<id::LAf>;
-    using target = id::color<id::RGBAf>;
+    using source = idlib::color<idlib::LAf>;
+    using target = idlib::color<idlib::RGBAf>;
     ASSERT_EQ(target::white(), target(source::white()));
     ASSERT_EQ(target::black(), target(source::black()));
 }
@@ -67,14 +67,14 @@ namespace compose_construction {
 
 TEST(compose_construction_lab_lb_ab, compose_construct_lab_lb_ab)
 {
-    using color_space = id::LAb;
-    using color = id::color<color_space>;
+    using color_space = idlib::LAb;
+    using color = idlib::color<color_space>;
 
-    using pure_color_space = id::pure_color_space_t<color_space>;
-    using pure_color = id::color<pure_color_space>;
+    using pure_color_space = idlib::pure_color_space_t<color_space>;
+    using pure_color = idlib::color<pure_color_space>;
 
-    using pure_opacity_space = id::pure_opacity_space_t<color_space>;
-    using pure_opacity = id::color<pure_opacity_space>;
+    using pure_opacity_space = idlib::pure_opacity_space_t<color_space>;
+    using pure_opacity = idlib::color<pure_opacity_space>;
 
     ASSERT_EQ(color(pure_color::white(), pure_opacity::opaque()), color::white());
     ASSERT_EQ(color(pure_color::black(), pure_opacity::opaque()), color::black());
@@ -83,14 +83,14 @@ TEST(compose_construction_lab_lb_ab, compose_construct_lab_lb_ab)
 
 TEST(compose_construction_lab_lb_ab, compose_construct_rgbab_rgbb_ab)
 {
-    using color_space = id::RGBAb;
-    using color = id::color<color_space>;
+    using color_space = idlib::RGBAb;
+    using color = idlib::color<color_space>;
 
-    using pure_color_space = id::pure_color_space_t<color_space>;
-    using pure_color = id::color<pure_color_space>;
+    using pure_color_space = idlib::pure_color_space_t<color_space>;
+    using pure_color = idlib::color<pure_color_space>;
 
-    using pure_opacity_space = id::pure_opacity_space_t<color_space>;
-    using pure_opacity = id::color<pure_opacity_space>;
+    using pure_opacity_space = idlib::pure_opacity_space_t<color_space>;
+    using pure_opacity = idlib::color<pure_opacity_space>;
 
     ASSERT_EQ(color(pure_color::white(), pure_opacity::opaque()), color::white());
     ASSERT_EQ(color(pure_color::black(), pure_opacity::opaque()), color::black());
@@ -104,4 +104,4 @@ TEST(compose_construction_lab_lb_ab, compose_construct_rgbab_rgbb_ab)
 
 } // namespace compose_construction
 
-} } } // namespace id::tests::color
+} } } // namespace idlib::tests::color

@@ -25,14 +25,14 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests {
+namespace idlib { namespace tests {
 
 /// String which consists only of separator symbols.
 TEST(text_parser_testing, separators_only)
 {
 	size_t expected_value_index = 0;
 	static const std::vector<std::string> expected_values = { "a", "b", "c" };
-	id::text_parser<char> p;
+	idlib::text_parser<char> p;
 	p("abc",
 	[](char x)
 	{
@@ -52,7 +52,7 @@ TEST(text_parser_testing, empty_string)
 {
 	size_t expected_value_index = 0;
 	static const std::vector<std::string> expected_values = {};
-	id::text_parser<char> p;
+	idlib::text_parser<char> p;
 	p("",
 		[](char x)
 	{
@@ -67,4 +67,4 @@ TEST(text_parser_testing, empty_string)
 	ASSERT_EQ(expected_values.size(), expected_value_index);
 }
 
-} } // namespace id::tests
+} } // namespace idlib::tests

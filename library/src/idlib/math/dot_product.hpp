@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor computing the dot product of two vectors.
 /// @tparam Vector the vector type
@@ -39,4 +39,4 @@ template <typename Vector>
 auto dot_product(const Vector& v, const Vector& w) -> decltype(dot_product_functor<Vector>()(v, w))
 { return dot_product_functor<Vector>()(v, w); }
 
-} // namespace id
+} // namespace idlib

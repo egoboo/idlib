@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Generator functor. Specializations of this functor satisfiy the requirements of the <em>Generator</em> concept.
@@ -34,9 +34,9 @@ namespace id {
 /// - <a href="http://en.cppreference.com/w/cpp/concept/CopyAssignable">CopyAssignable</a>,
 /// - <a href="http://en.cppreference.com/w/cpp/concept/Swappable">Swappable</a> and
 /// - <a href="http://en.cppreference.com/w/cpp/concept/Destructible">Destructible</a>.
-/// @see id::constant_generator
-/// @see id::conditional_generator
+/// @see idlib::constant_generator
+/// @see idlib::conditional_generator
 struct generator
 {};
 
-} // namespace id
+} // namespace idlib

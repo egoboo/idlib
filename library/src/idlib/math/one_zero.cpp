@@ -26,10 +26,10 @@
 #include "idlib/math/one_zero.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::zero_functor<short>;
-template struct id::zero_functor<int>;
-template struct id::zero_functor<long>;
+template struct idlib::zero_functor<short>;
+template struct idlib::zero_functor<int>;
+template struct idlib::zero_functor<long>;
 
-template struct id::one_functor<short>;
-template struct id::one_functor<int>;
-template struct id::one_functor<long>;
+template struct idlib::one_functor<short>;
+template struct idlib::one_functor<int>;
+template struct idlib::one_functor<long>;

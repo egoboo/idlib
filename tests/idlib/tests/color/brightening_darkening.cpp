@@ -25,76 +25,76 @@
 #include "gtest/gtest.h"
 #include "idlib/tests/color/color_generator.hpp"
 
-namespace id { namespace tests { namespace color { namespace brightening_darkening {
+namespace idlib { namespace tests { namespace color { namespace brightening_darkening {
 
 template <typename S, typename E = void>
 struct basic_test1;
 
 template <typename S>
-struct basic_test1<S,std::enable_if_t<id::is_any_of<S, id::Lb, id::Lf, id::LAb, id::LAf, id::RGBb, id::RGBf, id::RGBAb, id::RGBAf>::value>>
+struct basic_test1<S,std::enable_if_t<idlib::is_any_of<S, idlib::Lb, idlib::Lf, idlib::LAb, idlib::LAf, idlib::RGBb, idlib::RGBf, idlib::RGBAb, idlib::RGBAf>::value>>
 {
     void operator()() const
     {
-        using C = id::color<S>;
+        using C = idlib::color<S>;
         static const std::vector<C> colors = color_generator<S>()();
         for (const auto& color : colors)
         {
             // darken(c,0) = c (1 - 0) = c
             // brighten(c,0) = c (1 + 0) = c
-            ASSERT_EQ(color, id::darken(color, 0.0f));
-            ASSERT_EQ(color, id::darken(color, 0.0));
-            ASSERT_EQ(color, id::brighten(color, 0.0f));
-            ASSERT_EQ(color, id::brighten(color, 0.0));
+            ASSERT_EQ(color, idlib::darken(color, 0.0f));
+            ASSERT_EQ(color, idlib::darken(color, 0.0));
+            ASSERT_EQ(color, idlib::brighten(color, 0.0f));
+            ASSERT_EQ(color, idlib::brighten(color, 0.0));
             // darken(c,-1) = c (1 - (-1)) = 2c
             // brighten(c,+1) = c (1 + (+1)) = 2c
-            ASSERT_EQ(id::darken(color, -1.0), id::brighten(color, +1.0));
-            ASSERT_EQ(id::darken(color, -1.0f), id::brighten(color, +1.0f));
+            ASSERT_EQ(idlib::darken(color, -1.0), idlib::brighten(color, +1.0));
+            ASSERT_EQ(idlib::darken(color, -1.0f), idlib::brighten(color, +1.0f));
             // darken(c,+2) = c (1 - (+2)) = -1c
             // brighten(c,-2) c (1 + (-2)) = -1c
-            ASSERT_EQ(id::darken(color, +1.0), id::brighten(color, -1.0));
-            ASSERT_EQ(id::darken(color, +1.0f), id::brighten(color, -1.0f));
+            ASSERT_EQ(idlib::darken(color, +1.0), idlib::brighten(color, -1.0));
+            ASSERT_EQ(idlib::darken(color, +1.0f), idlib::brighten(color, -1.0f));
         }
     }
 };
 
 TEST(brightening_darkening_lf, brighten_darken_lf)
 {
-    basic_test1<id::Lf>()();
+    basic_test1<idlib::Lf>()();
 }
 
 TEST(brightening_darkening_lb, brighten_darken_lb)
 {
-    basic_test1<id::Lb>()();
+    basic_test1<idlib::Lb>()();
 }
 
 TEST(brightening_darkening_laf, brighten_darken_laf)
 {
-    basic_test1<id::LAf>()();
+    basic_test1<idlib::LAf>()();
 }
 
 TEST(brightening_darkening_lab, brighten_darken_lab)
 {
-    basic_test1<id::LAb>()();
+    basic_test1<idlib::LAb>()();
 }
 
 TEST(brightening_darkening_rgbf, brighten_darken_rgbf)
 {
-    basic_test1<id::RGBf>()();
+    basic_test1<idlib::RGBf>()();
 }
 
 TEST(brightening_darkening_rgbb, brighten_darken_rgbb)
 {
-    basic_test1<id::RGBb>()();
+    basic_test1<idlib::RGBb>()();
 }
 
 TEST(brightening_darkening_rgbaf, brighten_darken_rgbaf)
 {
-    basic_test1<id::RGBAf>()();
+    basic_test1<idlib::RGBAf>()();
 }
 
 TEST(brightening_darkening_rgbab, brighten_darken_rgbab)
 {
-    basic_test1<id::RGBAb>()();
+    basic_test1<idlib::RGBAb>()();
 }
 
-} } } } // namespace id::tests::color::brightening_darkening
+} } } } // namespace idlib::tests::color::brightening_darkening

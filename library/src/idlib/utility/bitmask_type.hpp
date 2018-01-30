@@ -53,7 +53,7 @@ struct enable_bitmask_operators
 
 /// Bitwise |.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E>
 operator|(E lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -63,7 +63,7 @@ operator|(E lhs, E rhs)
 
 // Bitwise &.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E>
 operator&(E lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -73,7 +73,7 @@ operator&(E lhs, E rhs)
 
 // Bitwise ^.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E>
 operator^(E lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -83,7 +83,7 @@ operator^(E lhs, E rhs)
 
 // Bitwise ~.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E>
 operator~(E lhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -93,7 +93,7 @@ operator~(E lhs)
 
 // Bitwise |=.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E&>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E&>
 operator|=(E& lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -104,7 +104,7 @@ operator|=(E& lhs, E rhs)
 
 // Bitwise &=.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E&>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E&>
 operator&=(E& lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;
@@ -115,7 +115,7 @@ operator&=(E& lhs, E rhs)
 
 // Bitwise ^=.
 template<typename E>
-std::enable_if_t<id::enable_bitmask_operators<E>::enable, E&>
+std::enable_if_t<idlib::enable_bitmask_operators<E>::enable, E&>
 operator^=(E& lhs, E rhs)
 {
     typedef std::underlying_type_t<E> underlying;

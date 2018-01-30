@@ -37,7 +37,7 @@
 #include <functional>
 #include <type_traits>
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @brief A qualified name is an element of the set of strings
 /// @code
@@ -45,7 +45,7 @@ namespace id { namespace c {
 /// name := '_'* (alphabetic) (alphabetic|digit|'_')*
 /// @endcode
 /// @remark std::hash, std::equal_to and std::less have specializations for qualified names.
-class qualified_name final : public id::equal_to_expr<qualified_name>
+class qualified_name final : public idlib::equal_to_expr<qualified_name>
 {
 private:
     /// @brief The string.
@@ -80,31 +80,31 @@ public:
     bool equal_to(const qualified_name& other) const;
 };
 
-static_assert(std::is_copy_constructible<qualified_name>::value, "id::qualified_name must be copy constructible");
-static_assert(std::is_move_constructible<qualified_name>::value, "id::qualified_name must be move constructible");
-static_assert(std::is_copy_assignable<qualified_name>::value, "id::qualified_name must be copy assignable");
-static_assert(std::is_move_assignable<qualified_name>::value, "id::qualified_name must be move assignable");
+static_assert(std::is_copy_constructible<qualified_name>::value, "idlib::qualified_name must be copy constructible");
+static_assert(std::is_move_constructible<qualified_name>::value, "idlib::qualified_name must be move constructible");
+static_assert(std::is_copy_assignable<qualified_name>::value, "idlib::qualified_name must be copy assignable");
+static_assert(std::is_move_assignable<qualified_name>::value, "idlib::qualified_name must be move assignable");
 
-} } // id::c
+} } // idlib::c
 
 namespace std {
 
 template <>
-struct hash<id::c::qualified_name>
+struct hash<idlib::c::qualified_name>
 {
-    size_t operator()(const id::c::qualified_name& x) const;
+    size_t operator()(const idlib::c::qualified_name& x) const;
 };
 
 template <>
-struct equal_to<id::c::qualified_name>
+struct equal_to<idlib::c::qualified_name>
 {
-    bool operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const;
+    bool operator()(const idlib::c::qualified_name& x, const idlib::c::qualified_name& y) const;
 };
 
 template <>
-struct less<id::c::qualified_name>
+struct less<idlib::c::qualified_name>
 {
-    bool operator()(const id::c::qualified_name& x, const id::c::qualified_name& y) const;
+    bool operator()(const idlib::c::qualified_name& x, const idlib::c::qualified_name& y) const;
 };
 
 } // namespace std

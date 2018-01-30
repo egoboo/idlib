@@ -27,17 +27,17 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::point<id::vector<single, 1>>;
-template struct id::point<id::vector<single, 2>>;
-template struct id::point<id::vector<single, 3>>;
-template struct id::point<id::vector<single, 4>>;
+template struct idlib::point<idlib::vector<single, 1>>;
+template struct idlib::point<idlib::vector<single, 2>>;
+template struct idlib::point<idlib::vector<single, 3>>;
+template struct idlib::point<idlib::vector<single, 4>>;
 
-template struct id::point<id::vector<double, 1>>;
-template struct id::point<id::vector<double, 2>>;
-template struct id::point<id::vector<double, 3>>;
-template struct id::point<id::vector<double, 4>>;
+template struct idlib::point<idlib::vector<double, 1>>;
+template struct idlib::point<idlib::vector<double, 2>>;
+template struct idlib::point<idlib::vector<double, 3>>;
+template struct idlib::point<idlib::vector<double, 4>>;
 
-template struct id::point<id::vector<quadruple, 1>>;
-template struct id::point<id::vector<quadruple, 2>>;
-template struct id::point<id::vector<quadruple, 3>>;
-template struct id::point<id::vector<quadruple, 4>>;
+template struct idlib::point<idlib::vector<quadruple, 1>>;
+template struct idlib::point<idlib::vector<quadruple, 2>>;
+template struct idlib::point<idlib::vector<quadruple, 3>>;
+template struct idlib::point<idlib::vector<quadruple, 4>>;

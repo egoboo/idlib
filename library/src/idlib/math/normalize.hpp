@@ -26,7 +26,7 @@
 /// @brief "normalize" functor and function
 /// @author Michael Heilmann
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor computing a normalized vector.
@@ -44,4 +44,4 @@ template <typename Vector, typename Norm>
 auto normalize(const Vector& v, const Norm& n) -> decltype(normalize_functor<Vector, Norm>()(v, n))
 { return normalize_functor<Vector, Norm>()(v, n); }
 
-} // namespace id
+} // namespace idlib

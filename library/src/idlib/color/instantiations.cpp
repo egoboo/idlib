@@ -32,52 +32,52 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::color<id::Ab>;
-template struct id::color<id::Af>;
+template struct idlib::color<idlib::Ab>;
+template struct idlib::color<idlib::Af>;
 
-template struct id::color<id::Lb>;
-template struct id::color<id::Lf>;
+template struct idlib::color<idlib::Lb>;
+template struct idlib::color<idlib::Lf>;
 
-template struct id::color<id::LAb>;
-template struct id::color<id::LAf>;
+template struct idlib::color<idlib::LAb>;
+template struct idlib::color<idlib::LAf>;
 
-template struct id::color<id::RGBb>;
-template struct id::color<id::RGBf>;
+template struct idlib::color<idlib::RGBb>;
+template struct idlib::color<idlib::RGBf>;
 
-template struct id::color<id::RGBAb>;
-template struct id::color<id::RGBAf>;
+template struct idlib::color<idlib::RGBAb>;
+template struct idlib::color<idlib::RGBAf>;
 
-template struct id::lineary_interpolate_functor<id::color<id::Af>, single>;
-template struct id::lineary_interpolate_functor<id::color<id::Lf>, single>;
-template struct id::lineary_interpolate_functor<id::color<id::LAf>, single>;
-template struct id::lineary_interpolate_functor<id::color<id::RGBf>, single>;
-template struct id::lineary_interpolate_functor<id::color<id::RGBAf>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::color<idlib::Af>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::color<idlib::Lf>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::color<idlib::LAf>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::color<idlib::RGBf>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::color<idlib::RGBAf>, single>;
 
-template struct id::invert_functor<id::color<id::Af>>;
-template struct id::invert_functor<id::color<id::Ab>>;
-template struct id::invert_functor<id::color<id::Lf>>;
-template struct id::invert_functor<id::color<id::Lb>>;
-template struct id::invert_functor<id::color<id::LAf>>;
-template struct id::invert_functor<id::color<id::LAb>>;
-template struct id::invert_functor<id::color<id::RGBf>>;
-template struct id::invert_functor<id::color<id::RGBb>>;
-template struct id::invert_functor<id::color<id::RGBAf>>;
-template struct id::invert_functor<id::color<id::RGBAb>>;
+template struct idlib::invert_functor<idlib::color<idlib::Af>>;
+template struct idlib::invert_functor<idlib::color<idlib::Ab>>;
+template struct idlib::invert_functor<idlib::color<idlib::Lf>>;
+template struct idlib::invert_functor<idlib::color<idlib::Lb>>;
+template struct idlib::invert_functor<idlib::color<idlib::LAf>>;
+template struct idlib::invert_functor<idlib::color<idlib::LAb>>;
+template struct idlib::invert_functor<idlib::color<idlib::RGBf>>;
+template struct idlib::invert_functor<idlib::color<idlib::RGBb>>;
+template struct idlib::invert_functor<idlib::color<idlib::RGBAf>>;
+template struct idlib::invert_functor<idlib::color<idlib::RGBAb>>;
 
-template struct id::brighten_functor<id::color<id::Lf>>;
-template struct id::brighten_functor<id::color<id::Lb>>;
-template struct id::brighten_functor<id::color<id::LAf>>;
-template struct id::brighten_functor<id::color<id::LAb>>;
-template struct id::brighten_functor<id::color<id::RGBf>>;
-template struct id::brighten_functor<id::color<id::RGBb>>;
-template struct id::brighten_functor<id::color<id::RGBAf>>;
-template struct id::brighten_functor<id::color<id::RGBAb>>;
+template struct idlib::brighten_functor<idlib::color<idlib::Lf>>;
+template struct idlib::brighten_functor<idlib::color<idlib::Lb>>;
+template struct idlib::brighten_functor<idlib::color<idlib::LAf>>;
+template struct idlib::brighten_functor<idlib::color<idlib::LAb>>;
+template struct idlib::brighten_functor<idlib::color<idlib::RGBf>>;
+template struct idlib::brighten_functor<idlib::color<idlib::RGBb>>;
+template struct idlib::brighten_functor<idlib::color<idlib::RGBAf>>;
+template struct idlib::brighten_functor<idlib::color<idlib::RGBAb>>;
 
-template struct id::darken_functor<id::color<id::Lf>>;
-template struct id::darken_functor<id::color<id::Lb>>;
-template struct id::darken_functor<id::color<id::LAf>>;
-template struct id::darken_functor<id::color<id::LAb>>;
-template struct id::darken_functor<id::color<id::RGBf>>;
-template struct id::darken_functor<id::color<id::RGBb>>;
-template struct id::darken_functor<id::color<id::RGBAf>>;
-template struct id::darken_functor<id::color<id::RGBAb>>;
+template struct idlib::darken_functor<idlib::color<idlib::Lf>>;
+template struct idlib::darken_functor<idlib::color<idlib::Lb>>;
+template struct idlib::darken_functor<idlib::color<idlib::LAf>>;
+template struct idlib::darken_functor<idlib::color<idlib::LAb>>;
+template struct idlib::darken_functor<idlib::color<idlib::RGBf>>;
+template struct idlib::darken_functor<idlib::color<idlib::RGBb>>;
+template struct idlib::darken_functor<idlib::color<idlib::RGBAf>>;
+template struct idlib::darken_functor<idlib::color<idlib::RGBAb>>;

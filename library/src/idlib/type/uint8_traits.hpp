@@ -39,9 +39,9 @@ struct uint8_traits
     using underlying_type = uint8_t;
     /// @brief Get the range.
     /// @return the range
-    static const id::type::range<underlying_type>& range()
+    static const idlib::type::range<underlying_type>& range()
     {
-        static const id::type::range<underlying_type> r(std::numeric_limits<underlying_type>::min(),
+        static const idlib::type::range<underlying_type> r(std::numeric_limits<underlying_type>::min(),
                                                         std::numeric_limits<underlying_type>::max());
         return r;
     }

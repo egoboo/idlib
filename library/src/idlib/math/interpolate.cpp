@@ -27,6 +27,6 @@
 //#include "idlib/math/interpolate_floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-//template struct id::lineary_interpolate_functor<single, single>;
-//template struct id::lineary_interpolate_functor<double, double>;
-//template struct id::lineary_interpolate_functor<quadruple, quadruple>;
+//template struct idlib::lineary_interpolate_functor<single, single>;
+//template struct idlib::lineary_interpolate_functor<double, double>;
+//template struct idlib::lineary_interpolate_functor<quadruple, quadruple>;

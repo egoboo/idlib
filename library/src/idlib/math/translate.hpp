@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor translating geometries.
@@ -56,4 +56,4 @@ auto translate(const A& a, const T& t) -> decltype(translate_functor<A, T>()(a, 
 	return translate_functor<A, T>()(a, t);
 }
 
-} // namespace id
+} // namespace idlib

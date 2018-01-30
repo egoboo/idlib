@@ -71,12 +71,12 @@ enum class byte_order
 /// </tr>
 /// <tr>
 /// <td>@a t</td>
-/// <td>@a id::byte_order</td>
+/// <td>@a idlib::byte_order</td>
 /// <td>the target Byte order</td>
 /// </tr>
 /// <tr>
 /// <td>@a s</td>
-/// <td>@a id::byte_order</td>
+/// <td>@a idlib::byte_order</td>
 /// <td>the source Byte order</td>
 /// </tr>
 /// </table>

@@ -25,25 +25,25 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace math { namespace test {
+namespace idlib { namespace math { namespace test {
 	
-using interval_i = id::interval<int>;
-using vector_3i = id::vector<int, 3>;
-using point_3i = id::point<vector_3i>;
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
+using point_3i = idlib::point<vector_3i>;
 
 TEST(min_element, point_3i)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<point_3i>(interval);
+        auto a = idlib::random<point_3i>(interval);
 		// Explicitly find the minimal element.
 		auto e = a[0];
 		for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
 		{
 			if (a[i] < e) e = a[i];
 		}
-        ASSERT_TRUE(e == id::min_element(a));
+        ASSERT_TRUE(e == idlib::min_element(a));
     }
 }
 
@@ -52,15 +52,15 @@ TEST(min_element, vector_3i)
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<vector_3i>(interval);
+        auto a = idlib::random<vector_3i>(interval);
 		// Explicitly find the minimal element.
 		auto e = a[0];
 		for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
 		{
 			if (a[i] < e) e = a[i];
 		}
-		ASSERT_TRUE(e == id::min_element(a));
+		ASSERT_TRUE(e == idlib::min_element(a));
     }
 }
 
-} } } // namespace id::math::test
+} } } // namespace idlib::math::test

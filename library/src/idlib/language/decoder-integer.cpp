@@ -24,7 +24,7 @@
 
 #include "idlib/language/decoder-integer.hpp"
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 	
 bool decoder<int, void>::operator()(const std::string& s, int& v) const
 {
@@ -34,7 +34,7 @@ bool decoder<int, void>::operator()(const std::string& s, int& v) const
 		{
 			if (s.empty() || isspace(s[0]))
 			{
-				throw id::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
+				throw idlib::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
 			}
 			size_t pos;
 			int t;
@@ -80,7 +80,7 @@ bool decoder<long, void>::operator()(const std::string& s, long& v) const
 		{
             if (s.empty() || isspace(s[0]))
 			{
-                throw id::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
+                throw idlib::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
             }
             size_t pos;
             long t;
@@ -126,7 +126,7 @@ bool decoder<long long, void>::operator()(const std::string& s, long long& v) co
 		{
             if (s.empty() || isspace(s[0]))
 			{
-                throw id::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
+                throw idlib::invalid_argument_error(__FILE__, __LINE__, "not a valid integer literal");
             }
             size_t pos;
             long long t;
@@ -216,4 +216,4 @@ bool decoder<short, void>::operator()(const std::string& s, short& v) const
     return true;
 }
 
-} } // namespace id::c
+} } // namespace idlib::c

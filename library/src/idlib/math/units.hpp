@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @brief Type of a unit in which angles are measured.
 /// Denotes the unit "degree" with its canonical range of \f$[0, 360)\f$.
@@ -60,4 +60,4 @@ struct turns
 struct facings
 {};
 
-} // namespace id
+} // namespace idlib

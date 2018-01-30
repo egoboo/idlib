@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @tparam Category the category type
 /// @tparam DefaultCategory the default category
@@ -81,4 +81,4 @@ public:
 
 }; // class category_element
 
-} } // namespace id::c
+} } // namespace idlib::c

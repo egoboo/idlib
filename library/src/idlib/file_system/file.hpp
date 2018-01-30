@@ -74,7 +74,7 @@ public:
     /// @brief Get the size, in Bytes, of the file size.
     /// @return the size, in Bytes, of the file
     /// @pre The file is open.
-    /// @throw id::file_system::read_write_error the file is not open or the environment fails
+    /// @throw idlib::file_system::read_write_error the file is not open or the environment fails
     size_t size() const;
 	
     /// @brief Get the internal handle.

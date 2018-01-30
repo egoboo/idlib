@@ -31,7 +31,7 @@
 #include "idlib/math/mu.hpp"
 #include "idlib/math/one_zero.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor which lineary interpolates between values.
@@ -45,11 +45,11 @@ namespace id {
 /// @remark
 /// Provides a constant operator() which takes the values @a x and @a y both of type @a value_type to interpolate between as its first two arguments.
 /// Its third argument is the parameter @a t of type @a parameter_type.
-/// The parameter is supposed to be within the bounds of id::zero<T>() (inclusive) and id::one<T>() (inclusive).
-/// If the third argument is not within these bounds, implementations of this functor are supposed to raise an id::domain_error.
+/// The parameter is supposed to be within the bounds of idlib::zero<T>() (inclusive) and idlib::one<T>() (inclusive).
+/// If the third argument is not within these bounds, implementations of this functor are supposed to raise an idlib::domain_error.
 /// @remarks
 /// Provides a constant operator() which takes the values @a x and @a y both of type @a value_type to interpolate between as its first two arguments.
-/// Its third argument is the parameter @a mu of type id::mu<T>.
+/// Its third argument is the parameter @a mu of type idlib::mu<T>.
 template <typename V, typename T, typename E = void>
 struct lineary_interpolate_functor;
 
@@ -61,4 +61,4 @@ template <typename V, typename T>
 auto lineary_interpolate(const V& x, const V& y, const mu<T>& t)
 { return lineary_interpolate_functor<V, T>()(x, y, t); }
 
-} // namespace id
+} // namespace idlib

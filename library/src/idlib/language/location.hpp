@@ -36,7 +36,7 @@
 #include <string>
 #include <type_traits>
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 /// @brief A location is identified by a file name and line number within that file.
 class location final
@@ -92,22 +92,22 @@ public:
 
 }; // class location
 
-static_assert(std::is_copy_constructible<location>::value, "id::c::location must be copy constructible");
+static_assert(std::is_copy_constructible<location>::value, "idlib::c::location must be copy constructible");
 
-static_assert(std::is_move_constructible<location>::value, "id::location must be move constructible");
+static_assert(std::is_move_constructible<location>::value, "idlib::location must be move constructible");
 static_assert(std::is_nothrow_move_constructible<std::string>::value == std::is_nothrow_move_constructible<location>::value,
-              "id::c::location is nothrow move constructible iff std::string is nothrow move constructible");
+              "idlib::c::location is nothrow move constructible iff std::string is nothrow move constructible");
 
-static_assert(std::is_copy_assignable<location>::value, "id::location must be copy assignable");
+static_assert(std::is_copy_assignable<location>::value, "idlib::location must be copy assignable");
 
-static_assert(std::is_move_assignable<location>::value, "id::location must be move assignable");
+static_assert(std::is_move_assignable<location>::value, "idlib::location must be move assignable");
 static_assert(std::is_nothrow_move_assignable<std::string>::value == std::is_nothrow_move_assignable<location>::value,
-              "id::c::location is nothrow move assignable iff std::string is nothrow move assignable");
+              "idlib::c::location is nothrow move assignable iff std::string is nothrow move assignable");
 
 #if !defined(__GNUC__) || __GNUC__ > 6
-static_assert(std::is_swappable<location>::value, "id::location must be swappable");
+static_assert(std::is_swappable<location>::value, "idlib::location must be swappable");
 static_assert(std::is_nothrow_swappable<std::string>::value == std::is_nothrow_swappable<location>::value,
-              "id::c::location is nothrow swappable iff std::string is nothrow swappable");
+              "idlib::c::location is nothrow swappable iff std::string is nothrow swappable");
 #endif
 
-} } // namespace id::c
+} } // namespace idlib::c

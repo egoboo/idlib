@@ -26,7 +26,7 @@
 #include <idlib/idlib.hpp>
 #include <vector>
 
-namespace id { namespace tests {
+namespace idlib { namespace tests {
 
 TEST(suffix_testing, test_suffix)
 {
@@ -50,19 +50,19 @@ TEST(suffix_testing, test_suffix)
     // Assert prefixes are detected as such.
     for (const auto& suffix : suffixes)
     {
-        ASSERT_EQ(true, id::is_suffix(word, suffix));
+        ASSERT_EQ(true, idlib::is_suffix(word, suffix));
     }
     // Assert true suffixes are detected as such and as suffixes as well.
     for (const auto& suffix : true_suffixes)
     {
-        ASSERT_EQ(true, id::is_true_suffix(word, suffix));
-        ASSERT_EQ(true, id::is_suffix(word, suffix));
+        ASSERT_EQ(true, idlib::is_true_suffix(word, suffix));
+        ASSERT_EQ(true, idlib::is_suffix(word, suffix));
     }
     // Assert false suffixes are not detected as true suffixes.
     for (const auto& suffix : false_suffixes)
     {
-        ASSERT_EQ(false, id::is_true_suffix(word, suffix));
+        ASSERT_EQ(false, idlib::is_true_suffix(word, suffix));
     }
 }
 
-} } // namespace id::tests
+} } // namespace idlib::tests

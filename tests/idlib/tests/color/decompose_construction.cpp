@@ -25,28 +25,28 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace color {
+namespace idlib { namespace tests { namespace color {
 
 namespace decompose_construction {
 
 TEST(decompose_construction_lb_ab_lab, decompose_construct_lb_ab_lab)
 {
-    auto source = id::color<id::LAb>::white();
-    auto prefix = id::color<id::Lb>(source);
-    auto suffix = id::color<id::Ab>(source);
-    auto target = id::color<id::LAb>(prefix, suffix);
+    auto source = idlib::color<idlib::LAb>::white();
+    auto prefix = idlib::color<idlib::Lb>(source);
+    auto suffix = idlib::color<idlib::Ab>(source);
+    auto target = idlib::color<idlib::LAb>(prefix, suffix);
     ASSERT_EQ(target, source);
 }
 
 TEST(decompose_construction_rgbb_ab_rgbab, decompose_construct_lb_ab_lab)
 {
-    auto source = id::color<id::RGBAb>::white();
-    auto prefix = id::color<id::RGBb>(source);
-    auto suffix = id::color<id::Ab>(source);
-    auto target = id::color<id::RGBAb>(prefix, suffix);
+    auto source = idlib::color<idlib::RGBAb>::white();
+    auto prefix = idlib::color<idlib::RGBb>(source);
+    auto suffix = idlib::color<idlib::Ab>(source);
+    auto target = idlib::color<idlib::RGBAb>(prefix, suffix);
     ASSERT_EQ(target, source);
 }
 
 } // namespace decompose_construction
 
-} } } // namespace id::tests::color
+} } } // namespace idlib::tests::color

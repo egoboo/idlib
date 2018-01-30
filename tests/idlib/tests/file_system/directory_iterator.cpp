@@ -25,22 +25,22 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace file_system { namespace tests {
+namespace idlib { namespace file_system { namespace tests {
 
 TEST(directory_iterator_tests, test1)
 {
-	using namespace id::file_system;
+	using namespace idlib::file_system;
 	ASSERT_TRUE(directory_iterator() == directory_iterator());
 	ASSERT_FALSE(directory_iterator() != directory_iterator());
 }
 
 TEST(directory_iterator_tests, test2)
 {
-	using namespace id::file_system;
+	using namespace idlib::file_system;
 	for (auto it = directory_iterator(get_working_directory()); it != directory_iterator(); ++it)
 	{
         ASSERT_TRUE(exists(*it));
 	}
 }
 
-} } } // namespace id::file_system::tests
+} } } // namespace idlib::file_system::tests

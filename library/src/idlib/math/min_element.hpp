@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 template <typename T>
 struct min_element_functor;
@@ -33,4 +33,4 @@ template <typename T>
 auto min_element(const T& v)
 { return min_element_functor<T>()(v); }
 
-} // namespace id
+} // namespace idlib

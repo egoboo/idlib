@@ -25,66 +25,66 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace color {
+namespace idlib { namespace tests { namespace color {
 
 namespace copy_construction {
 
 TEST(copy_construction_lb_lb, copy_construct_lb_lb)
 {
-    id::color<id::Lb> x;
-    auto y = id::color<id::Lb>(x);
+    idlib::color<idlib::Lb> x;
+    auto y = idlib::color<idlib::Lb>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_lf_lf, copy_construct_lf_lf)
 {
-    id::color<id::Lf> x;
-    auto y = id::color<id::Lf>(x);
+    idlib::color<idlib::Lf> x;
+    auto y = idlib::color<idlib::Lf>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_lab_lab, copy_construct_lab_lab)
 {
-    id::color<id::LAb> x;
-    auto y = id::color<id::LAb>(x);
+    idlib::color<idlib::LAb> x;
+    auto y = idlib::color<idlib::LAb>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_laf_laf, copy_construct_laf_laf)
 {
-    id::color<id::LAf> x;
-    auto y = id::color<id::LAf>(x);
+    idlib::color<idlib::LAf> x;
+    auto y = idlib::color<idlib::LAf>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_rgbb_rgbb, copy_construct_rgbb_rgbb)
 {
-    id::color<id::RGBb> x;
-    auto y = id::color<id::RGBb>(x);
+    idlib::color<idlib::RGBb> x;
+    auto y = idlib::color<idlib::RGBb>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_rgbf_rgbf, copy_construct_rgbf_rgbf)
 {
-    id::color<id::RGBf> x;
-    auto y = id::color<id::RGBf>(x);
+    idlib::color<idlib::RGBf> x;
+    auto y = idlib::color<idlib::RGBf>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_rgbab_rgbab, copy_construct_rgbab_rgbab)
 {
-    id::color<id::RGBAb> x;
-    auto y = id::color<id::RGBAb>(x);
+    idlib::color<idlib::RGBAb> x;
+    auto y = idlib::color<idlib::RGBAb>(x);
     ASSERT_EQ(x, y);
 }
 
 TEST(copy_construction_rgbaf_rgbaf, copy_construct_rgbaf_rgbaf)
 {
-    id::color<id::RGBAf> x;
-    auto y = id::color<id::RGBAf>(x);
+    idlib::color<idlib::RGBAf> x;
+    auto y = idlib::color<idlib::RGBAf>(x);
     ASSERT_EQ(x, y);
 }
 
 } // namespace copy_construction
 
-} } } // namespace id::tests::color
+} } } // namespace idlib::tests::color

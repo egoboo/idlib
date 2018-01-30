@@ -31,7 +31,7 @@ using string = std::basic_string<char>;
 
 TEST(choice_expression_testing, test_choice_expression_1)
 {
-	using namespace id::parsing_expressions;
+	using namespace idlib::parsing_expressions;
     static const string w0 = "x", w1 = "y";
     static const auto p = ordered_choice
         (
@@ -68,7 +68,7 @@ TEST(choice_expression_testing, test_choice_expression_1)
 
 TEST(choice_expression_testing, test_choice_expression_2)
 {
-	using namespace id::parsing_expressions;
+	using namespace idlib::parsing_expressions;
     auto p = ordered_choice
         (
             sequence

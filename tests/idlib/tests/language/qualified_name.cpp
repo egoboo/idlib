@@ -25,7 +25,7 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace c { namespace qualified_name {
+namespace idlib { namespace tests { namespace c { namespace qualified_name {
 
 /// Assert selected strings which are not qualified name strings are rejected.
 TEST(non_qualified_name_strings_rejection, reject_non_qualified_name_strings)
@@ -42,7 +42,7 @@ TEST(non_qualified_name_strings_rejection, reject_non_qualified_name_strings)
     {
         try
         {
-            id::c::qualified_name qualified_name(word);
+            idlib::c::qualified_name qualified_name(word);
             ASSERT_TRUE(false);
         }
         catch (...)
@@ -51,4 +51,4 @@ TEST(non_qualified_name_strings_rejection, reject_non_qualified_name_strings)
     }
 }
 
-} } } } // namespace id::tests::c::qualified_name
+} } } } // namespace idlib::tests::c::qualified_name

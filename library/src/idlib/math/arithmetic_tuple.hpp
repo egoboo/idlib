@@ -29,7 +29,7 @@
 #include "idlib/math/one_zero.hpp"
 #include <algorithm>
 
-namespace id {
+namespace idlib {
 	
 /// @brief The following templates obtain the relation of one the boolean values in a variadic template argument list @a size_t compile-time constants.
 template <bool...> struct bool_pack;
@@ -174,7 +174,7 @@ private:
 	template <std::size_t...Is>
 	static bool equal_to(const arithmetic_tuple& a, const arithmetic_tuple& b, std::index_sequence<Is...>)
 	{ 
-		return id::and_fold_expr()((a.m_elements[Is] == b.m_elements[Is])...);
+		return idlib::and_fold_expr()((a.m_elements[Is] == b.m_elements[Is])...);
 	}		
 	
 public:
@@ -185,7 +185,7 @@ private:
 	template <std::size_t...Is>
 	static bool not_equal_to(const arithmetic_tuple& a, const arithmetic_tuple& b, std::index_sequence<Is...>)
 	{
-		return id::or_fold_expr()((a.m_elements[Is] != b.m_elements[Is])...);
+		return idlib::or_fold_expr()((a.m_elements[Is] != b.m_elements[Is])...);
 	}
 	
 public:
@@ -224,7 +224,7 @@ public:
 	
 }; // struct arithmetic_tuple
 
-/// @brief Partial specialization of id::arithmetic_tuple for a size if @a 0.
+/// @brief Partial specialization of idlib::arithmetic_tuple for a size if @a 0.
 /// @tparam E the element type
 /// @tparam Z a functor returning the zero element value
 template <typename E, typename Z>
@@ -291,4 +291,4 @@ public:
 	
 }; // struct arithmetic_tuple
 
-} // namespace id
+} // namespace idlib

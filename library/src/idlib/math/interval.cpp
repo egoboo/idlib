@@ -27,6 +27,6 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::interval<single>;
-template struct id::interval<double>;
-template struct id::interval<quadruple>;
+template struct idlib::interval<single>;
+template struct idlib::interval<double>;
+template struct idlib::interval<quadruple>;

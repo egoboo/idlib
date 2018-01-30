@@ -27,51 +27,51 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::vector<single, 1>;
-template struct id::vector<single, 2>;
-template struct id::vector<single, 3>;
-template struct id::vector<single, 4>;
+template struct idlib::vector<single, 1>;
+template struct idlib::vector<single, 2>;
+template struct idlib::vector<single, 3>;
+template struct idlib::vector<single, 4>;
 
-template struct id::vector<double, 1>;
-template struct id::vector<double, 2>;
-template struct id::vector<double, 3>;
-template struct id::vector<double, 4>;
+template struct idlib::vector<double, 1>;
+template struct idlib::vector<double, 2>;
+template struct idlib::vector<double, 3>;
+template struct idlib::vector<double, 4>;
 
-template struct id::vector<quadruple, 1>;
-template struct id::vector<quadruple, 2>;
-template struct id::vector<quadruple, 3>;
-template struct id::vector<quadruple, 4>;
+template struct idlib::vector<quadruple, 1>;
+template struct idlib::vector<quadruple, 2>;
+template struct idlib::vector<quadruple, 3>;
+template struct idlib::vector<quadruple, 4>;
 
-template struct id::lineary_interpolate_functor<id::vector<single, 1>, single>;
-template struct id::lineary_interpolate_functor<id::vector<single, 2>, single>;
-template struct id::lineary_interpolate_functor<id::vector<single, 3>, single>;
-template struct id::lineary_interpolate_functor<id::vector<single, 4>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<single, 1>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<single, 2>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<single, 3>, single>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<single, 4>, single>;
 
-template struct id::lineary_interpolate_functor<id::vector<double, 1>, double>;
-template struct id::lineary_interpolate_functor<id::vector<double, 2>, double>;
-template struct id::lineary_interpolate_functor<id::vector<double, 3>, double>;
-template struct id::lineary_interpolate_functor<id::vector<double, 4>, double>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<double, 1>, double>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<double, 2>, double>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<double, 3>, double>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<double, 4>, double>;
 
-template struct id::lineary_interpolate_functor<id::vector<quadruple, 1>, quadruple>;
-template struct id::lineary_interpolate_functor<id::vector<quadruple, 2>, quadruple>;
-template struct id::lineary_interpolate_functor<id::vector<quadruple, 3>, quadruple>;
-template struct id::lineary_interpolate_functor<id::vector<quadruple, 4>, quadruple>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<quadruple, 1>, quadruple>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<quadruple, 2>, quadruple>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<quadruple, 3>, quadruple>;
+template struct idlib::lineary_interpolate_functor<idlib::vector<quadruple, 4>, quadruple>;
 
-template struct id::cross_product_functor<id::vector<single, 3>>;
-template struct id::cross_product_functor<id::vector<double, 3>>;
-template struct id::cross_product_functor<id::vector<quadruple, 3>>;
+template struct idlib::cross_product_functor<idlib::vector<single, 3>>;
+template struct idlib::cross_product_functor<idlib::vector<double, 3>>;
+template struct idlib::cross_product_functor<idlib::vector<quadruple, 3>>;
 
-template struct id::dot_product_functor<id::vector<single, 1>>;
-template struct id::dot_product_functor<id::vector<single, 2>>;
-template struct id::dot_product_functor<id::vector<single, 3>>;
-template struct id::dot_product_functor<id::vector<single, 4>>;
+template struct idlib::dot_product_functor<idlib::vector<single, 1>>;
+template struct idlib::dot_product_functor<idlib::vector<single, 2>>;
+template struct idlib::dot_product_functor<idlib::vector<single, 3>>;
+template struct idlib::dot_product_functor<idlib::vector<single, 4>>;
 
-template struct id::dot_product_functor<id::vector<double, 1>>;
-template struct id::dot_product_functor<id::vector<double, 2>>;
-template struct id::dot_product_functor<id::vector<double, 3>>;
-template struct id::dot_product_functor<id::vector<double, 4>>;
+template struct idlib::dot_product_functor<idlib::vector<double, 1>>;
+template struct idlib::dot_product_functor<idlib::vector<double, 2>>;
+template struct idlib::dot_product_functor<idlib::vector<double, 3>>;
+template struct idlib::dot_product_functor<idlib::vector<double, 4>>;
 
-template struct id::dot_product_functor<id::vector<quadruple, 1>>;
-template struct id::dot_product_functor<id::vector<quadruple, 2>>;
-template struct id::dot_product_functor<id::vector<quadruple, 3>>;
-template struct id::dot_product_functor<id::vector<quadruple, 4>>;
+template struct idlib::dot_product_functor<idlib::vector<quadruple, 1>>;
+template struct idlib::dot_product_functor<idlib::vector<quadruple, 2>>;
+template struct idlib::dot_product_functor<idlib::vector<quadruple, 3>>;
+template struct idlib::dot_product_functor<idlib::vector<quadruple, 4>>;

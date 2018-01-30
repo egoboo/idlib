@@ -31,23 +31,23 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::angle<single, id::degrees>;
-template struct id::lineary_interpolate_functor<id::angle<single, id::degrees>, single>;
-template struct id::angle<double, id::degrees>;
-template struct id::lineary_interpolate_functor<id::angle<double, id::degrees>, double>;
-template struct id::angle<quadruple, id::degrees>;
-template struct id::lineary_interpolate_functor<id::angle<quadruple, id::degrees>, quadruple>;
+template struct idlib::angle<single, idlib::degrees>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<single, idlib::degrees>, single>;
+template struct idlib::angle<double, idlib::degrees>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<double, idlib::degrees>, double>;
+template struct idlib::angle<quadruple, idlib::degrees>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<quadruple, idlib::degrees>, quadruple>;
 
-template struct id::angle<single, id::radians>;
-template struct id::lineary_interpolate_functor<id::angle<single, id::radians>, single>;
-template struct id::angle<double, id::radians>;
-template struct id::lineary_interpolate_functor<id::angle<double, id::radians>, double>;
-template struct id::angle<quadruple, id::radians>;
-template struct id::lineary_interpolate_functor<id::angle<quadruple, id::radians>, quadruple>;
+template struct idlib::angle<single, idlib::radians>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<single, idlib::radians>, single>;
+template struct idlib::angle<double, idlib::radians>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<double, idlib::radians>, double>;
+template struct idlib::angle<quadruple, idlib::radians>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<quadruple, idlib::radians>, quadruple>;
 
-template struct id::angle<single, id::turns>;
-template struct id::lineary_interpolate_functor<id::angle<single, id::turns>, single>;
-template struct id::angle<double, id::turns>;
-template struct id::lineary_interpolate_functor<id::angle<double, id::turns>, double>;
-template struct id::angle<quadruple, id::turns>;
-template struct id::lineary_interpolate_functor<id::angle<quadruple, id::turns>, quadruple>;
+template struct idlib::angle<single, idlib::turns>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<single, idlib::turns>, single>;
+template struct idlib::angle<double, idlib::turns>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<double, idlib::turns>, double>;
+template struct idlib::angle<quadruple, idlib::turns>;
+template struct idlib::lineary_interpolate_functor<idlib::angle<quadruple, idlib::turns>, quadruple>;

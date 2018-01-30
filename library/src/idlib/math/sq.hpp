@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 	
 /// @brief Functor computing the square (NOT the square root).
 /// @remark Specializations for @a single, @a double, and @a quadruple are provided.
@@ -53,4 +53,4 @@ struct sq_functor<T, std::enable_if_t<std::is_same<T, int>::value>>
 	}
 }; // struct sq_functor
 
-} // namespace id
+} // namespace idlib

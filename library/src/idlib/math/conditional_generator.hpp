@@ -26,7 +26,7 @@
 
 #include "idlib/math/generator.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A generator which invokes one generator \f$a\f$ if the index is equal to a specified index and another generator \f$b\f$ if it is not.
 /// @tparam R the result type
@@ -51,8 +51,8 @@ private:
 }; // struct conditional_generator
 
 /// @brief Utility function to ease the creation of conditional generators.
-/// @tparam A, B see \ref id::conditional_generator for more information
-/// @tparam i, a, b see \ref id::conditional_generator::id::conditional_generator(size_t,const A&,const &B) for more information
+/// @tparam A, B see \ref idlib::conditional_generator for more information
+/// @tparam i, a, b see \ref idlib::conditional_generator::idlib::conditional_generator(size_t,const A&,const &B) for more information
 /// @return the conditional generator
 template <typename A, typename B>
 auto make_conditional_generator(size_t i, const A& a, const B& b)
@@ -60,4 +60,4 @@ auto make_conditional_generator(size_t i, const A& a, const B& b)
 	return conditional_generator<A, B>(i, a, b);
 }
 
-} // namespace id
+} // namespace idlib

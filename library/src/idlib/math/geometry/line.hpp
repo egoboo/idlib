@@ -32,7 +32,7 @@
 #include "idlib/crtp.hpp"
 #include "idlib/math/floating_point.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A line.
 /// @detail
@@ -100,7 +100,7 @@ private:
 
 }; // struct line
 
-/// @brief Specialization of id::enclose_functor enclosing a line in a line.
+/// @brief Specialization of idlib::enclose_functor enclosing a line in a line.
 /// @detail The line \f$b\f$ enclosing a line \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam P the point type of the lines
 template <typename P>
@@ -110,7 +110,7 @@ struct enclose_functor<line<P>, line<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates a line.
 /// @tparam E the Euclidean space type of the geometry
 template <typename P>
@@ -120,4 +120,4 @@ struct translate_functor<line<P>, typename P::vector_type>
 	{ return line<P>(x.get_a() + t, x.get_b() + t); }
 }; // struct translate_functor
 
-} // namespace id
+} // namespace idlib

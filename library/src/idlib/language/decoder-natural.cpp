@@ -36,7 +36,7 @@
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
-namespace id { namespace c {
+namespace idlib { namespace c {
 
 bool decoder<unsigned long, void>::operator()(const std::string& s, unsigned long& v) const
 {
@@ -198,4 +198,4 @@ bool decoder<unsigned int, void>::operator()(const std::string& s, unsigned int&
 	return true;
 }
 
-} } // namespace id::c
+} } // namespace idlib::c

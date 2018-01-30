@@ -28,6 +28,6 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template class id::mu<single>;
-template class id::mu<double>;
-template class id::mu<quadruple>;
+template class idlib::mu<single>;
+template class idlib::mu<double>;
+template class idlib::mu<quadruple>;

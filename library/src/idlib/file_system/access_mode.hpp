@@ -49,47 +49,47 @@ enum class access_mode : uint8_t
 #include "idlib/file_system/footer.in"
 
 /// Bitwise |.
-inline id::file_system::access_mode operator|(id::file_system::access_mode lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode operator|(idlib::file_system::access_mode lhs, idlib::file_system::access_mode rhs)
 {
-    return static_cast<id::file_system::access_mode>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs));
+    return static_cast<idlib::file_system::access_mode>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs));
 }
 
 // Bitwise &.
-inline id::file_system::access_mode operator&(id::file_system::access_mode lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode operator&(idlib::file_system::access_mode lhs, idlib::file_system::access_mode rhs)
 {
-    return static_cast<id::file_system::access_mode>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
+    return static_cast<idlib::file_system::access_mode>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
 }
 
 // Bitwise ^.
-inline id::file_system::access_mode operator^(id::file_system::access_mode lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode operator^(idlib::file_system::access_mode lhs, idlib::file_system::access_mode rhs)
 {
-    return static_cast<id::file_system::access_mode>((static_cast<uint8_t>(lhs) ^ static_cast<uint8_t>(rhs)) & static_cast<uint8_t>(id::file_system::access_mode::all));
+    return static_cast<idlib::file_system::access_mode>((static_cast<uint8_t>(lhs) ^ static_cast<uint8_t>(rhs)) & static_cast<uint8_t>(idlib::file_system::access_mode::all));
 }
 
 // Bitwise ~.
-inline id::file_system::access_mode operator~(id::file_system::access_mode lhs)
+inline idlib::file_system::access_mode operator~(idlib::file_system::access_mode lhs)
 {
-    return static_cast<id::file_system::access_mode>((~static_cast<uint8_t>(lhs)) & static_cast<uint8_t>(id::file_system::access_mode::all));
+    return static_cast<idlib::file_system::access_mode>((~static_cast<uint8_t>(lhs)) & static_cast<uint8_t>(idlib::file_system::access_mode::all));
 }
 
 // Bitwise |=.
-inline id::file_system::access_mode& operator|=(id::file_system::access_mode& lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode& operator|=(idlib::file_system::access_mode& lhs, idlib::file_system::access_mode rhs)
 {
-    lhs = static_cast<id::file_system::access_mode>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs));
+    lhs = static_cast<idlib::file_system::access_mode>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs));
     return lhs;
 }
 
 // Bitwise &=.
-inline id::file_system::access_mode& operator&=(id::file_system::access_mode& lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode& operator&=(idlib::file_system::access_mode& lhs, idlib::file_system::access_mode rhs)
 {
-    lhs = static_cast<id::file_system::access_mode>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
+    lhs = static_cast<idlib::file_system::access_mode>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs));
     return lhs;
 }
 
 // Bitwise ^=.
-inline id::file_system::access_mode& operator^=(id::file_system::access_mode& lhs, id::file_system::access_mode rhs)
+inline idlib::file_system::access_mode& operator^=(idlib::file_system::access_mode& lhs, idlib::file_system::access_mode rhs)
 {
-    lhs = static_cast<id::file_system::access_mode>((static_cast<uint8_t>(lhs) ^ static_cast<uint8_t>(rhs))
-                                                    & static_cast<uint8_t>(id::file_system::access_mode::all));
+    lhs = static_cast<idlib::file_system::access_mode>((static_cast<uint8_t>(lhs) ^ static_cast<uint8_t>(rhs))
+                                                       & static_cast<uint8_t>(idlib::file_system::access_mode::all));
     return lhs;
 }

@@ -33,7 +33,7 @@
 #include "idlib/parsing_expressions/header.in"
 
 /// @internal
-/// @see id::any_sym for more information.
+/// @see idlib::any_sym for more information.
 /// @tparam Sym the symbol type
 template <typename Sym>
 class any_sym_expr

@@ -27,7 +27,7 @@
 #include "idlib/math/random.hpp"
 #include "idlib/math/one_zero.hpp"
 
-namespace id {
+namespace idlib {
 	
 namespace internal {
 
@@ -69,4 +69,4 @@ template <>
 struct random_functor<long long> : public internal::integer_random_functor<long long>
 {};
 
-} // namespace id
+} // namespace idlib

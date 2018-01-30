@@ -25,16 +25,16 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests {
+namespace idlib { namespace tests {
 
 TEST(uppercase_conversion_test, test_uppercase_conversion)
 {
     std::string x("x");
-    id::to_upper_in_situ(x);
+    idlib::to_upper_in_situ(x);
     ASSERT_EQ(x, "X");
     // Identity.
-    id::to_upper_in_situ(x);
+    idlib::to_upper_in_situ(x);
     ASSERT_EQ(x, "X");
 }
 
-} } // namespace id::tests
+} } // namespace idlib::tests

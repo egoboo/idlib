@@ -25,7 +25,7 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests {
+namespace idlib { namespace tests {
 
 TEST(prefix_testing, test_prefix)
 {
@@ -49,19 +49,19 @@ TEST(prefix_testing, test_prefix)
     // Assert prefixes are detected as such.
     for (const auto& prefix : prefixes)
     {
-        ASSERT_EQ(true, id::is_prefix(word, prefix));
+        ASSERT_EQ(true, idlib::is_prefix(word, prefix));
     }
     // Assert true prefixes are detected as such and as prefixes as well.
     for (const auto& prefix : true_prefixes)
     {
-        ASSERT_EQ(true, id::is_true_prefix(word, prefix));
-        ASSERT_EQ(true, id::is_prefix(word, prefix));
+        ASSERT_EQ(true, idlib::is_true_prefix(word, prefix));
+        ASSERT_EQ(true, idlib::is_prefix(word, prefix));
     }
     // Assert false prefixes are not detected as true prefixes.
     for (const auto& prefix : false_prefixes)
     {
-        ASSERT_EQ(false, id::is_true_prefix(word, prefix));
+        ASSERT_EQ(false, idlib::is_true_prefix(word, prefix));
     }
 }
 
-} } // namespace id::tests
+} } // namespace idlib::tests

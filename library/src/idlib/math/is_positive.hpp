@@ -26,11 +26,11 @@
 
 #include "idlib/math/one_zero.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor determinating if a value is positive.
 /// @tparam T the value type
-/// @remark Specializations shall provide a constant operator() which takes an argument @a v of type @a T and shall return  @a true if @a v is greater than id::zero<T>() and @a false otherwise.
+/// @remark Specializations shall provide a constant operator() which takes an argument @a v of type @a T and shall return  @a true if @a v is greater than idlib::zero<T>() and @a false otherwise.
 template <typename T>
 struct is_positive_functor;
 
@@ -38,4 +38,4 @@ template <typename T>
 auto is_positive(const T& v) -> decltype(is_positive_functor<T>()(v))
 { return is_positive_functor<T>()(v); }
 
-} // namespace id
+} // namespace idlib

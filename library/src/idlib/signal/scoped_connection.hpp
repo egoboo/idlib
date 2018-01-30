@@ -41,12 +41,12 @@
 /// Scoped connections are neither copy-constructible nor assignable.
 struct scoped_connection {
 private:
-    id::connection connection;
+    idlib::connection connection;
 
 public:
     /// @brief Construct this scoped connection from a connection.
     /// @param connection the connection
-    scoped_connection(const id::connection& connection)
+    scoped_connection(const idlib::connection& connection)
         : connection(connection) {
     }
 

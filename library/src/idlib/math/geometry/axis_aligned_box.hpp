@@ -32,7 +32,7 @@
 #include "idlib/crtp.hpp"
 #include "idlib/math/floating_point.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief An axis aligned box (abbrevated as AAB).
 /// An AAB in \f$\mathbb{R}^n, n > 0\f$ can be defined in terms of
@@ -102,7 +102,7 @@ public:
     /// @return the center
     point_type get_center() const
 	{ 
-		static const auto TWO = id::one<scalar_type>() + id::one<scalar_type>();
+		static const auto TWO = idlib::one<scalar_type>() + idlib::one<scalar_type>();
 		return get_min() + get_size() / TWO;
     }
 
@@ -142,7 +142,7 @@ public:
 
 protected:
 	struct cookie {};
-	friend struct id::translate_functor<axis_aligned_box, vector_type>;
+	friend struct idlib::translate_functor<axis_aligned_box, vector_type>;
 	axis_aligned_box(cookie cookie, const point_type& min, const point_type& max)
 		: m_min(min), m_max(max)
 	{}
@@ -158,7 +158,7 @@ private:
 
 }; // struct axis_aligned_box
 
-/// @brief Specialization of id::enclose_functor enclosing an axis aligned box into an axis aligned box.
+/// @brief Specialization of idlib::enclose_functor enclosing an axis aligned box into an axis aligned box.
 /// @details The axis aligned box \f$b\f$ enclosing an axis aligned box \f$a\f$ is \f$a\f$ itself i.e. \f$a = b\f$.
 /// @tparam P the point type of the axis aligned box types
 template <typename P>
@@ -168,7 +168,7 @@ struct enclose_functor<axis_aligned_box<P>, axis_aligned_box<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines if an axis aligned box encloses a point.
 /// @tparam P the point type of the geomtries
 template <typename P>
@@ -185,7 +185,7 @@ struct is_enclosing_functor<axis_aligned_box<P>, P>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines if an axis aligned box contains another axis aligned box.
 /// @remark An axis aligned box \f$A\f$ does <em>not</em> contain an axis aligned box \f$B\f$
 /// if for at least one axis \$k\f$ at least one of the following conditions is true:
@@ -212,7 +212,7 @@ struct is_enclosing_functor<axis_aligned_box<P>, axis_aligned_box<P>>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates an axis aligned box.
 /// @tparam P the point type of the axis aligned box type
 template <typename P>
@@ -226,7 +226,7 @@ struct translate_functor<axis_aligned_box<P>, typename P::vector_type>
 	}
 }; // struct translate_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines wether two axis aligned boxes intersect.
 /// @remark Two axis aligned boxes \f$A\f$ and \f$B\f$ do <em>not</em> intersect
 /// if for at least one axis \f$k\f$ at least one of the following conditions is true:
@@ -259,7 +259,7 @@ struct is_intersecting_functor<axis_aligned_box<P>, axis_aligned_box<P>>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if an axis aligned bounding box and a point intersect.
 /// @remark A point \f$P\f$ and an axis aligned bounding box \f$A\f$ do <em>not</em> intersect
 /// if for at least one axis \f$k\f$ at least one of the following conditions is true:
@@ -281,7 +281,7 @@ struct is_intersecting_functor<axis_aligned_box<P>, P>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if a point and an axis aligned box intersect.
 /// @remark The method for determinating if an axis aligned box and a pointer intersect is
 /// commutative. By swapping the arguments that method can be reused to determine if a
@@ -294,4 +294,4 @@ struct is_intersecting_functor<P, axis_aligned_box<P>>
 	{ return is_intersecting(b, a); }
 }; // struct is_intersecting_functor
 
-} // namespace id
+} // namespace idlib

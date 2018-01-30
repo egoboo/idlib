@@ -30,7 +30,7 @@
 #include "idlib/text/line.hpp"
 #undef IDLIB_PRIVATE
 
-namespace id {
+namespace idlib {
 	
 text_line::text_line() :
 	m_range(0, 0), m_width(0), m_height(0)
@@ -64,4 +64,4 @@ void text_line::set_height(int height)
 { m_height = height; }
 #endif
 	
-} // namespace id
+} // namespace idlib

@@ -42,7 +42,7 @@
 #include "idlib/color/darken.hpp"
 #include "idlib/type.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A color in LA color space.
 template <typename ColorSpace>
@@ -182,7 +182,7 @@ public:
 
 }; // struct color
 
-/// @brief Invert functor for id::color<id::Af> and id::color<id::Ab> values.
+/// @brief Invert functor for idlib::color<idlib::Af> and idlib::color<idlib::Ab> values.
 /// @remark Given a color \f$(a)\f$ in real-valued, normalized A space,
 /// then corresponding inverted color is \f$(1-a)\f$. Inverting a
 /// color twice yields the same color (modula floating-point precision).
@@ -201,7 +201,7 @@ struct invert_functor<color<ColorSpace>,
 
 }; // struct invert_functor
 
-/// @brief Interpolate functor for id::color<id::Af> values.
+/// @brief Interpolate functor for idlib::color<idlib::Af> values.
 template <typename ColorSpace>
 struct lineary_interpolate_functor<color<ColorSpace>, single, std::enable_if_t<std::is_same<Af, ColorSpace>::value>>
 {
@@ -221,4 +221,4 @@ struct lineary_interpolate_functor<color<ColorSpace>, single, std::enable_if_t<s
 
 }; // struct interpolate_functor
 
-} // namespace id
+} // namespace idlib

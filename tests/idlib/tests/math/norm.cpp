@@ -25,49 +25,49 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace math { namespace tests {
+namespace idlib { namespace math { namespace tests {
 	
 using scalar = single;
-using vector_3s = id::vector<single, 3>;
+using vector_3s = idlib::vector<single, 3>;
 
 /// @brief Assert the "Manhattan" norm is zero for a zero vector \f$\vec{1}\f$.
 /// Assert for \f$(1,0,0)\f$, \f$(0,1,0)\f$, and \f$(0,0,1)\f$ it is one.
 TEST(norm, manhattan)
 {
-	ASSERT_EQ(id::manhattan_norm(vector_3s(1, 0, 0)), id::one<single>());
-	ASSERT_EQ(id::manhattan_norm(vector_3s(0, 1, 0)), id::one<single>());
-	ASSERT_EQ(id::manhattan_norm(vector_3s(0, 0, 1)), id::one<single>());
-	ASSERT_EQ(id::manhattan_norm(id::zero<vector_3s>()), id::zero<single>());
+	ASSERT_EQ(idlib::manhattan_norm(vector_3s(1, 0, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::manhattan_norm(vector_3s(0, 1, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::manhattan_norm(vector_3s(0, 0, 1)), idlib::one<single>());
+	ASSERT_EQ(idlib::manhattan_norm(idlib::zero<vector_3s>()), idlib::zero<single>());
 }
 
 /// @brief Assert the "Euclidean" norm is zero for a zero vector.
 /// Assert for \f$(1,0,0)\f$, \f$(0,1,0)\f$, and \f$(0,0,1)\f$ it is one.
 TEST(norm, euclidean)
 {
-	ASSERT_EQ(id::euclidean_norm(vector_3s(1, 0, 0)), id::one<single>());
-	ASSERT_EQ(id::euclidean_norm(vector_3s(0, 1, 0)), id::one<single>());
-	ASSERT_EQ(id::euclidean_norm(vector_3s(0, 0, 1)), id::one<single>());
-	ASSERT_EQ(id::euclidean_norm(id::zero<vector_3s>()), id::zero<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(1, 0, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(0, 1, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(0, 0, 1)), idlib::one<single>());
+	ASSERT_EQ(idlib::euclidean_norm(idlib::zero<vector_3s>()), idlib::zero<single>());
 }
 
 /// @brief Assert the squared "Euclidean" norm is zero for a zero vector.
 /// Assert for \f$(1,0,0)\f$, \f$(0,1,0)\f$, and \f$(0,0,1)\f$ it is one.
 TEST(norm, squared_euclidean)
 {
-	ASSERT_EQ(id::squared_euclidean_norm(vector_3s(1, 0, 0)), id::one<single>());
-	ASSERT_EQ(id::squared_euclidean_norm(vector_3s(0, 1, 0)), id::one<single>());
-	ASSERT_EQ(id::squared_euclidean_norm(vector_3s(0, 0, 1)), id::one<single>());
-	ASSERT_EQ(id::squared_euclidean_norm(id::zero<vector_3s>()), id::zero<single>());
+	ASSERT_EQ(idlib::squared_euclidean_norm(vector_3s(1, 0, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::squared_euclidean_norm(vector_3s(0, 1, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::squared_euclidean_norm(vector_3s(0, 0, 1)), idlib::one<single>());
+	ASSERT_EQ(idlib::squared_euclidean_norm(idlib::zero<vector_3s>()), idlib::zero<single>());
 }
 
 /// @brief Assert the maximum norm is zero for a zero vector.
 /// Assert for \f$(1,0,0)\f$, \f$(0,1,0)\f$, and \f$(0,0,1)\f$ it is one.
 TEST(norm, maximum)
 {
-	ASSERT_EQ(id::euclidean_norm(vector_3s(1, 0, 0)), id::one<single>());
-	ASSERT_EQ(id::euclidean_norm(vector_3s(0, 1, 0)), id::one<single>());
-	ASSERT_EQ(id::euclidean_norm(vector_3s(0, 0, 1)), id::one<single>());
-	ASSERT_EQ(id::maximum_norm(id::zero<vector_3s>()), id::zero<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(1, 0, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(0, 1, 0)), idlib::one<single>());
+	ASSERT_EQ(idlib::euclidean_norm(vector_3s(0, 0, 1)), idlib::one<single>());
+	ASSERT_EQ(idlib::maximum_norm(idlib::zero<vector_3s>()), idlib::zero<single>());
 }
 
-} } } // namespace id::math::tests
+} } } // namespace idlib::math::tests

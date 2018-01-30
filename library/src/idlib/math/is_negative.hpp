@@ -26,11 +26,11 @@
 
 #include "idlib/math/one_zero.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief Functor determinating if a value is negative.
 /// @tparam T the value type
-/// @remark Specializations shall provide a constant operator() which takes an argument @a v of type @a T and shall return  @a true if @a v is smaller than id::zero<T>() and @a false otherwise.
+/// @remark Specializations shall provide a constant operator() which takes an argument @a v of type @a T and shall return  @a true if @a v is smaller than idlib::zero<T>() and @a false otherwise.
 template <typename T>
 struct is_negative_functor;
 
@@ -38,4 +38,4 @@ template <typename T>
 auto is_negative(const T& v) -> decltype(is_negative_functor<T>()(v))
 { return is_negative_functor<T>()(v); }
 
-} // namespace id
+} // namespace idlib

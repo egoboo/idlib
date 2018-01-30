@@ -38,7 +38,7 @@
 #include "idlib/parsing_expressions/header.in"
 
 /// @internal
-/// @brief See id::repetition for more information.
+/// @brief See idlib::repetition for more information.
 /// @tparam Expr the type of the expression
 template <typename Expr>
 struct repetition_expr

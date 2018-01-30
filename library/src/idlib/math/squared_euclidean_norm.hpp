@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Functor computing the squared Euclidean norm of a vector.
@@ -44,4 +44,4 @@ template <typename Vector>
 auto squared_euclidean_norm(const Vector& v) -> decltype(squared_euclidean_norm_functor<Vector>()(v))
 { return squared_euclidean_norm_functor<Vector>()(v); }
 
-} // namespace id
+} // namespace idlib

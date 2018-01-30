@@ -44,7 +44,7 @@ struct connection : internal::connection_base
 {
     connection()
         : internal::connection_base(nullptr) {}
-    connection(id::internal::node_base *node)
+    connection(idlib::internal::node_base *node)
         : internal::connection_base(node) {}
     connection(const connection& other)
         : internal::connection_base(other) {}

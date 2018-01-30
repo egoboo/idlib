@@ -31,7 +31,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id {
+namespace idlib {
 
 template<class T, class Compare>
 constexpr const T& clamp(const T& value, const T& low, const T& high, Compare compare)
@@ -42,7 +42,7 @@ constexpr const T& clamp(const T& value, const T& low, const T& high, Compare co
 template<class T>
 constexpr const T& clamp(const T& value, const T& low, const T& high)
 {
-	return id::clamp(value, low, high, std::less<T>());
+	return idlib::clamp(value, low, high, std::less<T>());
 }
 
-} // namespace id
+} // namespace idlib

@@ -34,7 +34,7 @@
 
 #include "idlib/math/dot_product.hpp"
 
-namespace id {
+namespace idlib {
 
 template <typename P>
 struct plane;
@@ -279,7 +279,7 @@ private:
 
 }; // struct plane
 
-/// @brief Specialization of id::enclose_functor enclosing a plane in a plane.
+/// @brief Specialization of idlib::enclose_functor enclosing a plane in a plane.
 /// @detail The plane \f$b\f$ enclosing a plane \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam P the point type of this plane
 template <typename P>
@@ -289,7 +289,7 @@ struct enclose_functor<plane<P>, plane<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates a plane.
 /// @remark
 /// The first (slow) method to compute the translation of a plane \f$\hat{n} \cdot P + d = 0\f$
@@ -331,4 +331,4 @@ struct translate_functor<plane<P>, typename P::vector_type>
 	{ return plane<P>(x.get_normal(), x.get_distance() - dot_product(x.get_normal(), t)); }
 }; // struct translate_functor
 
-} // namespace id
+} // namespace idlib

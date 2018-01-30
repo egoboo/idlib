@@ -25,11 +25,11 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace file_system { namespace tests {
+namespace idlib { namespace file_system { namespace tests {
 
 TEST(access_mode_tests, test_access_mode)
 {
-    using namespace id::file_system;
+    using namespace idlib::file_system;
     // Negation.
     ASSERT_EQ(~access_mode::all, access_mode::none);
     ASSERT_EQ(~access_mode::none, access_mode::all);
@@ -62,4 +62,4 @@ TEST(access_mode_tests, test_access_mode)
     ASSERT_EQ((access_mode::write & access_mode::write), access_mode::write);
 }
 
-} } } // namespace id::file_system::tests
+} } } // namespace idlib::file_system::tests

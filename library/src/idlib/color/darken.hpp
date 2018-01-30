@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @brief A functor to darken a color value.
 /// @detail
@@ -44,7 +44,7 @@ namespace id {
 /// the darkened component value is usually computed by
 /// $clamp(c * (1 - f),c_min, c_max)$.
 /// Note that this function can be used to actually brightening a color if $f$ is negative,
-/// however, using id::brighten_functor is then preferred.
+/// however, using idlib::brighten_functor is then preferred.
 template <typename C, typename E = void>
 struct darken_functor;
 
@@ -60,4 +60,4 @@ decltype(auto) darken(const C& c, double t)
     return darken_functor<C>()(c, t);
 }
 
-} // namespace id
+} // namespace idlib

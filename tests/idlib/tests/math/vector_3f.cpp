@@ -25,19 +25,19 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace math { namespace test {
+namespace idlib { namespace math { namespace test {
 	
-using interval_i = id::interval<int>;
-using vector_3i = id::vector<int, 3>;
-using point_3i = id::point<vector_3i>;
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
+using point_3i = idlib::point<vector_3i>;
 
 TEST(vector_3i, addition)
 {
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<vector_3i>(interval);
-        auto b = id::random<vector_3i>(interval);
+        auto a = idlib::random<vector_3i>(interval);
+        auto b = idlib::random<vector_3i>(interval);
         auto c = a + b;
         ASSERT_TRUE((c - b) == a);
         ASSERT_TRUE((c - a) == b);
@@ -49,8 +49,8 @@ TEST(vector_3i, subtraction)
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<vector_3i>(interval);
-        auto b = id::random<vector_3i>(interval);
+        auto a = idlib::random<vector_3i>(interval);
+        auto b = idlib::random<vector_3i>(interval);
         auto c = a - b;
         ASSERT_TRUE((c + b) == a);
         ASSERT_TRUE(b == (a - c));
@@ -62,12 +62,12 @@ TEST(vector_3i, scalar_product)
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<vector_3i>(interval);
-        auto b = id::random<vector_3i>(interval);
+        auto a = idlib::random<vector_3i>(interval);
+        auto b = idlib::random<vector_3i>(interval);
         int s;
         do {
-            s = id::random<int>(interval);
-        } while (s == id::zero<int>());
+            s = idlib::random<int>(interval);
+        } while (s == idlib::zero<int>());
         b = a * s;
         ASSERT_TRUE((b / s) == a);
     }
@@ -78,7 +78,7 @@ TEST(vector_3i, negation)
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        auto a = id::random<vector_3i>(interval);
+        auto a = idlib::random<vector_3i>(interval);
         auto b = -a;
         auto c = -b;
         ASSERT_TRUE(a == c);
@@ -90,7 +90,7 @@ TEST(vector_3i, equality)
     for (size_t i = 0; i < 1000; ++i)
 	{
 		auto interval = interval_i(-1000, +1000);
-        vector_3i a = id::random<vector_3i>(interval);
+        vector_3i a = idlib::random<vector_3i>(interval);
         vector_3i b = a;
         ASSERT_EQ(a, b);
     }
@@ -98,27 +98,27 @@ TEST(vector_3i, equality)
 
 TEST(vector_3i, zero)
 {
-    auto v = id::zero<vector_3i>();
-    ASSERT_TRUE(v[0] == id::zero<int>() && v[1] == id::zero<int>() && v[2] == id::zero<int>());
+    auto v = idlib::zero<vector_3i>();
+    ASSERT_TRUE(v[0] == idlib::zero<int>() && v[1] == idlib::zero<int>() && v[2] == idlib::zero<int>());
 }
 
 TEST(vector_3i, one)
 {
-    auto v = id::one<vector_3i>();
-    ASSERT_TRUE(v[0] == id::one<int>() && v[1] == id::one<int>() && v[2] == id::one<int>());
+    auto v = idlib::one<vector_3i>();
+    ASSERT_TRUE(v[0] == idlib::one<int>() && v[1] == idlib::one<int>() && v[2] == idlib::one<int>());
 }
 
 TEST(vector_3i, length)
 {
     auto x = vector_3i::unit(0); 
-    ASSERT_TRUE(id::squared_euclidean_norm(x) == id::one<int>());
-    ASSERT_TRUE(x[1] == id::zero<int>() && x[2] == id::zero<int>());
+    ASSERT_TRUE(idlib::squared_euclidean_norm(x) == idlib::one<int>());
+    ASSERT_TRUE(x[1] == idlib::zero<int>() && x[2] == idlib::zero<int>());
     auto y = vector_3i::unit(1);
-    ASSERT_TRUE(id::squared_euclidean_norm(y) == id::one<int>());
-    ASSERT_TRUE(y[0] == id::zero<int>() && y[2] == id::zero<int>());
+    ASSERT_TRUE(idlib::squared_euclidean_norm(y) == idlib::one<int>());
+    ASSERT_TRUE(y[0] == idlib::zero<int>() && y[2] == idlib::zero<int>());
     auto z = vector_3i::unit(2);
-    ASSERT_TRUE(id::squared_euclidean_norm(z) == id::one<int>());
-    ASSERT_TRUE(z[0] == id::zero<int>() && z[1] == id::zero<int>());
+    ASSERT_TRUE(idlib::squared_euclidean_norm(z) == idlib::one<int>());
+    ASSERT_TRUE(z[0] == idlib::zero<int>() && z[1] == idlib::zero<int>());
 }
 
 /// @brief
@@ -128,12 +128,12 @@ TEST(vector_3i, one_zero)
 {
 	using vector_type = vector_3i;
 	using scalar_type = typename vector_3i::scalar_type;
-	const auto os = id::one<scalar_type>(),
-		       zs = id::zero<scalar_type>();
-	const auto ov = id::one<vector_type>(),
-		       zv = id::zero<vector_type>();
+	const auto os = idlib::one<scalar_type>(),
+		       zs = idlib::zero<scalar_type>();
+	const auto ov = idlib::one<vector_type>(),
+		       zv = idlib::zero<vector_type>();
 	ASSERT_TRUE(ov[0] == os && ov[1] == os && ov[2] == os);
 	ASSERT_TRUE(zv[0] == zs && zv[1] == zs && zv[2] == zs);
 }
 
-} } } // namespace id::math::test
+} } } // namespace idlib::math::test

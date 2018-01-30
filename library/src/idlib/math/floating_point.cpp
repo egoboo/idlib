@@ -26,14 +26,14 @@
 #include "idlib/math/floating_point.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::zero_functor<single>;
-template struct id::zero_functor<double>;
-template struct id::zero_functor<quadruple>;
+template struct idlib::zero_functor<single>;
+template struct idlib::zero_functor<double>;
+template struct idlib::zero_functor<quadruple>;
 
-template struct id::one_functor<single>;
-template struct id::one_functor<double>;
-template struct id::one_functor<quadruple>;
+template struct idlib::one_functor<single>;
+template struct idlib::one_functor<double>;
+template struct idlib::one_functor<quadruple>;
 
-template struct id::lineary_interpolate_functor<single, single>;
-template struct id::lineary_interpolate_functor<double, double>;
-template struct id::lineary_interpolate_functor<quadruple, quadruple>;
+template struct idlib::lineary_interpolate_functor<single, single>;
+template struct idlib::lineary_interpolate_functor<double, double>;
+template struct idlib::lineary_interpolate_functor<quadruple, quadruple>;

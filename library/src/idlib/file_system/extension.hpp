@@ -43,14 +43,14 @@ struct extension_validator
 		// Must not be empty.
         if (w.cbegin() == w.cend())
         {
-            throw id::runtime_error(__FILE__, __LINE__, "invalid extension");
+            throw idlib::runtime_error(__FILE__, __LINE__, "invalid extension");
         }
 		// Must not contain special characters.
         static const std::vector<C> d{ '*', '?', ':', '.', ',', '/', '\\', ' ', '\t', '\n', '\r' };
         auto it = std::find_first_of(w.cbegin(), w.cend(), d.cbegin(), d.cend());
         if (it != w.cend())
         {
-            throw id::runtime_error(__FILE__, __LINE__, "invalid extension");
+            throw idlib::runtime_error(__FILE__, __LINE__, "invalid extension");
         }
         return w;
     }
@@ -71,7 +71,7 @@ struct extension : public equal_to_expr<extension<C>>
     using string_type = std::basic_string<char_type>;
 
 	/// @brief Construct this extension with a specified string.
-	/// @throw id::runtime_error @a string is not a valid extension string
+	/// @throw idlib::runtime_error @a string is not a valid extension string
     explicit extension(const string_type& string)
         : m_string(internal::extension_validator<char_type>()(string))
     {}
@@ -108,9 +108,9 @@ private:
 namespace std {
 
 template <typename C>
-struct hash<id::file_system::extension<C>>
+struct hash<idlib::file_system::extension<C>>
 {
-    size_t operator()(const id::file_system::extension<C>& x) const
+    size_t operator()(const idlib::file_system::extension<C>& x) const
     { return hash<basic_string<C>>()(x.to_string()); }
 }; // struct hash
 

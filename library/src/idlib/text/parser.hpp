@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace id {
+namespace idlib {
 
 template <typename Character>
 struct text_parser
@@ -49,4 +49,4 @@ struct text_parser
 	}	
 }; // struct text_parser
 
-} // namespace id
+} // namespace idlib

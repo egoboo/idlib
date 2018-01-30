@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @tparam Syntax the type of the syntax (what values represent angles)
 /// @tparam Semantics the type of the semantics (how are the values interpreted)
@@ -36,4 +36,4 @@ namespace id {
 template <typename Syntax, typename Semantics, typename Enabled = void>
 struct angle;
 
-} // namespace id
+} // namespace idlib

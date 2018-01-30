@@ -60,7 +60,7 @@
 
 #include <utility>
 
-namespace id {
+namespace idlib {
 
 /// Functor for and'ing together all arguments (without fold expressions).
 /// We could use
@@ -158,4 +158,4 @@ public:
 	{ return impl(std::forward<Ts>(xs) ...); }
 };
 
-} // namespace id
+} // namespace idlib

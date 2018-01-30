@@ -28,14 +28,14 @@
 #include "idlib/math/one_zero.hpp"
 #undef IDLIB_PRIVATE
 
-template struct id::arithmetic_tuple<single, 0, id::zero_functor<single>>;
-template struct id::arithmetic_tuple<single, 1, id::zero_functor<single>>;
-template struct id::arithmetic_tuple<single, 2, id::zero_functor<single>>;
-template struct id::arithmetic_tuple<single, 3, id::zero_functor<single>>;
-template struct id::arithmetic_tuple<single, 4, id::zero_functor<single>>;
+template struct idlib::arithmetic_tuple<single, 0, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_tuple<single, 1, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_tuple<single, 2, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_tuple<single, 3, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_tuple<single, 4, idlib::zero_functor<single>>;
 
-template struct id::arithmetic_tuple<double, 0, id::zero_functor<double>>;
-template struct id::arithmetic_tuple<double, 1, id::zero_functor<double>>;
-template struct id::arithmetic_tuple<double, 2, id::zero_functor<double>>;
-template struct id::arithmetic_tuple<double, 3, id::zero_functor<double>>;
-template struct id::arithmetic_tuple<double, 4, id::zero_functor<double>>;
+template struct idlib::arithmetic_tuple<double, 0, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_tuple<double, 1, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_tuple<double, 2, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_tuple<double, 3, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_tuple<double, 4, idlib::zero_functor<double>>;

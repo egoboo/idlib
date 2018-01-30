@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 template <typename T>
 struct max_element_functor;
@@ -33,4 +33,4 @@ template <typename T>
 auto max_element(const T& v)
 { return max_element_functor<T>()(v); }
 
-} // namespace id
+} // namespace idlib

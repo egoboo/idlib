@@ -25,16 +25,16 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests {
+namespace idlib { namespace tests {
 
 TEST(lowercase_conversion_test, test_lowercase_conversion)
 {
     std::string x("X");
-    id::to_lower_in_situ(x);
+    idlib::to_lower_in_situ(x);
     ASSERT_EQ(x, "x");
     // Identity.
-    id::to_lower_in_situ(x);
+    idlib::to_lower_in_situ(x);
     ASSERT_EQ(x, "x");
 }
 
-} } // namespace id::tests
+} } // namespace idlib::tests

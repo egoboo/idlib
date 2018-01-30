@@ -42,7 +42,7 @@
 #include "idlib/color/darken.hpp"
 #include "idlib/type.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief A color in RGB color space.
 template <typename ColorSpace>
@@ -337,7 +337,7 @@ public:
 
 }; // struct color
 
-/// @brief Brighten functor for id::color<id::RGBb> and id::color<id::RGBf> values.
+/// @brief Brighten functor for idlib::color<idlib::RGBb> and idlib::color<idlib::RGBf> values.
 template <typename ColorSpace>
 struct brighten_functor<color<ColorSpace>,
                         std::enable_if_t<is_any_of<ColorSpace, RGBb, RGBf>::value>>
@@ -363,7 +363,7 @@ struct brighten_functor<color<ColorSpace>,
 
 }; // struct brighten_functor
 
-/// @brief Darken functor for id::color<id::RGBb> and id::color<id::RGBf> values.
+/// @brief Darken functor for idlib::color<idlib::RGBb> and idlib::color<idlib::RGBf> values.
 template <typename ColorSpace>
 struct darken_functor<color<ColorSpace>,
                       std::enable_if_t<is_any_of<ColorSpace, RGBb, RGBf>::value>>
@@ -389,7 +389,7 @@ struct darken_functor<color<ColorSpace>,
 
 }; // struct darken_functor
 
-/// @brief Inversion functor for id::color<id::RGBf> and id::color<id::RGBb> values.
+/// @brief Inversion functor for idlib::color<idlib::RGBf> and idlib::color<idlib::RGBb> values.
 /// @remark Given a color \f$(r,g,b)\f$ in real-valued, normalized RGBA space,
 /// then corresponding inverted color is \f$(1-r,1-g,1-b)\f$. Inverting a
 /// color twice yields the same color (modula floating-point precision).
@@ -410,7 +410,7 @@ struct invert_functor<color<ColorSpace>,
 
 }; // struct invert_functor
 
-/// @brief Lineary interpolate functor for id::color<id::RGBf> values.
+/// @brief Lineary interpolate functor for idlib::color<idlib::RGBf> values.
 template <typename ColorSpace>
 struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<std::is_same<ColorSpace, RGBf>::value>>
 {
@@ -431,4 +431,4 @@ struct lineary_interpolate_functor<color<ColorSpace>, float, std::enable_if_t<st
 
 }; // struct lineary_interpolate_functor
 
-} // namespace id
+} // namespace idlib

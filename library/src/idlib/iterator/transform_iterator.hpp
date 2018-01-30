@@ -42,7 +42,7 @@ namespace std {
 // std::iterator_traits specialization.
 template <typename UnaryFunctor,
 	      typename Iterator>
-struct iterator_traits<id::transform_iterator<UnaryFunctor, Iterator>> {
+struct iterator_traits<idlib::transform_iterator<UnaryFunctor, Iterator>> {
 	using reference = typename result_of<const UnaryFunctor(typename iterator_traits<Iterator>::reference)>::type;
 	using value_type = typename remove_cv<reference>::type;
 	using pointer = value_type *;

@@ -42,7 +42,7 @@ TEST(transform_iterator_test, test_transform_iterator)
 	{
 		sources.push_back(i);
 	}
-	using transform_iterator_type = id::transform_iterator<unary_functor, std::vector<char>::const_iterator>;
+	using transform_iterator_type = idlib::transform_iterator<unary_functor, std::vector<char>::const_iterator>;
 	for (auto it = transform_iterator_type(sources.cbegin(), unary_functor{});
 		 it != transform_iterator_type(sources.cend(), unary_functor{}); ++it)
 	{ 

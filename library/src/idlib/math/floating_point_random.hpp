@@ -27,7 +27,7 @@
 #include "idlib/math/random.hpp"
 #include "idlib/math/one_zero.hpp"
 
-namespace id {
+namespace idlib {
 	
 namespace internal {
 
@@ -69,4 +69,4 @@ template <>
 struct random_functor<quadruple> : public internal::floating_point_random_functor<quadruple>
 {};
 
-} // namespace id
+} // namespace idlib

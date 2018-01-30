@@ -45,13 +45,13 @@ void file_descriptor_impl::open(const std::string& pathname, access_mode access_
     //
     switch (access_mode)
     {
-        case id::file_system::access_mode::read:
+        case idlib::file_system::access_mode::read:
             flags = O_RDONLY;
             break;
-        case id::file_system::access_mode::write:
+        case idlib::file_system::access_mode::write:
             flags = O_WRONLY;
             break;
-        case id::file_system::access_mode::read_write:
+        case idlib::file_system::access_mode::read_write:
             flags = O_RDWR;
             break;
         default:
@@ -61,12 +61,12 @@ void file_descriptor_impl::open(const std::string& pathname, access_mode access_
     //
     switch (create_mode)
     {
-    case id::file_system::create_mode::create_not_existing:
+    case idlib::file_system::create_mode::create_not_existing:
         flags |= O_CREAT;
         break;
-    case id::file_system::create_mode::open_existing:
+    case idlib::file_system::create_mode::open_existing:
         break;
-	case id::file_system::create_mode::fail_existing:
+	case idlib::file_system::create_mode::fail_existing:
 		flags |= O_CREAT | O_EXCL;
 		break;
     default:
@@ -102,13 +102,13 @@ size_t file_descriptor_impl::size() const
 {
     if (!is_open())
     {
-        throw id::file_system::error(__FILE__, __LINE__, "unable to determine file size: file is not open");
+        throw idlib::file_system::error(__FILE__, __LINE__, "unable to determine file size: file is not open");
     }
     struct stat buf;
     if (-1 == fstat(m_handle, &buf))
     {
         errno = 0;
-        throw id::file_system::error(__FILE__, __LINE__, "unable to determine file size");
+        throw idlib::file_system::error(__FILE__, __LINE__, "unable to determine file size");
     }
     return buf.st_size;
 }

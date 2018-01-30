@@ -30,13 +30,13 @@
 
 #include <utility>
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief Unary minus functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::unary_minus()(x)
+/// idlib::unary_minus()(x)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -54,7 +54,7 @@ struct unary_minus
 /// @brief Unary plus functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::unary_pluss()(x)
+/// idlib::unary_pluss()(x)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -72,7 +72,7 @@ struct unary_plus
 /// @brief Binary plus functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::binary_plus()(x, y)
+/// idlib::binary_plus()(x, y)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -90,7 +90,7 @@ struct binary_plus
 /// @brief Binary minus functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::binary_minus()(x, y)
+/// idlib::binary_minus()(x, y)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -108,7 +108,7 @@ struct binary_minus
 /// @brief Binary star functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::binary_star()(x, y)
+/// idlib::binary_star()(x, y)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -126,7 +126,7 @@ struct binary_star
 /// @brief Binary slash functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::binary_slash()(x, y)
+/// idlib::binary_slash()(x, y)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -144,7 +144,7 @@ struct binary_slash
 /// @brief Binary equal equal functor.
 /// Deduces the argument and return types.
 /// @code
-/// id::binary_equal_equal()(x, y)
+/// idlib::binary_equal_equal()(x, y)
 /// @endcode
 /// is equivalent to
 /// @code
@@ -158,4 +158,4 @@ struct binary_equal_equal
 	{ return std::forward<X>(x) == std::forward<Y>(y); }
 };
 
-} // namespace id
+} // namespace idlib

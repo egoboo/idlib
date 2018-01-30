@@ -32,7 +32,7 @@
 #include "idlib/crtp.hpp"
 #include "idlib/math/floating_point.hpp"
 
-namespace id {
+namespace idlib {
 
 /// @brief An axis aligned cube.
 /// @detail An axis aligned cube in \f$\mathbb{R}^n\f$ can be defined in terms of a center point \f$P\f$ and a size \f$s\f$.
@@ -122,7 +122,7 @@ private:
 
 }; // struct axis_aligned_cube
 
-/// @brief Specialization of id::enclose_functor enclosing an axis aligned cube in an axis aligned cube.
+/// @brief Specialization of idlib::enclose_functor enclosing an axis aligned cube in an axis aligned cube.
 /// @detail The axis aligned cube \f$b\f$ enclosing an axis aligned cube \f$a\f$ is \f$a\f$ itself i.e. \f$b = a\f$.
 /// @tparam P the point type of the axis aligned cube types
 template <typename P>
@@ -132,7 +132,7 @@ struct enclose_functor<axis_aligned_cube<P>, axis_aligned_cube<P>>
 	{ return source; }
 }; // struct enclose_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines if an axis aligned cube encloses a point.
 /// @remark An axis aligned cube \$A\f$ does <em>not</em> enclose a point \f$P\f$
 /// if for at least one axis \$k\f$ at least one of the following conditions is true:
@@ -155,7 +155,7 @@ struct is_enclosing_functor<axis_aligned_cube<P>, P>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::is_enclosing_functor.
+/// @brief Specialization of idlib::is_enclosing_functor.
 /// Determines if an axis aligned cube encloses another axis aligned cube.
 /// @remark An axis aligned cube \f$A\f$ does <em>not</em> enclose an axis aligned cube \f$B\f$
 /// if for at least one axis \$k\f$ at least one of the following conditions is true:
@@ -182,7 +182,7 @@ struct is_enclosing_functor<axis_aligned_cube<P>, axis_aligned_cube<P>>
 	}
 }; // struct is_enclosing_functor
 
-/// @brief Specialization of id::translate_functor.
+/// @brief Specialization of idlib::translate_functor.
 /// Translates an axis aligned cube.
 /// @tparam P the point type of the axis aligned cube type
 template <typename P>
@@ -194,7 +194,7 @@ struct translate_functor<axis_aligned_cube<P>, typename P::vector_type>
 	}
 }; // struct translate_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if two axis aligned cubes intersect.
 /// @remark Two axis aligned cubes \f$A\f$ and \f$B\f$ do <em>not</em> intersect
 /// if for at least one axis \f$k\f$ at least one of the following conditions is true:
@@ -227,7 +227,7 @@ struct is_intersecting_functor<axis_aligned_cube<P>, axis_aligned_cube<P>>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if an axis aligned cube and a point intersect.
 /// @remark A point \f$P\f$ and an axis aligned cube \f$A\f$ do <em>not</em> intersect
 /// if for at least one axis \f$k\f$ at least one of the following conditions is true:
@@ -249,7 +249,7 @@ struct is_intersecting_functor<axis_aligned_cube<P>, P>
 	}
 }; // struct is_intersecting_functor
 
-/// @brief Specialization of id::is_intersecting_functor.
+/// @brief Specialization of idlib::is_intersecting_functor.
 /// Determines if a point and an axis aligned cube intersect.
 /// @remark The method for determinating if an axis aligned cube and a point intersect is
 /// commutative. By swapping the arguments that method can be reused to determine if a
@@ -262,4 +262,4 @@ struct is_intersecting_functor<P, axis_aligned_cube<P>>
 	{ return is_intersecting(b, a); }
 }; // struct is_intersecting_functor
 
-} // namespace id
+} // namespace idlib

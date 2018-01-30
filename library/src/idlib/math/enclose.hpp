@@ -28,7 +28,7 @@
 
 #pragma once
 
-namespace id {
+namespace idlib {
 
 /// @ingroup math
 /// @brief A functor enclosing geometry in other geometry.
@@ -55,4 +55,4 @@ auto enclose(const S& s) -> decltype(enclose_functor<T, S>()(s))
 	return enclose_functor<T, S>()(s);
 }
 
-} // namespace id
+} // namespace idlib
