@@ -1,13 +1,8 @@
+# Minimum required CMake version.
 cmake_minimum_required (VERSION 3.8)
-
+# Project name and settings.
 project(idlib-test CXX)
-
-# Idlib tests compiles against C++ 17.
-if (NOT MSVC)
-  set(CMAKE_CXX_STANDARD 17)
-endif()
-
-# Set the default properties.
+message("building Idlib Tests")
 set_project_default_properties()
 
 # Add gtest library include.

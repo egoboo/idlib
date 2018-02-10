@@ -1,15 +1,8 @@
 # Minimum required CMake version.
 cmake_minimum_required(VERSION 3.8)
-
-# Project name and language.
+# Project name and settings.
 project(idlib-library CXX)
-
-# Idlib library compiles against C++ 17.
-if (NOT MSVC)
-  set(CMAKE_CXX_STANDARD 17)
-endif()
-
-# Set the default properties.
+message("building Idlib Library")
 set_project_default_properties()
 
 # Include directory locations.
