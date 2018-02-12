@@ -32,6 +32,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
+#include "idlib/math/arithmetic_functor.hpp"
 #include "idlib/math/angle.hpp"
 #include "idlib/math/angle-degrees-radians-turns.hpp"
 
