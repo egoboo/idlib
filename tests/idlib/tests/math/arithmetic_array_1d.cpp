@@ -27,28 +27,28 @@
 
 namespace idlib { namespace math { namespace tests {
 
-TEST(arithmetic_tuple_test, binary_plus)
+TEST(arithmetic_array_1d_test, binary_plus)
 {
-	idlib::arithmetic_tuple<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,3,4};
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,3,4};
 	auto z = x + y;
 	auto w = x;
 	w += y;
 	ASSERT_EQ(z, w);
 }
 
-TEST(arithmetic_tuple_test, binary_minus)
+TEST(arithmetic_array_1d_test, binary_minus)
 {
-	idlib::arithmetic_tuple<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,3,4};
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,3,4};
 	auto z = x - y;
 	auto w = x;
 	w -= y;
 	ASSERT_EQ(z, w);
 }
 
-TEST(arithmetic_tuple_test, binary_star)
+TEST(arithmetic_array_1d_test, binary_star)
 {
 	int s = 2;
-	idlib::arithmetic_tuple<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,4,6};
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3}, y{2,4,6};
 	auto z = x * s;
 	auto w = x;
 	w *= s;

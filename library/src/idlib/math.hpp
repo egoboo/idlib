@@ -32,7 +32,9 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
+#include "idlib/math/arithmetic_array_1d.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
+
 #include "idlib/math/angle.hpp"
 #include "idlib/math/angle-degrees-radians-turns.hpp"
 
@@ -58,8 +60,6 @@
 #include "idlib/math/one_zero.hpp"
 
 #include "idlib/math/random.hpp"
-
-#include "idlib/math/arithmetic_tuple.hpp"
 
 #include "idlib/math/generator.hpp"
 #include "idlib/math/constant_generator.hpp"

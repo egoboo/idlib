@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "idlib/math/arithmetic_tuple.hpp"
+#include "idlib/math/arithmetic_array_1d.hpp"
 #include "idlib/math/constant_generator.hpp"
 #include "idlib/math/conditional_generator.hpp"
 #include "idlib/utility/fold_expressions.hpp"
@@ -72,7 +72,7 @@ public:
     using vector_type = vector<scalar_type, Dimensionality>;
 
 	/// @brief The implementation type.
-	using implementation_type = arithmetic_tuple<scalar_type, Dimensionality, zero_functor<scalar_type>>;
+	using implementation_type = arithmetic_array_1d<scalar_type, Dimensionality, zero_functor<scalar_type>>;
 
 	/// @internal
 	/// @brief The implementation.

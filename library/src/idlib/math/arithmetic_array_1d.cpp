@@ -23,19 +23,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #define IDLIB_PRIVATE 1
-#include "idlib/math/arithmetic_tuple.hpp"
+#include "idlib/math/arithmetic_array_1d.hpp"
 #include "idlib/math/floating_point.hpp"
 #include "idlib/math/one_zero.hpp"
 #undef IDLIB_PRIVATE
 
-template struct idlib::arithmetic_tuple<single, 0, idlib::zero_functor<single>>;
-template struct idlib::arithmetic_tuple<single, 1, idlib::zero_functor<single>>;
-template struct idlib::arithmetic_tuple<single, 2, idlib::zero_functor<single>>;
-template struct idlib::arithmetic_tuple<single, 3, idlib::zero_functor<single>>;
-template struct idlib::arithmetic_tuple<single, 4, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_array_1d<single, 0, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_array_1d<single, 1, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_array_1d<single, 2, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_array_1d<single, 3, idlib::zero_functor<single>>;
+template struct idlib::arithmetic_array_1d<single, 4, idlib::zero_functor<single>>;
 
-template struct idlib::arithmetic_tuple<double, 0, idlib::zero_functor<double>>;
-template struct idlib::arithmetic_tuple<double, 1, idlib::zero_functor<double>>;
-template struct idlib::arithmetic_tuple<double, 2, idlib::zero_functor<double>>;
-template struct idlib::arithmetic_tuple<double, 3, idlib::zero_functor<double>>;
-template struct idlib::arithmetic_tuple<double, 4, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_array_1d<double, 0, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_array_1d<double, 1, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_array_1d<double, 2, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_array_1d<double, 3, idlib::zero_functor<double>>;
+template struct idlib::arithmetic_array_1d<double, 4, idlib::zero_functor<double>>;

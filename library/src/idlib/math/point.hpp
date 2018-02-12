@@ -63,7 +63,7 @@ public:
     using point_type = point<vector_type>;
 
 	/// @brief The implementation type. 
-	using implementation_type = idlib::arithmetic_tuple<scalar_type, vector_type::dimensionality(), zero_functor<scalar_type>>;
+	using implementation_type = arithmetic_array_1d<scalar_type, vector_type::dimensionality(), zero_functor<scalar_type>>;
 
 private:
 	/// @brief The implementation.
