@@ -25,26 +25,13 @@
 #pragma once
 
 #include "idlib/utility/fold_expressions.hpp"
+#include "idlib/math/arithmetic_functor.hpp"
 #include "idlib/math/operators.hpp"
 #include "idlib/math/one_zero.hpp"
+#include "idlib/bool_pack.hpp"
 #include <algorithm>
 
 namespace idlib {
-	
-/// @brief The following templates obtain the relation of one the boolean values in a variadic template argument list @a size_t compile-time constants.
-template <bool...> struct bool_pack;
-
-/// @brief Provide a member constant value <tt>value</tt>.
-/// That constant is equal to <tt>true</tt> if all boolean values in the variadic template argument list are true.
-/// Otherwise it is equal to <tt>false</tt>.
-template <bool... v>
-using all_true  = std::is_same<bool_pack<true, v...>, bool_pack<v..., true>>;
-
-/// @brief Provide a mamber constant value <tt>value</tt>.
-/// That constant is equal to <tt>true</tt> if all boolean values in the variadic template argument list are true.
-/// Otherwise it is equal to <tt>false</tt>.
-template <bool... v>
-using all_false = std::is_same<bool_pack<false, v...>, bool_pack<v..., false>>;
 
 /// @brief Provide member constant value <tt>value</tt>.
 /// That constant is equal to <tt>true</tt> if the argument types in the variadic template argument list are convertible into the specified target type.
@@ -52,243 +39,332 @@ using all_false = std::is_same<bool_pack<false, v...>, bool_pack<v..., false>>;
 template <typename TargetType, typename ... ArgumentTypes>
 using all_convertible = all_true<std::is_convertible<ArgumentTypes, TargetType>::value ...>;
 
-/// @brief An arithmetic tuple.
-/// @tparam E the element type
-/// @tparam S the size i.e. the number of element values
-/// A partial specialization for the size of @a 0 is provided.
-/// @tparam Z a functor type returning the zero element value
-template <typename E, std::size_t S, typename Z>
+/// @brief An arithmetic one-dimensional array of length N and element type E consists
+/// of N values of type E which can be addressed by indices 0, ..., N -1. Arithmetic
+/// arrays allow for performing standard arithmetic operations.
+/// Let @a a and @a b be arrays of the same length and of element type @a E.
+/// Let @a e be a value of type @a E.
+/// The for all one- and two dimensional arrays, the following operations are defined:
+/// - <c>a + b</c> (binary plus)
+/// - <c>a - b</c> (binary minus)
+/// - <c>+a</c> (unary plus)
+/// - <c>-a</c> (unary minus)
+/// - <c>a * e</c> (array element binary star)
+/// - <c>a / e</c> (array element binary slash)
+/// @tparam Element the element type
+/// @tparam Length the length of the array
+/// A partial specialization for empty arrays is provided.
+/// @tparam Zero the zero functor type.
+/// type of a functor type returning the zero element value
+template <typename Element,
+          size_t Length,
+          typename Zero>
 struct arithmetic_array_1d
 {
-public:
 	/// @brief The element type.
-	using element_type = E;
+	using element_type = Element;
 
-	/// @brief Get the size.
-	/// @return the size
-	constexpr static std::size_t size() noexcept
-	{ return S; }
+    /// @brief The zero functor type.
+    using zero_type = Zero;
 
-private:	
-	/// @brief The elements.
-	E m_elements[S];
-	
-public:
+    /// @brief Get the length of this array.
+    /// @return the length of this array
+    constexpr static size_t length() noexcept
+    { return Length; }
+
+	/// @brief Get the number of elements.
+	/// @return the number of elements
+	constexpr static size_t number_of_elements() noexcept
+	{ return length(); }
+
 	/// @brief Default construct with the zero element value.
 	arithmetic_array_1d()
-	{ std::fill_n(&(m_elements[0]), S, Z()()); }
+	{ std::fill_n(&(m_elements[0]), number_of_elements(), zero_type()()); }
 	
 	/// @brief Construct this tuple with the specified element values.
 	/// @param first, ... rest the element values
     /// @pre The number of specified element values must be equal to the size of the tuple type.
-
-	template<typename A, typename ... As,
-             typename =  std::enable_if_t<((1 + sizeof...(As)) == S) &&
-										  (all_convertible<E, typename std::decay<A>::type>::value && all_convertible<E, typename std::decay<As>::type...>::value)>>
-	arithmetic_array_1d(A&& a, As&& ... as) :
-        m_elements{ static_cast<E>(a), static_cast<E>(as) ... }
-    { static_assert(S == 1 + sizeof ... (as), "wrong number of arguments"); }
+	template<typename X, typename ... Xs,
+             typename = std::enable_if_t<((1 + sizeof...(Xs)) == number_of_elements()) &&
+									      (all_true<std::is_convertible<typename std::decay<X>::type, element_type>::value>::value &&
+                                           all_true<std::is_convertible<typename std::decay<Xs>::type, element_type>::value ...>::value)>>
+	arithmetic_array_1d(X&& x, Xs&& ... xs) :
+        m_elements{ static_cast<element_type>(x), static_cast<element_type>(xs) ... }
+    { static_assert(number_of_elements() == 1 + sizeof ... (xs), "wrong number of arguments"); }
 
 	arithmetic_array_1d(const arithmetic_array_1d& other) = default;
+	
 	arithmetic_array_1d(arithmetic_array_1d&& other) = default;
+	
 	arithmetic_array_1d& operator=(const arithmetic_array_1d& other) = default;
+	
 	arithmetic_array_1d& operator=(arithmetic_array_1d&& other) = default;
-	
-private:
-	template <std::size_t ... Is>
-	static arithmetic_array_1d<E, S, Z> unary_minus(const arithmetic_array_1d& a, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((-a.m_elements[Is])...); }
-	
-	template <std::size_t ... Is>
-	static arithmetic_array_1d<E, S, Z> unary_plus(const arithmetic_array_1d& a, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((+a.m_elements[Is])...); }
-	
-public:
-    arithmetic_array_1d<E, S, Z> operator+() const
-    { return unary_plus(*this, std::make_index_sequence<S>{}); }
 
-    arithmetic_array_1d<E, S, Z> operator-() const
-    { return unary_minus(*this, std::make_index_sequence<S>{}); }
-	
-private:
-	template <std::size_t ... Is>
-	static arithmetic_array_1d<E, S, Z> add(const arithmetic_array_1d& a, const arithmetic_array_1d& b, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((a.m_elements[Is] + b.m_elements[Is])...); }
+	arithmetic_array_1d& operator += (const arithmetic_array_1d& other)
+	{ (*this) = (*this) + other; return *this; }
 
-public:
-	arithmetic_array_1d<E, S, Z>& operator += (const arithmetic_array_1d& other)
-	{
-		(*this) = add(*this, other, std::make_index_sequence<S>{});
-		return *this;
-	}
-	
-	arithmetic_array_1d<E, S, Z> operator+(const arithmetic_array_1d& other) const
-	{ return add(*this, other, std::make_index_sequence<S>{}); }
-	
-private:
-	template <std::size_t ... Is>
-	static arithmetic_array_1d<E, S, Z> subtract(const arithmetic_array_1d& a, const arithmetic_array_1d& b, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((a.m_elements[Is] - b.m_elements[Is])...); }
+	arithmetic_array_1d& operator -= (const arithmetic_array_1d& other)
+	{ (*this) = (*this) - other; return *this; }
 
-public:
-	arithmetic_array_1d<E, S, Z>& operator -= (const arithmetic_array_1d& other)
-	{
-		(*this) = subtract(*this, other, std::make_index_sequence<S>{});
-		return *this;
-	}
-	
-	arithmetic_array_1d<E, S, Z> operator-(const arithmetic_array_1d& other) const
-	{ return subtract(*this, other, std::make_index_sequence<S>{}); }
-	
-private:
-	template <std::size_t...Is>
-	static arithmetic_array_1d<E, S, Z> multiply(const arithmetic_array_1d& a, const element_type& s, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((a.m_elements[Is] * s)...); }
+	arithmetic_array_1d& operator *= (const element_type& other)
+	{ (*this) = (*this) * other; return *this; }
 
-public:
-	arithmetic_array_1d<E, S, Z>& operator *= (const element_type& other)
-	{
-		(*this) = multiply(*this, other, std::make_index_sequence<S>{});
-		return *this;
-	}
-	
-	arithmetic_array_1d<E, S, Z> operator*(const element_type& other) const
-	{ return multiply(*this, other, std::make_index_sequence<S>{}); }
-	
-private:
-	template <std::size_t...Is>
-	static arithmetic_array_1d<E, S, Z> divide(const arithmetic_array_1d& a, const element_type& s, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((a.m_elements[Is] / s)...); }
+	arithmetic_array_1d& operator /= (const element_type& other)
+	{ (*this) = (*this) / other; return *this; }
 
-public:
-	arithmetic_array_1d<E, S, Z>& operator /= (const element_type& other)
-	{
-		(*this) = divide(*this, other, std::make_index_sequence<S>{});
-		return *this;
-	}
-
-	arithmetic_array_1d<E, S, Z> operator/(const element_type& other) const
-	{ return divide(*this, other, std::make_index_sequence<S>{}); }
-	
-private:
-	template <std::size_t...Is>
-	static bool equal_to(const arithmetic_array_1d& a, const arithmetic_array_1d& b, std::index_sequence<Is...>)
-	{ 
-		return idlib::and_fold_expr()((a.m_elements[Is] == b.m_elements[Is])...);
-	}		
-	
-public:
-	bool operator==(const arithmetic_array_1d& other) const
-	{ return equal_to(*this, other, std::make_index_sequence<S>{}); }
-
-private:
-	template <std::size_t...Is>
-	static bool not_equal_to(const arithmetic_array_1d& a, const arithmetic_array_1d& b, std::index_sequence<Is...>)
-	{
-		return idlib::or_fold_expr()((a.m_elements[Is] != b.m_elements[Is])...);
-	}
-	
-public:
-	bool operator!=(const arithmetic_array_1d& other) const
-	{ return not_equal_to(*this, other, std::make_index_sequence<S>{}); }
-	
-public:
 	/// @{
-	/// @brief Get the tuple element at the specified index.
-	/// @param index the index
-	/// @return the tuple element at the specified index
+	/// @brief Get the array element at the specified index.
+	/// @param i the index
+	/// @return the array element at the specified index
 	/// @pre The index is within bounds.
-	element_type& at(size_t const& index)
-	{ return m_elements[index]; }
+	element_type& at(size_t i)
+	{ return m_elements[i]; }
 
-	element_type& operator[](size_t const& index)
-	{ return m_elements[index]; }
+	element_type& operator()(size_t i)
+	{ return m_elements[i]; }
 
-	const element_type& at(size_t const& index) const
-	{ return m_elements[index]; }
+	const element_type& at(size_t i) const
+	{ return m_elements[i]; }
 
-	const element_type& operator[](size_t const& index) const
-	{ return m_elements[index]; }
-	
+	const element_type& operator()(size_t i) const
+	{ return m_elements[i]; }
 	/// @}
+
+	template <typename G>
+	static arithmetic_array_1d generate(const G& g)
+	{ return generate(g, std::make_index_sequence<number_of_elements()>{}); }
 	
 private:
-	template <typename G, std::size_t...Is>
-	static arithmetic_array_1d<E, S, Z> generate(const G& g, std::index_sequence<Is...>)
-	{ return arithmetic_array_1d<E, S, Z>((g(Is))...); }
+	template <typename G, size_t...Is>
+	static arithmetic_array_1d generate(const G& g, std::index_sequence<Is...>)
+	{ return arithmetic_array_1d((g(Is))...); }
 
-public:
-	template <typename G>
-	static arithmetic_array_1d<E, S, Z> generate(const G& g)
-	{ return generate(g, std::make_index_sequence<S>{}); }
+	/// @brief The elements.
+	element_type m_elements[number_of_elements()];
 	
 }; // struct arithmetic_array_1d
 
-/// @brief Partial specialization of idlib::arithmetic_array_1d for a size if @a 0.
-/// @tparam E the element type
-/// @tparam Z a functor returning the zero element value
-template <typename E, typename Z>
-struct arithmetic_array_1d<E, 0, Z>
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_binary_star_functor<arithmetic_array_1d<Element, Length, Zero>,
+                                      Element>
 {
-public:
+    using B = Element;
+    using A = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const A& a, const B& b) const
+    { return impl(a, b, std::make_index_sequence<Length>{}); }
+
+private:
+   template <size_t ... Is>
+    auto impl(const A& a, const B& b, std::index_sequence<Is...>) const
+    { return A((a(Is) * b)...); }
+};
+
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_binary_slash_functor<arithmetic_array_1d<Element, Length, Zero>,
+                                       Element>
+{
+    using B = Element;
+    using A = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const A& a, const B& b) const
+    { return impl(a, b, std::make_index_sequence<Length>{}); }
+	
+private:
+    template <size_t ... Is>
+    auto impl(const A& a, const B& b, std::index_sequence<Is...>) const
+    { return A((a(Is) / b)...); }
+};
+
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_binary_plus_functor<arithmetic_array_1d<Element, Length, Zero>>
+{
+    using T = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const T& a, const T& b) const
+    { return impl(a, b, std::make_index_sequence<Length>{}); }
+	
+private:
+    template <size_t ... Is>
+    auto impl(const T& a, const T& b, std::index_sequence<Is...>) const
+    { return T((a(Is) + b(Is))...); }
+};
+
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_binary_minus_functor<arithmetic_array_1d<Element, Length, Zero>>
+{
+    using T = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const T& a, const T& b) const
+    { return impl(a, b, std::make_index_sequence<Length>{}); }
+	
+private:
+    template <size_t ... Is>
+    auto impl(const T& a, const T& b, std::index_sequence<Is...>) const
+    { return T((a(Is) - b(Is))...); }
+};
+
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_unary_plus_functor<arithmetic_array_1d<Element, Length, Zero>>
+{
+    using T = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const T& a) const
+    { return impl(a, std::make_index_sequence<Length>{}); }
+	
+private:
+    template <size_t ... Is>
+    auto impl(const T& a, std::index_sequence<Is...>) const
+    { return T((+(a(Is)))...); }
+};
+
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_unary_minus_functor<arithmetic_array_1d<Element, Length, Zero>>
+{
+    using T = arithmetic_array_1d<Element, Length, Zero>;
+
+    auto operator()(const T& a) const
+    { return impl(a, std::make_index_sequence<Length>{}); }
+	
+private:
+    template <size_t ... Is>
+    auto impl(const T& a, std::index_sequence<Is...>) const
+    { return T((-(a(Is)))...); }
+};
+
+/// @todo When all compilers support it, use real fold expressions.
+template <typename Element, size_t Length, typename Zero>
+struct arithmetic_binary_equal_equal_functor<arithmetic_array_1d<Element, Length, Zero>,
+                                             arithmetic_array_1d<Element, Length, Zero>>
+{
+	using T = arithmetic_array_1d<Element, Length, Zero>;
+	
+	bool operator()(const T& a, const T& b) const
+	{ return impl(a, b, std::make_index_sequence<Length>{}); }
+	
+private:
+	template <size_t...Is>
+	static bool impl(const T& a, const T& b, std::index_sequence<Is...>)
+	{ return and_fold_expr()((a(Is) == b(Is))...); }
+};
+
+/// @internal
+/// @brief Partial specialization of idlib::arithmetic_array_1d for empty arrays.
+template <typename Element, typename Zero>
+struct arithmetic_array_1d<Element, 0, Zero>
+{
 	/// @brief The element type.
-	using element_type = E;
+	using element_type = Element;
 
-	/// @brief Get the size.
-	/// @return the size
-	constexpr static std::size_t size() noexcept
-	{ return 0; }
+    /// @brief The zero functor type.
+    using zero_type = Zero;
 
-public:
+    /// @brief Get the length of this array.
+    /// @return the length of this array
+    constexpr static size_t length() noexcept
+    { return 0; }
+
+    /// @brief Get the number of elements.
+    /// @return the number of elements
+    constexpr static size_t number_of_elements() noexcept
+    { return length(); }
+
 	/// @brief Default construct this arithmetic tuple.
 	arithmetic_array_1d()
 	{}
 
 	arithmetic_array_1d(const arithmetic_array_1d& other) = default;
-	arithmetic_array_1d(arithmetic_array_1d&& other) = default;
-	arithmetic_array_1d& operator=(const arithmetic_array_1d& other) = default;
-	arithmetic_array_1d& operator=(arithmetic_array_1d&& other) = default;
 	
-    arithmetic_array_1d<E, 0, Z> operator+() const
-    { return *this; }
-
-    arithmetic_array_1d<E, 0, Z> operator-() const
-    { return *this; }
-
-	arithmetic_array_1d<E, 0, Z>& operator += (const arithmetic_array_1d& other)
-	{ return *this; }
+    arithmetic_array_1d(arithmetic_array_1d&& other) = default;
 	
-	arithmetic_array_1d<E, 0, Z> operator+(const arithmetic_array_1d& other) const
+    arithmetic_array_1d& operator=(const arithmetic_array_1d& other) = default;
+	
+    arithmetic_array_1d& operator=(arithmetic_array_1d&& other) = default;
+
+	arithmetic_array_1d& operator += (const arithmetic_array_1d& other)
 	{ return *this; }
 
-	arithmetic_array_1d<E, 0, Z>& operator -= (const arithmetic_array_1d& other)
+	arithmetic_array_1d& operator -= (const arithmetic_array_1d& other)
+	{ return *this; }
+
+	arithmetic_array_1d& operator *= (const element_type& other)
 	{ return *this; }
 	
-	arithmetic_array_1d<E, 0, Z> operator-(const arithmetic_array_1d& other) const
+	arithmetic_array_1d& operator /= (const element_type& other)
 	{ return *this; }
-
-	arithmetic_array_1d<E, 0, Z>& operator *= (const element_type& other)
-	{ return *this; }
-	
-	arithmetic_array_1d<E, 0, Z> operator*(const element_type& other) const
-	{ return *this; }
-
-	arithmetic_array_1d<E, 0, Z>& operator /= (const element_type& other)
-	{ return *this; }
-
-	arithmetic_array_1d<E, 0, Z> operator/(const element_type& other) const
-	{ return *this; }
-
-	bool operator==(const arithmetic_array_1d& other) const
-	{ return true; }
-
-	bool operator!=(const arithmetic_array_1d& other) const
-	{ return false; }
 
 	template <typename G>
-	static arithmetic_array_1d<E, 0, Z> generate(const G& g)
-	{ return arithmetic_array_1d<E, 0, Z>(); }
+	static arithmetic_array_1d generate(const G& g)
+	{ return arithmetic_array_1d(); }
 	
 }; // struct arithmetic_array_1d
+
+template <typename Element, typename Zero>
+struct arithmetic_binary_star_functor<arithmetic_array_1d<Element, 0, Zero>,
+                                      Element>
+{
+    using B = Element;
+    using A = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const A& a, const B& b) const
+    { return A(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_binary_slash_functor<arithmetic_array_1d<Element, 0, Zero>,
+                                       Element>
+{
+    using B = Element;
+    using A = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const A& a, const B& b) const
+    { return A(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_binary_plus_functor<arithmetic_array_1d<Element, 0, Zero>>
+{
+    using T = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const T& a, const T& b) const
+    { return T(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_binary_minus_functor<arithmetic_array_1d<Element, 0, Zero>>
+{
+    using T = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const T& a, const T& b) const
+    { return T(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_unary_plus_functor<arithmetic_array_1d<Element, 0, Zero>>
+{
+    using T = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const T& a) const
+    { return T(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_unary_minus_functor<arithmetic_array_1d<Element, 0, Zero>>
+{
+    using T = arithmetic_array_1d<Element, 0, Zero>;
+
+    auto operator()(const T& a) const
+    { return T(); }
+};
+
+template <typename Element, typename Zero>
+struct arithmetic_binary_equal_equal_functor<arithmetic_array_1d<Element, 0, Zero>,
+                                             arithmetic_array_1d<Element, 0, Zero>>
+{
+	using T = arithmetic_array_1d<Element, 0, Zero>;
+	
+	bool operator()(const T& a, const T& b) const
+	{ return true; }
+};
 
 } // namespace idlib

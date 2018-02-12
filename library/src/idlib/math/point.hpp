@@ -116,13 +116,13 @@ public:
     std::enable_if_t<(LocalDimensionality >= 1), scalar_type>& x()
 	{
         static_assert(point_type::dimensionality() >= 1, "cannot call for member x() with dimensionality less than 1");
-        return m_implementation[0];
+        return m_implementation(0);
     }
 	template <std::size_t LocalDimensionality = point_type::dimensionality()>
     const std::enable_if_t<(LocalDimensionality >= 1), scalar_type>& x() const
 	{
         static_assert(point_type::dimensionality() >= 1, "cannot call for member x() with dimensionality less than 1");
-        return m_implementation[0];
+        return m_implementation(0);
     }
 	/// @}
 
@@ -133,13 +133,13 @@ public:
     std::enable_if_t<(LocalDimensionality >= 2), scalar_type>& y()
 	{
         static_assert(point_type::dimensionality() >= 2, "cannot call for member y() with dimensionality less than 2");
-        return m_implementation[1];
+        return m_implementation(1);
     }
 	template <std::size_t LocalDimensionality = point_type::dimensionality()>
 	const std::enable_if_t<(LocalDimensionality >= 2), scalar_type>& y() const
 	{
         static_assert(point_type::dimensionality() >= 2, "cannot call for member y() with dimensionality less than 2");
-        return m_implementation[1];
+        return m_implementation(1);
     }
 	/// @}
 
@@ -150,13 +150,13 @@ public:
 	std::enable_if_t<(LocalDimensionality >= 3), scalar_type>& z()
 	{
         static_assert(point_type::dimensionality() >= 3, "cannot call for member z() with dimensionality less than 3");
-        return m_implementation[2];
+        return m_implementation(2);
     }
 	template <std::size_t LocalDimensionality = point_type::dimensionality()>
 	const std::enable_if_t<(LocalDimensionality >= 3), scalar_type>& z() const
 	{
         static_assert(point_type::dimensionality() >= 3, "cannot call for member z() with dimensionality less than 3");
-        return m_implementation[2];
+        return m_implementation(2);
     }
 	/// @}
 
@@ -193,17 +193,17 @@ public:
 
 
     scalar_type& operator[](size_t const& index)
-	{ return m_implementation[index]; }
+	{ return m_implementation(index); }
 
     const scalar_type& operator[](size_t const& index) const
-	{ return m_implementation[index]; }
+	{ return m_implementation(index); }
 
 	
     scalar_type& operator()(size_t const& index)
-	{ return m_implementation[index]; }
+	{ return m_implementation(index); }
 
     const scalar_type& operator()(size_t const& index) const
-	{ return m_implementation[index]; }
+	{ return m_implementation(index); }
 	
 private:
 	template <typename C, std::size_t...Is>
