@@ -27,50 +27,50 @@
 
 namespace idlib { namespace math { namespace test {
 
-	using interval_s = idlib::interval<single>;
-	using vector_3s = idlib::vector<single, 3>;
-	using point_3s = idlib::point<vector_3s>;
+using interval_s = idlib::interval<single>;
+using vector_3s = idlib::vector<single, 3>;
+using point_3s = idlib::point<vector_3s>;
 
-	// Generate the tuples (1,0,0), (0,1,0), (0,0,1).
-	template <typename T>
-	std::vector<T> basis(std::vector<T> l) {
-		std::vector<T> l1{ l };
-		l1.emplace_back(1.0f, 0.0f, 0.0f);
-		l1.emplace_back(0.0f, 1.0f, 0.0f);
-		l1.emplace_back(0.0f, 0.0f, 1.0f);
-		return l1;
+// Generate the tuples (1,0,0), (0,1,0), (0,0,1).
+template <typename T>
+std::vector<T> basis(std::vector<T> l) {
+	std::vector<T> l1{ l };
+	l1.emplace_back(1.0f, 0.0f, 0.0f);
+	l1.emplace_back(0.0f, 1.0f, 0.0f);
+	l1.emplace_back(0.0f, 0.0f, 1.0f);
+	return l1;
+}
+
+// Add the tuple (0,0,0).
+template <typename T>
+std::vector<T> zero(std::vector<T> l) {
+	std::vector<T> l1{ l };
+	l1.emplace_back(0.0f, 0.0f, 0.0f);
+	return l1;
+}
+
+// Add negation of all list elements to a list.
+template <typename T>
+std::vector<T> negation(std::vector<T> l) {
+	std::vector<T> l1{ l };
+	for (auto e : l) {
+		auto e1 = -e;
+		l1.emplace_back(-e1);
 	}
+	return l1;
+}
 
-	// Add the tuple (0,0,0).
-	template <typename T>
-	std::vector<T> zero(std::vector<T> l) {
-		std::vector<T> l1{ l };
-		l1.emplace_back(0.0f, 0.0f, 0.0f);
-		return l1;
-	}
-
-	// Add negation of all list elements to a list.
-	template <typename T>
-	std::vector<T> negation(std::vector<T> l) {
-		std::vector<T> l1{ l };
-		for (auto e : l) {
-			auto e1 = -e;
-			l1.emplace_back(-e1);
+// Cartesian product list of two list.
+template <typename T>
+static std::vector<std::pair<T, T>> cartesian(const std::vector<T>& a, const std::vector<T>& b) {
+	std::vector<std::pair<T, T>> c;
+	for (auto x : a) {
+		for (auto y : b) {
+			c.emplace_back(x, y);
 		}
-		return l1;
 	}
-
-	// Cartesian product list of two list.
-	template <typename T>
-	static std::vector<std::pair<T, T>> cartesian(const std::vector<T>& a, const std::vector<T>& b) {
-		std::vector<std::pair<T, T>> c;
-		for (auto x : a) {
-			for (auto y : b) {
-				c.emplace_back(x, y);
-			}
-		}
-		return c;
-	}
+	return c;
+}
 
 template <typename T>
 void do_test(const T& x, const T& y) {

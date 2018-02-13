@@ -55,4 +55,20 @@ TEST(arithmetic_array_1d_test, binary_star)
 	ASSERT_EQ(z, w);
 }
 
+TEST(arithmetic_array_1d_test, unary_plus)
+{
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3};
+	auto y = +x;
+	auto z = +y;
+	ASSERT_EQ(y, z);
+}
+
+TEST(arithmetic_array_1d_test, unary_minus)
+{
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3};
+	auto y = -x;
+	ASSERT_EQ(-x, y);
+	ASSERT_EQ(x, -y);
+}
+
 } } } // namespace idlib::math::tests
