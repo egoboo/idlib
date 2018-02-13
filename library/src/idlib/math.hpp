@@ -33,6 +33,7 @@
 #endif
 
 #include "idlib/math/arithmetic_array_1d.hpp"
+#include "idlib/math/arithmetic_array_2d.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
 
 #include "idlib/math/angle.hpp"
