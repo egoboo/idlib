@@ -46,8 +46,8 @@
 // Those constants will either be properly defined or not at all.
 #include "idlib/CurrentFunction.inline"
 
-// Debug assertions.
-#include "idlib/DebugAssert.hpp"
+// Debug library.
+#include "idlib/debug.hpp"
 
 // event library.
 #include "idlib/event.hpp"

@@ -22,23 +22,27 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/DebugAssert.hpp
+/// @file idlib/debug/assert.hpp
 /// @brief Debug assertion functionality.
 /// @author Michael Heilmann
 
 #pragma once
 
-#include "idlib/utility/assertion_failed_error.hpp"
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/debug.hpp` instead)
+#endif
+
+#include "idlib/debug/debug_assertion_failed_error.hpp"
 
 /// @brief Macro raising an exception if an assertion fails.
 /// @param assertion the assertion
-/// @throw idlib::assertion_failed_error the assertion fails
+/// @throw idlib::debug_assertion_failed_error the assertion fails
 /// @remark This macro evaluates to the empty statement if #_DEBUG is not defined.
 #if defined(_DEBUG)
-    #define ID_ASSERT(assertion) \
+    #define IDLIB_DEBUG_ASSERT(assertion) \
 	    if(!(assertion)) { \
-		    throw idlib::assertion_failed_error(__FILE__, __LINE__, #assertion); \
+		    throw idlib::debug_assertion_failed_error(__FILE__, __LINE__, #assertion); \
         }
 #else
-    #define ID_ASSERT(assertion) /* Empty statement. */;
+    #define IDLIB_DEBUG_ASSERT(assertion) /* Empty statement. */;
 #endif

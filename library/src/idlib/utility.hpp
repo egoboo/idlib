@@ -45,7 +45,6 @@
 
 #include "idlib/utility/exception.hpp"
 #include "idlib/utility/environment_error.hpp"
-#include "idlib/utility/assertion_failed_error.hpp"
 #include "idlib/utility/unhandled_switch_case_error.hpp"
 #include "idlib/utility/runtime_error.hpp"
 #include "idlib/utility/invalid_argument_error.hpp"

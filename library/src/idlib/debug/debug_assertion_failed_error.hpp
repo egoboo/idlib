@@ -22,22 +22,22 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/utility/assertion_failed_error.hpp
+/// @file idlib/debug/debug_assertion_failed_error.hpp
 /// @brief Definition of an exception indicating that an assertion failed.
 /// @author Michael Heilmann
 
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
+#error(do not include directly, include `idlib/debug.hpp` instead)
 #endif
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/header.in"
+namespace idlib {
 
-/// @brief Exception for an assertion failed error.
-class assertion_failed_error : public runtime_error
+/// @brief Exception for a debug assertion failed error.
+class debug_assertion_failed_error : public runtime_error
 {
 private:
     /// @brief A string describing the assertion e.g. <tt>nullptr != ptr</tt>.
@@ -48,7 +48,7 @@ public:
     /// @param file the C++ source file associated with this exception
     /// @param line the line within the C++ source file associated with this exception
     /// @param assertion a description of the assertion
-    explicit assertion_failed_error(const char *file, int line, const std::string& assertion) :
+    explicit debug_assertion_failed_error(const char *file, int line, const std::string& assertion) :
         runtime_error(file, line, "assertion `" + assertion + "` failed"), m_assertion(assertion)
     {}
 
@@ -60,7 +60,7 @@ public:
         return m_assertion;
     }
 
-	friend void swap(assertion_failed_error& a, assertion_failed_error& b)
+	friend void swap(debug_assertion_failed_error& a, debug_assertion_failed_error& b)
 	{
 		using std::swap;
 		swap(static_cast<runtime_error&>(a), static_cast<runtime_error&>(b));
@@ -76,6 +76,6 @@ public:
         return buffer.str();
     }
 
-}; // class assertion_failed_error
+}; // class debug_assertion_failed_error
 
-#include "idlib/utility/footer.in"
+} // namespace idlib
