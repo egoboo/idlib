@@ -71,19 +71,9 @@ namespace idlib {
 /// @endcode
 struct and_fold_expr
 {
-private:
-	template <class T>
-	constexpr auto impl(T&& x) const
-	{ return x; }
-
-	template <class T, class... Ts>
-	constexpr auto impl(T&& x, Ts&& ... xs) const
-	{ return x && impl(std::forward<Ts>(xs) ...); }
-
-public:
 	template <class... Ts>
 	constexpr auto operator()(Ts&&... xs) const
-	{ return impl(std::forward<Ts>(xs) ...); }
+	{ return (std::forward<Ts>(xs) && ...); }
 };
 
 /// Functor for or'ing together all arguments (without fold expressions).
@@ -95,22 +85,12 @@ public:
 /// @endcode
 struct or_fold_expr
 {
-private:
-	template <class T>
-	constexpr auto impl(T&& x) const
-	{ return x; }
-
-	template <class T, class... Ts>
-	constexpr auto impl(T&& x, Ts&& ... xs) const
-	{ return x || impl(std::forward<Ts>(xs) ...); }
-
-public:
 	template <class... Ts>
 	constexpr auto operator()(Ts&&... xs) const
-	{ return impl(std::forward<Ts>(xs) ...); }
+	{ return (std::forward<Ts>(xs) || ...); }
 };
 
-/// Functor for or'ing together all arguments (without fold expressions).
+/// Functor for plus'ing together all arguments (without fold expressions).
 /// We could use
 /// @code
 /// template <class... Ts>
@@ -119,43 +99,23 @@ public:
 /// @endcode
 struct plus_fold_expr
 {
-private:
-	template <class T>
-	constexpr auto impl(T&& x) const
-	{ return x; }
-
-	template <class T, class... Ts>
-	constexpr auto impl(T&& x, Ts&& ... xs) const
-	{ return x + impl(std::forward<Ts>(xs) ...); }
-
-public:
 	template <class... Ts>
 	constexpr auto operator()(Ts&&... xs) const
-	{ return impl(std::forward<Ts>(xs) ...); }
+	{ return (std::forward<Ts>(xs) + ...); }
 };
 
-/// Functor for or'ing together all arguments (without fold expressions).
+/// Functor for subtract'ing together all arguments (without fold expressions).
 /// We could use
 /// @code
 /// template <class... Ts>
 /// constexpr auto operator()(Ts&&... xs) const
-/// { return (xs + ...); }
+/// { return (xs - ...); }
 /// @endcode
 struct minus_fold_expr
 {
-private:
-	template <class T>
-	constexpr auto impl(T&& x) const
-	{ return x; }
-
-	template <class T, class... Ts>
-	constexpr auto impl(T&& x, Ts&& ... xs) const
-	{ return x - impl(xs ...); }
-
-public:
 	template <class... Ts>
 	constexpr auto operator()(Ts&&... xs) const
-	{ return impl(std::forward<Ts>(xs) ...); }
+	{ return (std::forward<Ts>(xs) - ...); }
 };
 
 } // namespace idlib
