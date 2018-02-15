@@ -8,7 +8,15 @@ message("building Idlib")
 
 # Enable/disable compilation and execution of unit tests.
 # The value of this option can be set from the command-line by -Didlib-with-tests=(ON|OFF).
-option(idlib-with-tests "enable/disable compilation and execution of unit tests. ON enables compilation and execution of unit tests, OFF disables compilation and execution of unit tests. Initial value is ON." ON)
+option(idlib-with-tests
+       "enable/disable compilation and execution of unit tests. ON enables compilation and execution of unit tests, OFF disables compilation and execution of unit tests. Initial value is ON."
+	   ON)
+
+# Enable/disable compilation of demos.
+# The value of this option can be set from the command-line by -Didlib-with-demos=(ON|OFF).
+option(idlib-with-demos
+       "enable/disable compilation of demos. ON enables compilation of demos, OFF disables compilation of demos. Initial value is ON."
+	   ON)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/buildsystem/set_project_default_properties.cmake)
 
