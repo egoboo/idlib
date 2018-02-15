@@ -12,7 +12,7 @@ DartConfiguration.tcl
 
 # CMake/CPack.
 cmake_install.cmake
-install_manifest.txt
+install_manifest*.txt
 CPackConfig\.cmake
 CPackSourceConfig\.cmake
 _CPack_Packages
@@ -40,6 +40,7 @@ Makefile
 *.opensdf
 *.suo
 *.vcxproj
+*.vcxproj.user
 *.vcxproj.filters
 *.VC.db
 *.VC.VC.opendb
