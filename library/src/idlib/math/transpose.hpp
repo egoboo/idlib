@@ -3,9 +3,7 @@
 namespace idlib {
 	
 /// @brief Functor computing the transpose of a matrix.
-/// @tparam E the element type of the matrix type
-/// @tparam N the number of rows of the matrix type
-/// @tparam M the number of columns of the matrix type
+/// @tparam T the matrix type
 /// @tparam Enabled for SFINAE
 /// @remark The transpose \f$M^T\f$ of a matrix \f$M\f$ is defined as
 /// \f[

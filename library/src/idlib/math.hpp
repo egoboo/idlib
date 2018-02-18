@@ -36,6 +36,18 @@
 #include "idlib/math/arithmetic_array_2d.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
 
+// matrix-specific
+#include "idlib/math/identity.hpp"
+#include "idlib/math/trace.hpp"
+#include "idlib/math/transpose.hpp"
+
+#include "idlib/math/look_at.hpp"
+#include "idlib/math/perspective.hpp"
+#include "idlib/math/rotation.hpp"
+#include "idlib/math/scaling.hpp"
+#include "idlib/math/translation.hpp"
+#include "idlib/math/orthographic.hpp"
+
 #include "idlib/math/angle.hpp"
 #include "idlib/math/angle-degrees-radians-turns.hpp"
 
@@ -73,5 +85,6 @@
 
 #include "idlib/math/point.hpp"
 #include "idlib/math/vector.hpp"
+#include "idlib/math/matrix.hpp"
 
 #pragma pop_macro("IDLIB_PRIVATE")

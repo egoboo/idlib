@@ -2,8 +2,8 @@
 
 namespace idlib {
 
-/// @brief Functor computing the identity of a matrix.
-/// @tparam T the type of the value to compute the trace of
+/// @brief Functor computing the identity matrix.
+/// @tparam T the type of the matrix
 /// @tparam Enabled for SFINAE
 template <typename T, typename Enabled = void>
 struct identity_functor;
