@@ -26,13 +26,13 @@
 #include "idlib/idlib.hpp"
 
 namespace idlib::tests {
-	
-using interval_i = idlib::interval<int>;
-using arithmetic_array_1d_i = idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>>;
 
-TEST(arithmetic_array_1d_test, random)
+TEST(arithmetic_array_1d_test, unary_plus)
 {
-	auto a = idlib::random<arithmetic_array_1d_i>(interval_i{-1000, +1000});
+	idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>> x{1,2,3};
+	auto y = +x;
+	auto z = +y;
+	ASSERT_EQ(x, z);
 }
 
 } // namespace idlib::tests

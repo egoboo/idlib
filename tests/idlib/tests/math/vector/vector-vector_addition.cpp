@@ -25,50 +25,22 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace idlib { namespace math { namespace tests {
+namespace idlib::tests {
+	
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
 
-TEST(arithmetic_array_2d_test, binary_plus)
+TEST(vector_3i_test, vector_vector_addition)
 {
-	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4}, y{2,3,4,5};
-	auto z = x + y;
-	auto w = x;
-	w += y;
-	ASSERT_EQ(z, w);
+    for (size_t i = 0; i < 1000; ++i)
+	{
+		auto interval = interval_i(-1000, +1000);
+        auto a = idlib::random<vector_3i>(interval);
+        auto b = idlib::random<vector_3i>(interval);
+        auto c = a + b;
+        ASSERT_TRUE((c - b) == a);
+        ASSERT_TRUE((c - a) == b);
+    }
 }
 
-TEST(arithmetic_array_2d_test, binary_minus)
-{
-	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4}, y{2,3,4,5};
-	auto z = x - y;
-	auto w = x;
-	w -= y;
-	ASSERT_EQ(z, w);
-}
-
-TEST(arithmetic_array_2d_test, binary_star)
-{
-	int s = 2;
-	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4}, y{2,3,4,5};
-	auto z = x * s;
-	auto w = x;
-	w *= s;
-	ASSERT_EQ(z, w);
-}
-
-TEST(arithmetic_array_2d_test, unary_plus)
-{
-	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4};
-	auto y = +x;
-	auto z = +y;
-	ASSERT_EQ(y, z);
-}
-
-TEST(arithmetic_array_2d_test, unary_minus)
-{
-	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4};
-	auto y = -x;
-	ASSERT_EQ(-x, y);
-	ASSERT_EQ(x, -y);
-}
-
-} } } // namespace idlib::math::tests
+} // namespace idlib::tests

@@ -28,11 +28,21 @@
 namespace idlib::tests {
 	
 using interval_i = idlib::interval<int>;
-using arithmetic_array_1d_i = idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>>;
+using vector_3i = idlib::vector<int, 3>;
 
-TEST(arithmetic_array_1d_test, random)
+TEST(vector_3i_test, vector_scalar_division)
 {
-	auto a = idlib::random<arithmetic_array_1d_i>(interval_i{-1000, +1000});
+    for (size_t i = 0; i < 1000; ++i)
+	{
+		auto interval = interval_i(-1000, +1000);
+        auto a = idlib::random<vector_3i>(interval);
+        int s;
+        do {
+            s = idlib::random<int>(interval);
+        } while (s == idlib::zero<int>());
+        auto b = a * s;
+        ASSERT_TRUE((b / s) == a);
+    }
 }
 
 } // namespace idlib::tests

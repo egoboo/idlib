@@ -31,9 +31,9 @@ using interval_i = idlib::interval<int>;
 using arithmetic_array_2d_i = idlib::arithmetic_array_2d<int, 3, 3, idlib::zero_functor<int>>;
 
 
-TEST(arithmetic_array_2d, random)
+TEST(arithmetic_array_2d_test, random)
 {
-	auto a = idlib::random<arithmetic_array_2d_i>({-1000, +1000});
+	auto a = idlib::random<arithmetic_array_2d_i>(interval_i(-1000, +1000));
 }
 
 } // namespace idlib::tests

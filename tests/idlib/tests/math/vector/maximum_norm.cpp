@@ -27,12 +27,30 @@
 
 namespace idlib::tests {
 	
-using interval_i = idlib::interval<int>;
-using arithmetic_array_1d_i = idlib::arithmetic_array_1d<int, 3, idlib::zero_functor<int>>;
+using scalar = single;
+using vector_3s = idlib::vector<single, 3>;
 
-TEST(arithmetic_array_1d_test, random)
+/// @brief Assert the maximum norm is zero for a zero vector.
+/// Assert for \f$(1,0,0)\f$, \f$(0,1,0)\f$, and \f$(0,0,1)\f$ it is one.
+TEST(vector_3s_test, maximum_norm)
 {
-	auto a = idlib::random<arithmetic_array_1d_i>(interval_i{-1000, +1000});
+	vector_3s x;
+	
+	//
+	x = idlib::zero<vector_3s>();
+	ASSERT_EQ(idlib::maximum_norm(x), idlib::zero<scalar>());
+	
+	//
+    x = vector_3s::unit(0); 
+    ASSERT_EQ(idlib::maximum_norm(x), idlib::one<scalar>());
+	
+	//
+    x = vector_3s::unit(1);
+    ASSERT_EQ(idlib::maximum_norm(x), idlib::one<scalar>());
+    
+	//
+	x = vector_3s::unit(2);
+    ASSERT_EQ(idlib::maximum_norm(x), idlib::one<scalar>());
 }
 
 } // namespace idlib::tests

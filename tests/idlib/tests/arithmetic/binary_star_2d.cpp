@@ -25,50 +25,16 @@
 #include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
-namespace idlib { namespace math { namespace tests {
+namespace idlib::tests {
 
-TEST(emtpy_arithmetic_array_1d_test, binary_plus)
+TEST(arithmetic_array_2d_test, binary_star)
 {
-	idlib::arithmetic_array_1d<int, 0, idlib::zero_functor<int>> x{}, y{};
-	ASSERT_EQ(x + y, x);
-	ASSERT_EQ(x + y, y);
-	ASSERT_EQ(y + x, x);
-	ASSERT_EQ(y + x, y);
+	int s = 2;
+	idlib::arithmetic_array_2d<int, 2, 2, idlib::zero_functor<int>> x{1,2,3,4}, y{2,4,6,8};
+	auto z = x * s;
+	auto w = x;
+	w *= s;
+	ASSERT_EQ(z, w);
 }
 
-TEST(empty_arithmetic_array_1d_test, binary_minus)
-{
-	idlib::arithmetic_array_1d<int, 0, idlib::zero_functor<int>> x{}, y{};
-	ASSERT_EQ(x - y, x);
-	ASSERT_EQ(x - y, y);
-	ASSERT_EQ(y - x, x);
-	ASSERT_EQ(y - x, y);
-}
-
-TEST(empty_arithmetic_array_1d_test, binary_star)
-{
-	idlib::arithmetic_array_1d<int, 0, idlib::zero_functor<int>> x{}, y{};
-	int s = 3;
-	ASSERT_EQ(x * s, x);
-	ASSERT_EQ(y * s, y);
-}
-
-TEST(empty_arithmetic_array_1d_test, unary_plus)
-{
-	idlib::arithmetic_array_1d<int, 0, idlib::zero_functor<int>> x{}, y{};
-	ASSERT_EQ(+x, x);
-	ASSERT_EQ(+y, y);
-	ASSERT_EQ(+x, y);
-	ASSERT_EQ(+y, x);
-}
-
-TEST(empty_arithmetic_array_1d_test, unary_minus)
-{
-	idlib::arithmetic_array_1d<int, 0, idlib::zero_functor<int>> x{}, y{};
-	ASSERT_EQ(-x, x);
-	ASSERT_EQ(-y, y);
-	ASSERT_EQ(-x, y);
-	ASSERT_EQ(-y, x);
-}
-
-} } } // namespace idlib::math::tests
+} // namespace idlib::tests
