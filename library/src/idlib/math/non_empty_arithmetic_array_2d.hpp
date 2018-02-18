@@ -28,6 +28,7 @@
 #include "idlib/utility/fold_expressions.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
 #include "idlib/math/one_zero.hpp"
+#include "idlib/math/random.hpp"
 #include "idlib/bool_pack.hpp"
 #include <algorithm>
 
@@ -256,5 +257,48 @@ private:
 	static bool impl(const T& a, const T& b, std::index_sequence<Is...>)
 	{ return and_fold_expr()((a(Is) == b(Is))...); }
 };
+
+/// @internal
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                      std::enable_if_t<(Width > 0) && (Height > 0)>>
+{
+    using element_type = Element;
+
+    using array_type = arithmetic_array_2d<Element, Width, Height, Zero>;
+
+    static const interval<element_type> DEFAULT_INTERVAL;
+  
+	array_type operator()() const
+    {
+		rng rng;
+        return (*this)(&rng, DEFAULT_INTERVAL);
+    }
+	
+	array_type operator()(rng *rng) const
+	{ return (*this)(rng, DEFAULT_INTERVAL); }
+
+    array_type operator()(const interval<element_type>& interval) const
+    { 
+		rng rng;
+		return (*this)(&rng, interval);
+	}
+	
+    array_type operator()(rng *rng, const interval<element_type>& interval) const
+    {
+        return impl(rng, interval, std::make_index_sequence<Width * Height>{});
+    }
+
+private:
+	template<std::size_t...Is>
+	array_type impl(rng *rng, const interval<element_type>& interval, std::index_sequence<Is ...>) const
+	{ return array_type(impl(rng, interval, Is) ...); }
+	
+	element_type impl(rng *rng, const interval<element_type>& interval, size_t i) const
+	{ return rng->next(interval); }
+}; // struct random_functor
+
+template <typename Element, size_t Width, size_t Height, typename Zero>
+const interval<Element> random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,std::enable_if_t<(Width > 0) && (Height > 0)>>::DEFAULT_INTERVAL(zero<Element>(), one<Element>());
 
 } // namespace idlib

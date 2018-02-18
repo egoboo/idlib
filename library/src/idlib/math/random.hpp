@@ -78,7 +78,8 @@ private:
 
 /// @brief Functor generating a random value.
 /// @tparam T the type of the value
-template <typename T>
+/// @tparam Enabled for SFINAE
+template <typename T, typename Enabled = void>
 struct random_functor;
 
 template <typename T, typename ... As>

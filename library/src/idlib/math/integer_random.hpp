@@ -56,17 +56,17 @@ const interval<T> integer_random_functor<T>::DEFAULT_INTERVAL(zero<T>(), one<T>(
 
 /// @internal
 template <>
-struct random_functor<int> : public internal::integer_random_functor<int>
+struct random_functor<int, void> : public internal::integer_random_functor<int>
 {};
 
 /// @internal
 template <>
-struct random_functor<long> : public internal::integer_random_functor<long>
+struct random_functor<long, void> : public internal::integer_random_functor<long>
 {};
 
 /// @internal
 template <>
-struct random_functor<long long> : public internal::integer_random_functor<long long>
+struct random_functor<long long, void> : public internal::integer_random_functor<long long>
 {};
 
 } // namespace idlib

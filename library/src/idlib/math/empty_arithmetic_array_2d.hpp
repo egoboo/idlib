@@ -26,6 +26,7 @@
 
 #include "idlib/math/arithmetic_array_2d_common.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
+#include "idlib/math/random.hpp"
 
 namespace idlib {
 
@@ -162,5 +163,27 @@ struct arithmetic_binary_equal_equal_functor<arithmetic_array_2d<Element, Width,
 	bool operator()(const T& a, const T& b) const
 	{ return true; }
 };
+
+/// @internal
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                      std::enable_if_t<(Width == 0) || (Height == 0)>>
+{
+    using element_type = Element;
+	using array_type = arithmetic_array_2d<Element, Width, Height, Zero>;
+
+	array_type operator()() const
+    { return array_type(); }
+	
+	array_type operator()(rng *rng) const
+	{ return array_type(); }
+
+    array_type operator()(const interval<element_type>& interval) const
+    { return array_type(); }
+	
+    array_type operator()(rng *rng, const interval<element_type>& interval) const
+    { return array_type(); }
+
+}; // struct random_functor
 
 } // namespace idlib

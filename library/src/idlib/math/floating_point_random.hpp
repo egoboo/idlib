@@ -56,17 +56,17 @@ const interval<T> floating_point_random_functor<T>::DEFAULT_INTERVAL(zero<T>(), 
 
 /// @internal
 template <>
-struct random_functor<single> : public internal::floating_point_random_functor<single>
+struct random_functor<single, void> : public internal::floating_point_random_functor<single>
 {};
 
 /// @internal
 template <>
-struct random_functor<double> : public internal::floating_point_random_functor<double>
+struct random_functor<double, void> : public internal::floating_point_random_functor<double>
 {};
 
 /// @internal
 template <>
-struct random_functor<quadruple> : public internal::floating_point_random_functor<quadruple>
+struct random_functor<quadruple, void> : public internal::floating_point_random_functor<quadruple>
 {};
 
 } // namespace idlib
