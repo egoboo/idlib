@@ -27,6 +27,7 @@
 #include "idlib/math/arithmetic_array_2d_common.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
 #include "idlib/math/random.hpp"
+#include "idlib/math/transpose.hpp"
 
 namespace idlib {
 
@@ -185,5 +186,16 @@ struct random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
     { return array_type(); }
 
 }; // struct random_functor
+
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct transpose_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                         std::enable_if_t<(Width == 0) || (Height == 0)>>
+{
+    using A = arithmetic_array_2d<Element, Width, Height, Zero>;
+    using R = arithmetic_array_2d<Element, Height, Width, Zero>;
+
+    R operator()(const A& a) const
+    { return R(); }
+};
 
 } // namespace idlib

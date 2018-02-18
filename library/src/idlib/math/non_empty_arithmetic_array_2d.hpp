@@ -29,6 +29,9 @@
 #include "idlib/math/arithmetic_functor.hpp"
 #include "idlib/math/one_zero.hpp"
 #include "idlib/math/random.hpp"
+#include "idlib/math/transpose.hpp"
+#include "idlib/math/trace.hpp"
+#include "idlib/math/identity.hpp"
 #include "idlib/bool_pack.hpp"
 #include <algorithm>
 
@@ -104,13 +107,7 @@ struct arithmetic_array_2d<Element, Width, Height, Zero,
 	/// @param i the one-dimensional index
 	/// @return the array element at the specified one-dimensional index
 	/// @pre The index is within bounds.
-	element_type& at(size_t i)
-	{ return m_elements_1d[i]; }
-
 	element_type& operator()(size_t i)
-	{ return m_elements_1d[i]; }
-
-	const element_type& at(size_t i) const
 	{ return m_elements_1d[i]; }
 
 	const element_type& operator()(size_t i) const
@@ -123,13 +120,7 @@ struct arithmetic_array_2d<Element, Width, Height, Zero,
 	/// @param
 	/// @return the array element at the specified two-dimensional index
 	/// @pre The index is within bounds.
-	element_type& at(size_t i, size_t j)
-	{ return m_elements_1d[i]; }
-
 	element_type& operator()(size_t i, size_t j)
-	{ return m_elements_1d[i]; }
-
-	const element_type& at(size_t i, size_t j) const
 	{ return m_elements_2d[i][j]; }
 
 	const element_type& operator()(size_t i, size_t j) const
@@ -258,6 +249,44 @@ private:
 	{ return and_fold_expr()((a(Is) == b(Is))...); }
 };
 
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct transpose_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                         std::enable_if_t<(Width > 0) && (Height > 0)>>
+{
+    using A = arithmetic_array_2d<Element, Width, Height, Zero>;
+    using R = arithmetic_array_2d<Element, Height, Width, Zero>;
+
+    R operator()(const A& a) const
+    {
+        R r;
+        for (size_t i = 0; i < Width; ++i)
+        {
+            for (size_t j = 0; j < Height; ++j)
+            {
+                r(i, j) = a(j, i);
+            }
+        }
+        return r;
+    }
+};
+
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct trace_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                     std::enable_if_t<(Width > 0) && (Height > 0) && (Width == Height)>>
+{
+    using A = arithmetic_array_2d<Element, Width, Height, Zero>;
+    using R = Element;
+    R operator()(const A& a) const
+    {
+        R t = zero<Element>();
+        for (size_t i = 0; i < Width; ++i)
+        {
+            t += a(i, i);
+        }
+        return t;
+    }
+};
+
 /// @internal
 template <typename Element, size_t Width, size_t Height, typename Zero>
 struct random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
@@ -300,5 +329,36 @@ private:
 
 template <typename Element, size_t Width, size_t Height, typename Zero>
 const interval<Element> random_functor<arithmetic_array_2d<Element, Width, Height, Zero>,std::enable_if_t<(Width > 0) && (Height > 0)>>::DEFAULT_INTERVAL(zero<Element>(), one<Element>());
+
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct zero_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                    std::enable_if_t<(Width > 0) && (Height > 0)>>
+{
+	using element_type = Element;
+	using array_type = arithmetic_array_2d<Element, Width, Height, Zero>;
+
+	auto operator()() const
+	{ return array_type(); }
+};
+
+/// @internal
+/// @brief Specialization of idlib::identity_functor.
+template <typename Element, size_t Width, size_t Height, typename Zero>
+struct identity_functor<arithmetic_array_2d<Element, Width, Height, Zero>,
+                        std::enable_if_t<(Width > 0) && (Height > 0)>>
+{
+    using element_type = Element;
+    using array_type = arithmetic_array_2d<Element, Width, Height, Zero>;
+
+    auto operator()() const
+    { 
+        auto a = array_type();
+        for (size_t i = 0; i < Width; ++i)
+        {
+            a(i, i) = one<element_type>();
+        }
+        return a;
+    }
+};
 
 } // namespace idlib
