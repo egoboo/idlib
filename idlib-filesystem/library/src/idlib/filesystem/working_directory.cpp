@@ -22,58 +22,27 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
+/// @file idlib/filesystem/working_directory.cpp
+/// @brief Determine the working directory.
 /// @author Michael Heilmann
 
-#pragma once
+#include "idlib/filesystem/working_directory.hpp"
 
-#define IDLIB_PRIVATE 1
+#if defined(ID_WINDOWS)
+#include "idlib/filesystem/working_directory_windows.hpp"
+#elif defined(ID_OSX)
+#include "idlib/filesystem/working_directory_osx.hpp"
+#elif defined(ID_LINUX)
+#include "idlib/filesystem/working_directory_linux.hpp"
+#else
+#error("operating system not supported")	
+#endif
 
-// CRTP.
-#include "idlib/crtp.hpp"
+#include "idlib/filesystem/header.in"
 
-// singleton.
-#include "idlib/singleton.hpp"
+std::string get_working_directory()
+{
+	return get_working_directory_impl();
+}
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
-#undef IDLIB_PRIVATE
+#include "idlib/filesystem/footer.in"

@@ -22,58 +22,35 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
+/// @file idlib/filesystem.hpp
+/// @brief Master include file of the Idlib file system library.
 /// @author Michael Heilmann
 
 #pragma once
 
-#define IDLIB_PRIVATE 1
+#pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE (1)
 
-// CRTP.
-#include "idlib/crtp.hpp"
-
-// singleton.
-#include "idlib/singleton.hpp"
-
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
+#include "idlib/filesystem/access_mode.hpp"
+#include "idlib/filesystem/create_directory.hpp"
+#include "idlib/filesystem/copy_directory_contents.hpp"
+#include "idlib/filesystem/copy_regular_file.hpp"
+#include "idlib/filesystem/delete_directory.hpp"
+#include "idlib/filesystem/delete_directory_recursive.hpp"
+#include "idlib/filesystem/delete_regular.hpp"
+#include "idlib/filesystem/directory_iterator.hpp"
+#include "idlib/filesystem/error.hpp"
+#include "idlib/filesystem/executable_directory.hpp"
+#include "idlib/filesystem/exists.hpp"
+#include "idlib/filesystem/extension.hpp"
+#include "idlib/filesystem/file.hpp"
+#include "idlib/filesystem/is_directory.hpp"
+#include "idlib/filesystem/is_regular.hpp"
+#include "idlib/filesystem/mapped_file.hpp"
+#include "idlib/filesystem/status.hpp"
+#include "idlib/filesystem/working_directory.hpp"
+#include "idlib/filesystem/directory_separator.hpp"
 
 #undef IDLIB_PRIVATE
+#pragma pop_macro("IDLIB_PRIVATE")

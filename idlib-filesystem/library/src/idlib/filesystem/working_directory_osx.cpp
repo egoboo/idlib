@@ -22,58 +22,41 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
-/// @author Michael Heilmann
+#include "idlib/filesystem/working_directory_osx.hpp"
 
-#pragma once
+#if defined(ID_OSX)
 
-#define IDLIB_PRIVATE 1
+#include <errno.h>
+#include <unistd.h>
 
-// CRTP.
-#include "idlib/crtp.hpp"
+#include "idlib/filesystem/header.in"
 
-// singleton.
-#include "idlib/singleton.hpp"
+std::string get_working_directory_impl()
+{
+	size_t size = 512 + 1;
+	auto buffer = std::make_unique<char[]>(size);
+	while (!getcwd(buffer.get(), size))
+	{
+		if (errno == ERANGE)
+		{
+			size_t new_size = size;
+			if (std::numeric_limits<size_t>::max() / size <= 2) {
+				new_size = std::numeric_limits<size_t>::max();
+			} else {
+				new_size *= 2;
+			}
+			auto new_buffer = std::make_unique<char[]>(new_size);
+			memcpy(new_buffer.get(), buffer.get(), size);
+			std::swap(buffer, new_buffer);
+		}
+		else
+		{
+			throw std::bad_alloc();
+		}
+	}
+	return std::string(buffer.get());
+}
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
+#include "idlib/filesystem/footer.in"
 
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
-#undef IDLIB_PRIVATE
+#endif

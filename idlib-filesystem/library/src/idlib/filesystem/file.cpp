@@ -22,58 +22,53 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
-/// @author Michael Heilmann
-
-#pragma once
-
-#define IDLIB_PRIVATE 1
-
-// CRTP.
-#include "idlib/crtp.hpp"
-
-// singleton.
-#include "idlib/singleton.hpp"
-
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
+#pragma push_macro("IDLIB_PRIVATE")
 #undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE 1
+#include "idlib/filesystem/file.hpp"
+#undef IDLIB_PRIVATE
+#pragma pop_macro("IDLIB_PRIVATE")
+
+#if defined(ID_WINDOWS)
+	#include "idlib/filesystem/file_windows.hpp"
+#elif defined(ID_POSIX)
+    #include "idlib/filesystem/file_posix.hpp"
+#else
+	#error("operating system not supported")	
+#endif
+
+#include "idlib/filesystem/header.in"
+
+file_descriptor::file_descriptor() :
+	m_pimpl(std::make_unique<file_descriptor_impl>())
+{}
+
+file_descriptor::~file_descriptor() noexcept
+{}
+
+void file_descriptor::open(const std::string& pathname, access_mode access_mode, create_mode create_mode) noexcept
+{
+	m_pimpl->open(pathname, access_mode, create_mode);
+}
+
+bool file_descriptor::is_open() const noexcept
+{
+	return m_pimpl->is_open();
+}
+
+void file_descriptor::close() noexcept
+{
+	m_pimpl->close();
+}
+
+size_t file_descriptor::size() const
+{
+	return m_pimpl->size();
+}
+
+void *file_descriptor::handle()
+{
+	return m_pimpl->handle();
+}
+
+#include "idlib/filesystem/footer.in"

@@ -22,58 +22,22 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
+/// @file idlib/filesystem/create_mode.hpp
+/// @brief Create mode for files.
 /// @author Michael Heilmann
 
 #pragma once
 
-#define IDLIB_PRIVATE 1
+#include "idlib/platform.hpp"
 
-// CRTP.
-#include "idlib/crtp.hpp"
+#include "idlib/filesystem/header.in"
 
-// singleton.
-#include "idlib/singleton.hpp"
+/// @brief Enum class of file create modes.
+enum class create_mode
+{
+    open_existing = 0,              ///< Open the file if it exists. Fail if it does not exist.
+    create_not_existing = (1 << 1), ///< Create the file if it does not exist. Open the file if it exists.
+	fail_existing = (1 << 2),       ///< Create the file if it does not exist. Fail if it exists.
+};
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
-#undef IDLIB_PRIVATE
+#include "idlib/filesystem/footer.in"

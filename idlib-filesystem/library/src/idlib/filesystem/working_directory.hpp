@@ -22,58 +22,21 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
+/// @file idlib/filesystem/working_directory.hpp
+/// @brief Determine the working directory.
 /// @author Michael Heilmann
 
 #pragma once
 
-#define IDLIB_PRIVATE 1
+#include "idlib/platform.hpp"
+#include <string>
 
-// CRTP.
-#include "idlib/crtp.hpp"
+#include "idlib/filesystem/header.in"
 
-// singleton.
-#include "idlib/singleton.hpp"
+/// @brief Get the current working directory of this process.
+/// @return the current working directory of this process
+/// @throw std::runtime_error the current working directory can not be obtained
+/// @throw std::bad_alloc an out of memory situation occurred
+std::string get_working_directory();
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
-// Text utilities.
-#include "idlib/text.hpp"
-
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
-
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
-#undef IDLIB_PRIVATE
+#include "idlib/filesystem/footer.in"

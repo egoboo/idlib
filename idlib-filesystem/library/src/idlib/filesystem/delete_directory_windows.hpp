@@ -22,58 +22,18 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/idlib.hpp
-/// @brief Master include file for idlib.
-/// @author Michael Heilmann
-
 #pragma once
 
-#define IDLIB_PRIVATE 1
+#include "idlib/platform.hpp"
 
-// CRTP.
-#include "idlib/crtp.hpp"
+#if defined(ID_WINDOWS)
 
-// singleton.
-#include "idlib/singleton.hpp"
+#include <string>
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
+#include "idlib/filesystem/header.in"
 
-// Text utilities.
-#include "idlib/text.hpp"
+bool delete_directory_impl(const std::string& pathname);
 
-// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-// Those constants will either be properly defined or not at all.
-#include "idlib/CurrentFunction.inline"
+#include "idlib/filesystem/footer.in"
 
-// Debug library.
-#include "idlib/debug.hpp"
-
-// event library.
-#include "idlib/event.hpp"
-
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
-// utility library.
-#include "idlib/utility.hpp"
-
-// range library.
-#include "idlib/range.hpp"
-
-// iterator library.
-#include "idlib/iterator.hpp"
-
-#undef IDLIB_PRIVATE
+#endif

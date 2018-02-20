@@ -35,3 +35,5 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/library)
 if (idlib-with-tests)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-filesystem)
