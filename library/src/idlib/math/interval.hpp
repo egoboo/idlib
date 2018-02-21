@@ -29,12 +29,14 @@
 #pragma once
 
 #pragma push_macro("IDLIB_PRIVATE")
+
 #if !defined(IDLIB_PRIVATE)
 #define IDLIB_PRIVATE (1)
 #endif
+
 #include "idlib/math/one_zero.hpp"
 #include "idlib/utility/invalid_argument_error.hpp"
-#undef IDLIB_PRIVATE
+
 #pragma pop_macro("IDLIB_PRIVATE")
 
 namespace idlib {

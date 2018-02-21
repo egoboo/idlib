@@ -22,10 +22,16 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define IDLIB_PRIVATE 1
+#pragma push_macro("IDLIB_PRIVATE")
+
+#if !defined(IDLIB_PRIVATE)
+#define IDLIB_PRIVATE (1)
+#endif
+
 #include "idlib/math/vector.hpp"
 #include "idlib/math/floating_point.hpp"
-#undef IDLIB_PRIVATE
+
+#pragma pop_macro("IDLIB_PRIVATE")
 
 template struct idlib::vector<single, 1>;
 template struct idlib::vector<single, 2>;

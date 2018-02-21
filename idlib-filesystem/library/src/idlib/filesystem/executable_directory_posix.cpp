@@ -22,7 +22,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "idlib/file_system/executable_directory_posix.hpp"
+#include "idlib/filesystem/executable_directory_posix.hpp"
 
 #if defined(ID_POSIX)
 
@@ -31,7 +31,7 @@
 #include <errno.h>
 #include <limits.h> // PATH_MAX
 
-#include "idlib/file_system/header.in"
+#include "idlib/filesystem/header.in"
 
 std::string get_executable_directory_impl()
 {
@@ -44,6 +44,6 @@ std::string get_executable_directory_impl()
 	return temporary;
 }
 
-#include "idlib/file_system/footer.in"
+#include "idlib/filesystem/footer.in"
 
 #endif
