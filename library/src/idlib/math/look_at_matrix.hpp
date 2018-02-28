@@ -22,6 +22,6 @@ namespace idlib {
  * @pre eye != center
  *      up  != 0
  */
-matrix<single, 4, 4> look_at(const vector<single, 3>& eye, const vector<single, 3>& center, const vector<single, 3>& up);
+matrix<single, 4, 4> look_at_matrix(const vector<single, 3>& eye, const vector<single, 3>& center, const vector<single, 3>& up);
 	
 } // namespace idlib

@@ -1,8 +1,8 @@
-#include "idlib/math/orthographic.hpp"
+#include "idlib/math/orthographic_projection_matrix.hpp"
 
 namespace idlib {
 	
-matrix<single, 4, 4> orthographic(const single left, const single right, const single bottom, const single top, const single z_near, const single z_far)
+matrix<single, 4, 4> orthographic_projection_matrix(const single left, const single right, const single bottom, const single top, const single z_near, const single z_far)
 {
 	single dx = right - left, dy = top - bottom, dz = z_far - z_near;
 	IDLIB_DEBUG_ASSERT(dx != 0.0f && dy != 0.0f && dz != 0.0f);

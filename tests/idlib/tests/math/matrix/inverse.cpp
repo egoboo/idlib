@@ -43,51 +43,51 @@ TEST(matrix_4s_4s_test, inverse)
 			);
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_x(angle<single, degrees>(0.0f));
+	a = rotation_matrix_x(angle<single, degrees>(0.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_x(angle<single, degrees>(90.0f));
+	a = rotation_matrix_x(angle<single, degrees>(90.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_x(angle<single, degrees>(180.0f));
+	a = rotation_matrix_x(angle<single, degrees>(180.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_x(angle<single, degrees>(270.0f));
+	a = rotation_matrix_x(angle<single, degrees>(270.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_y(angle<single, degrees>(0.0f));
+	a = rotation_matrix_y(angle<single, degrees>(0.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_y(angle<single, degrees>(90.0f));
+	a = rotation_matrix_y(angle<single, degrees>(90.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_y(angle<single, degrees>(180.0f));
+	a = rotation_matrix_y(angle<single, degrees>(180.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_y(angle<single, degrees>(270.0f));
+	a = rotation_matrix_y(angle<single, degrees>(270.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_z(angle<single, degrees>(0.0f));
+	a = rotation_matrix_z(angle<single, degrees>(0.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_z(angle<single, degrees>(90.0f));
+	a = rotation_matrix_z(angle<single, degrees>(90.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_z(angle<single, degrees>(180.0f));
+	a = rotation_matrix_z(angle<single, degrees>(180.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	//
-	a = rotation_z(angle<single, degrees>(270.0f));
+	a = rotation_matrix_z(angle<single, degrees>(270.0f));
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 	// a translation matrix with a translation of 2 along the x-axis
-	a = translation({1.0f, 0.0f, 0.0f});
+	a = translation_matrix({1.0f, 0.0f, 0.0f});
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
-	a = translation({0.0f, 1.0f, 0.0f});
+	a = translation_matrix({0.0f, 1.0f, 0.0f});
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
-	a = translation({0.0f, 0.0f, 1.0f});
+	a = translation_matrix({0.0f, 0.0f, 1.0f});
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
-	a = translation({1.0f, 0.0f, 1.0f});
+	a = translation_matrix({1.0f, 0.0f, 1.0f});
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
-	a = translation({0.0f, 1.0f, 1.0f});
+	a = translation_matrix({0.0f, 1.0f, 1.0f});
 	ASSERT_EQ((a.inverse() * a), (identity<matrix<single, 4, 4>>()));
 }
 

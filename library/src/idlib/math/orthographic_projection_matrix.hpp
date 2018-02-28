@@ -34,6 +34,6 @@ namespace idlib {
  *       \f$t_y = -\frac{top+bottom}{top-bottom}\f$,
  *       \f$t_z = -\frac{z_{far}+z_{near}}{z_{far}-z_{near}}\f$.
  */
-matrix<single, 4, 4> orthographic(const single left, const single right, const single bottom, const single top, const single z_near, const single z_far);
+matrix<single, 4, 4> orthographic_projection_matrix(const single left, const single right, const single bottom, const single top, const single z_near, const single z_far);
 	
 } // namespace idlib

@@ -38,11 +38,11 @@ namespace idlib {
  * \f]
  * where \f$f = cot(0.5 fov_y)\f$.
  */
-matrix<single, 4, 4> perspective(const angle<single, degrees>& fov_y, const single aspect, const single z_near, const single z_far);
+matrix<single, 4, 4> perspective_projection_matrix(const angle<single, degrees>& fov_y, const single aspect, const single z_near, const single z_far);
 
-matrix<single, 4, 4> perspective(const angle<single, turns>& fov_y, const single aspect, const single z_near, const single z_far);
+matrix<single, 4, 4> perspective_projection_matrix(const angle<single, turns>& fov_y, const single aspect, const single z_near, const single z_far);
 
-matrix<single, 4, 4> perspective(const angle<single, radians>& fov_y, const single aspect, const single z_near, const single z_far);
+matrix<single, 4, 4> perspective_projection_matrix(const angle<single, radians>& fov_y, const single aspect, const single z_near, const single z_far);
 
 /**@}*/
 	

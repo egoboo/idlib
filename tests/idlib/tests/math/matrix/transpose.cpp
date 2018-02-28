@@ -37,35 +37,35 @@ TEST(matrix_4s_4s_test, transpose)
         //
         zero<M>(),
         //
-        rotation_x(angle<single, degrees>(0.0f)),
+        rotation_matrix_x(angle<single, degrees>(0.0f)),
         //
-        rotation_x(angle<single, degrees>(90.0f)),
+        rotation_matrix_x(angle<single, degrees>(90.0f)),
         //
-        rotation_x(angle<single, degrees>(180.0f)),
+        rotation_matrix_x(angle<single, degrees>(180.0f)),
         //
-        rotation_x(angle<single, degrees>(270.0f)),
+        rotation_matrix_x(angle<single, degrees>(270.0f)),
         //
-        rotation_y(angle<single, degrees>(0.0f)),
+        rotation_matrix_y(angle<single, degrees>(0.0f)),
         //
-        rotation_y(angle<single, degrees>(90.0f)),
+        rotation_matrix_y(angle<single, degrees>(90.0f)),
         //
-        rotation_y(angle<single, degrees>(180.0f)),
+        rotation_matrix_y(angle<single, degrees>(180.0f)),
         //
-        rotation_y(angle<single, degrees>(270.0f)),
+        rotation_matrix_y(angle<single, degrees>(270.0f)),
         //
-        rotation_z(angle<single, degrees>(0.0f)),
+        rotation_matrix_z(angle<single, degrees>(0.0f)),
         //
-        rotation_z(angle<single, degrees>(90.0f)),
+        rotation_matrix_z(angle<single, degrees>(90.0f)),
         //
-        rotation_z(angle<single, degrees>(180.0f)),
+        rotation_matrix_z(angle<single, degrees>(180.0f)),
         //
-        rotation_z(angle<single, degrees>(270.0f)),
+        rotation_matrix_z(angle<single, degrees>(270.0f)),
         //
-        translation({ 1.0f, 0.0f, 0.0f }),
+        translation_matrix({ 1.0f, 0.0f, 0.0f }),
         //
-        translation({ 0.0f, 1.0f, 0.0f }),
+        translation_matrix({ 0.0f, 1.0f, 0.0f }),
         //
-        translation({ 0.0f, 0.0f, 1.0f }),
+        translation_matrix({ 0.0f, 0.0f, 1.0f }),
     };
     for (const auto& matrix : matrices)
     {

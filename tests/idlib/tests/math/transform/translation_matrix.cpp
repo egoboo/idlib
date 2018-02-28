@@ -22,32 +22,46 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/math/translate.hpp
-/// @brief "translate" functor and function
-/// @author Michael Heilmann
+#include "gtest/gtest.h"
+#include "idlib/idlib.hpp"
 
-#pragma once
+namespace idlib::tests {
+	
+using matrix_4s_4s = idlib::matrix<single, 4, 4>;
 
-namespace idlib {
+TEST(translation_matrix_test, test_0)
+{
+    idlib::matrix<single, 4, 4> a, b;
+    //
+    a = idlib::translation_matrix({1.0f, 0.0f, 0.0f});
+    b = matrix_4s_4s
+            (
+                1.0f, 0.0f, 0.0f, 1.0f,
+                0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f
+            );
+    ASSERT_EQ(a, b);
+    //
+    a = idlib::translation_matrix({0.0f, 1.0f, 0.0f});
+    b = matrix_4s_4s
+            (
+                1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 1.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f
+            );
+    ASSERT_EQ(a, b);
+    //
+    a = idlib::translation_matrix({0.0f, 0.0f, 1.0f});
+    b = matrix_4s_4s
+            (
+                1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 1.0f,
+                0.0f, 0.0f, 0.0f, 1.0f
+            );
+    ASSERT_EQ(a, b);
+}
 
-/// @ingroup math
-/// @brief Functor translating geometries.
-/// @details
-/// Specializations of this functor provide a constant operator().
-/// Its first argument is a geometry \f$a\f$ of type \f$A\f$, its second argument is a translation transformation \f$t\f$ of type \f$T\f$.
-/// It returns a single value \f$a'\f$ which is the transformed geometry.
-/// @details
-/// Specializations provide two member types:
-/// - @a translation_type which is \f$T\f$
-/// - @a geometry_type which is \f$A\f$
-/// @tparam A the type of the translated geometries
-/// @tparam T the type of the translation transformation
-/// @remark Feel free to provide your own implementation.
-template <typename A, typename T>
-struct translate_functor;
-
-template <typename A, typename T>
-auto translate(const A& a, const T& t) -> decltype(translate_functor<A, T>()(a, t))
-{ return translate_functor<A, T>()(a, t); }
-
-} // namespace idlib
+} // namespace idlib::tests

@@ -31,11 +31,11 @@ namespace idlib {
  *  \f]
  *  where \f$c=\cos(a)\f$ and \f$s=\sin(a)\f$.
  */
-matrix<single, 4, 4> rotation_x(const angle<single, degrees>& a);
+matrix<single, 4, 4> rotation_matrix_x(const angle<single, degrees>& a);
 
-matrix<single, 4, 4> rotation_x(const angle<single, turns>& a);
+matrix<single, 4, 4> rotation_matrix_x(const angle<single, turns>& a);
 
-matrix<single, 4, 4> rotation_x(const angle<single, radians>& a);
+matrix<single, 4, 4> rotation_matrix_x(const angle<single, radians>& a);
 
 /**@}*/
 
@@ -56,11 +56,11 @@ matrix<single, 4, 4> rotation_x(const angle<single, radians>& a);
  *  \f]
  *  where \f$c=\cos(a)\f$ and \f$s=\sin(a)\f$.
  */
-matrix<single, 4, 4> rotation_y(const angle<single, degrees>& a);
+matrix<single, 4, 4> rotation_matrix_y(const angle<single, degrees>& a);
 
-matrix<single, 4, 4> rotation_y(const angle<single, turns>& a);
+matrix<single, 4, 4> rotation_matrix_y(const angle<single, turns>& a);
 
-matrix<single, 4, 4> rotation_y(const angle<single, radians>& a);
+matrix<single, 4, 4> rotation_matrix_y(const angle<single, radians>& a);
 
 /**@}*/
 
@@ -81,11 +81,11 @@ matrix<single, 4, 4> rotation_y(const angle<single, radians>& a);
  *  \f]
  *  where \f$c=\cos(a)\f$ and \f$s=\sin(a)\f$.
  */
-matrix<single, 4, 4> rotation_z(const angle<single, degrees>& a);
+matrix<single, 4, 4> rotation_matrix_z(const angle<single, degrees>& a);
 
-matrix<single, 4, 4> rotation_z(const angle<single, turns>& a);
+matrix<single, 4, 4> rotation_matrix_z(const angle<single, turns>& a);
 
-matrix<single, 4, 4> rotation_z(const angle<single, radians>& a);
+matrix<single, 4, 4> rotation_matrix_z(const angle<single, radians>& a);
 
 /**@}*/
 
@@ -291,11 +291,11 @@ matrix<single, 4, 4> rotation_z(const angle<single, radians>& a);
  *  \f}
  *  This implementation performs this form of elimination of common subexpressions.
  */
-matrix<single, 4, 4> rotation(const vector<single, 3>& axis, const angle<single, degrees>& angle);
+matrix<single, 4, 4> rotation_matrix(const vector<single, 3>& axis, const angle<single, degrees>& angle);
 
-matrix<single, 4, 4> rotation(const vector<single, 3>& axis, const angle<single, turns>& angle);
+matrix<single, 4, 4> rotation_matrix(const vector<single, 3>& axis, const angle<single, turns>& angle);
 
-matrix<single, 4, 4> rotation(const vector<single, 3>& axis, const angle<single, radians>& angle);
+matrix<single, 4, 4> rotation_matrix(const vector<single, 3>& axis, const angle<single, radians>& angle);
 
 /**@}*/
 

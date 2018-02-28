@@ -1,8 +1,8 @@
-#include "idlib/math/translation.hpp"
+#include "idlib/math/translation_matrix.hpp"
 
 namespace idlib {
 
-matrix<single, 4, 4> translation(const vector<single, 3>& t)
+matrix<single, 4, 4> translation_matrix(const vector<single, 3>& t)
 {
 	return matrix<single, 4, 4>(1, 0, 0, t.x(),
 			                    0, 1, 0, t.y(),

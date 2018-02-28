@@ -41,12 +41,13 @@
 #include "idlib/math/trace.hpp"
 #include "idlib/math/transpose.hpp"
 
-#include "idlib/math/look_at.hpp"
-#include "idlib/math/perspective.hpp"
-#include "idlib/math/rotation.hpp"
-#include "idlib/math/scaling.hpp"
-#include "idlib/math/translation.hpp"
-#include "idlib/math/orthographic.hpp"
+#include "idlib/math/look_at_matrix.hpp"
+#include "idlib/math/orthographic_projection_matrix.hpp"
+#include "idlib/math/perspective_projection_matrix.hpp"
+#include "idlib/math/rotation_matrix.hpp"
+#include "idlib/math/scaling_matrix.hpp"
+#include "idlib/math/translation_matrix.hpp"
+
 
 #include "idlib/math/angle.hpp"
 #include "idlib/math/angle-degrees-radians-turns.hpp"

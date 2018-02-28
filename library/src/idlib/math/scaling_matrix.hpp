@@ -28,7 +28,7 @@ namespace idlib {
  * @endcode call
  * @see idlib::scaling<const vector<single, 3>&)
  */
-matrix<single, 4, 4> scaling(single s);
+matrix<single, 4, 4> scaling_matrix(single s);
 
 /**
  * @brief Get a non-uniform scaling scaling matrix.
@@ -45,6 +45,6 @@ matrix<single, 4, 4> scaling(single s);
  * \end{matrix}\right]
  * \f]
  */
-matrix<single, 4, 4> scaling(const vector<single, 3>& s);
+matrix<single, 4, 4> scaling_matrix(const vector<single, 3>& s);
 
 } // namespace idlib

@@ -26,6 +26,6 @@ namespace idlib {
  * \end{matrix}\right]
  * \f]
  */
-matrix<single, 4, 4> translation(const vector<single, 3>& t);
+matrix<single, 4, 4> translation_matrix(const vector<single, 3>& t);
 
 } // namespace idlib
