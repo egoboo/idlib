@@ -31,6 +31,7 @@
 #include <string>
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
@@ -39,9 +40,13 @@
 #pragma push_macro("IDLIB_PRIVATE")
 #undef IDLIB_PRIVATE
 #define IDLIB_PRIVATE 1
+
 #include "idlib/utility/suffix.hpp"
-#include "idlib/utility/runtime_error.hpp"
+
+#undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
+
+#include "idlib/exception.hpp"
 
 #include "idlib/filesystem/header.in"
 

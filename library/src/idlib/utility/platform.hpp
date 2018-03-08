@@ -35,28 +35,6 @@
 
 #include "idlib/platform/platform.hpp"
 
-/// @brief An alias for @a (float).
-using single = float;
-/// @brief An alias for @a (long double).
-using quadruple = long double;
-
-/// @brief Format attributes for printf-style functions for GCC/Clang.
-/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
-#if defined(__GNUC__)
-    #define GCC_PRINTF_FUNC(fmtargnum) __attribute__ (( format( __printf__, fmtargnum, fmtargnum+1 ) ))
-#else
-    #define GCC_PRINTF_FUNC(fmtargnum)
-#endif
-
-/// @brief Format attributes for scanf-style functions for GCC/Clang.
-/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
-#if defined(__GNUC__)
-    #define GCC_SCANF_FUNC(fmtargnum) __attribute__ (( format( __scanf__, fmtargnum, fmtargnum+1 ) ))
-#else
-    #define GCC_SCANF_FUNC(fmtargnum)
-#endif
-
-
 // Common C and C++ headers.
 #if defined(__cplusplus)
     #include <cstdlib>

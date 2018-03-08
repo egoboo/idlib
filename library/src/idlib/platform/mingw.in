@@ -1,11 +1,11 @@
 #if defined (ID_WINDOWS)
-	#if defined(__MINGW64__)
-		#define ID_MINGW64 (1)
-	#elif defined (__MINGW32__)
-		#define ID_MINGW32 (1)
-	#endif
+    #if defined(__MINGW64__)
+        #define ID_MINGW64 (1)
+    #elif defined (__MINGW32__)
+        #define ID_MINGW32 (1)
+    #endif
 #endif
 
 #if defined(ID_MINGW64) || defined(ID_MINGW32)
-	#define ID_MINGW (1)
+    #define ID_MINGW (1)
 #endif

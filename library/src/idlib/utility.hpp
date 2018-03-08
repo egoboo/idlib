@@ -39,17 +39,7 @@
 #include "idlib/utility/swap_bytes.hpp"
 #include "idlib/utility/byte_order.hpp"
 
-#include "idlib/utility/non_copyable.hpp"
-
 #include "idlib/utility/bitmask_type.hpp"
-
-#include "idlib/utility/exception.hpp"
-#include "idlib/utility/environment_error.hpp"
-#include "idlib/utility/unhandled_switch_case_error.hpp"
-#include "idlib/utility/runtime_error.hpp"
-#include "idlib/utility/invalid_argument_error.hpp"
-#include "idlib/utility/null_error.hpp"
-#include "idlib/utility/out_of_bounds_error.hpp"
 
 #include "idlib/utility/to_upper.hpp"
 #include "idlib/utility/to_lower.hpp"

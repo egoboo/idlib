@@ -32,7 +32,7 @@
 #error(do not include directly, include `idlib/debug.hpp` instead)
 #endif
 
-#include "idlib/utility/runtime_error.hpp"
+#include "idlib/exception.hpp"
 
 namespace idlib {
 

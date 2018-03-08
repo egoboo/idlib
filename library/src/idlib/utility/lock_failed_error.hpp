@@ -29,12 +29,12 @@
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
+#error(do not include directly, include `idlib/exception.hpp` instead)
 #endif
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/header.in"
+namespace idlib {
 
 /// @brief An exception indicating a lock failed error.
 class lock_failed_error : public runtime_error
@@ -65,4 +65,4 @@ public:
 
 }; // class lock_failed_error
 
-#include "idlib/utility/footer.in"
+} // namespace idlib

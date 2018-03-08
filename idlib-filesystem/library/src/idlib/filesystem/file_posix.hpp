@@ -25,7 +25,9 @@
 #pragma once
 
 #pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
 #define IDLIB_PRIVATE 1
+
 #include "idlib/utility/platform.hpp"
 
 #if defined(ID_POSIX)

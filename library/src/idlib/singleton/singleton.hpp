@@ -28,7 +28,11 @@
 
 #pragma once
 
-#include "idlib/utility.hpp"
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/singleton.hpp` instead)
+#endif
+
+#include "idlib/non_copyable.hpp"
 #include <atomic>
 #include <mutex>
 

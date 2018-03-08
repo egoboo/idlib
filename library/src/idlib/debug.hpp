@@ -35,4 +35,5 @@
 #include "idlib/debug/debug_assert.hpp"
 #include "idlib/debug/debug_assertion_failed_error.hpp"
 
+#undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")

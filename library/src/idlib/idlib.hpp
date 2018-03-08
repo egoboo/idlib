@@ -36,9 +36,6 @@
 // singleton.
 #include "idlib/singleton.hpp"
 
-// parsing expressions.
-#include "idlib/parsing_expressions.hpp"
-
 // Text utilities.
 #include "idlib/text.hpp"
 
@@ -52,26 +49,11 @@
 // event library.
 #include "idlib/event.hpp"
 
-// signal library.
-#include "idlib/signal.hpp"
-
-// color library.
-#include "idlib/color.hpp"
-
-// math library.
-#include "idlib/math.hpp"
-
-// type library.
-#include "idlib/type.hpp"
-
-// language library.
-#include "idlib/language.hpp"
-
 // utility library.
 #include "idlib/utility.hpp"
 
-// range library.
-#include "idlib/range.hpp"
+// iterator range library.
+#include "idlib/iterator_range.hpp"
 
 // iterator library.
 #include "idlib/iterator.hpp"

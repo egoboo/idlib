@@ -19,8 +19,10 @@ target_include_directories(idlib-filesystem-library PRIVATE "${PROJECT_SOURCE_DI
 target_include_directories(idlib-filesystem-library INTERFACE "${PROJECT_SOURCE_DIR}/src")
 target_link_libraries(idlib-filesystem-library idlib-library)
 
-IF(DOXYGEN_FOUND)
+IF(idlib-with-documentation)
+  IF(DOXYGEN_FOUND)
     ADD_CUSTOM_TARGET(idlib-filesystem-library-doc ${DOXYGEN_EXECUTABLE} COMMENT "build Idlib: File System Library documentation")
-ELSE(DOXYGEN_FOUND)
+  ELSE(DOXYGEN_FOUND)
     MESSAGE(STATUS "Doxygen not found. You won't be able to build documentation.")
-ENDIF(DOXYGEN_FOUND)
+  ENDIF(DOXYGEN_FOUND)
+ENDIF(idlib-with-documentation)

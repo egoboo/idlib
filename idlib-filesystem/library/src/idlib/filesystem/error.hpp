@@ -32,7 +32,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/utility/runtime_error.hpp"
+#include "idlib/exception.hpp"
 #include "idlib/utility/to_string.hpp"
 
 #include "idlib/filesystem/header.in"

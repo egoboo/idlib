@@ -63,122 +63,122 @@
 
 // "defining any of those constants to a value not equal to @a 1, will result in a compile-time error"
 #if defined(ID_LINUX)
-	#if ID_LINUX != 1
-		#error ID_LINUX must be defined to 1 or must not be defined
-	#endif
+    #if ID_LINUX != 1
+        #error ID_LINUX must be defined to 1 or must not be defined
+    #endif
 #endif
 
 #if defined(ID_OSX)
-	#if ID_OSX != 1
-		#error ID_OSX must be defined to 1 or must not be defined
-	#endif
+    #if ID_OSX != 1
+        #error ID_OSX must be defined to 1 or must not be defined
+    #endif
 #endif
 
 #if defined (ID_WINDOWS)
-	#if ID_WINDOWS != 1
-		#error ID_WINDOWS must be defined to 1 or must not be defined
-	#endif
+    #if ID_WINDOWS != 1
+        #error ID_WINDOWS must be defined to 1 or must not be defined
+    #endif
 #endif
 
 #if defined(ID_IOSSIMULATOR)
-	#if ID_IOSSIMULATOR != 1
-		#error ID_IOSSIMULATOR must be defined to 1 or must not be defined
-	#endif
+    #if ID_IOSSIMULATOR != 1
+        #error ID_IOSSIMULATOR must be defined to 1 or must not be defined
+    #endif
 #endif
 
 #if defined(ID_IOS)
-	#if ID_IOS != 1
-		#error ID_IOS must be defined to 1 or must not be defined
-	#endif
+    #if ID_IOS != 1
+        #error ID_IOS must be defined to 1 or must not be defined
+    #endif
 #endif
 
 #if defined (ID_MINGW32)
-	#if ID_MINGW32 != 1
-		#error ID_MINGW32 must be defined to 1 or must not be defined
-	#endif 
+    #if ID_MINGW32 != 1
+        #error ID_MINGW32 must be defined to 1 or must not be defined
+    #endif 
 #endif
 
 #if defined (ID_MINGW64)
-	#if ID_MINGW64 != 1
-		#error ID_MINGW64 must be defined to 1 or must not be defined
-	#endif 
+    #if ID_MINGW64 != 1
+        #error ID_MINGW64 must be defined to 1 or must not be defined
+    #endif 
 #endif
 
 #if defined (ID_MINGW)
-	#if ID_MINGW != 1
-		#error ID_MINGW must be defined to 1 or must not be defined
-	#endif 
+    #if ID_MINGW != 1
+        #error ID_MINGW must be defined to 1 or must not be defined
+    #endif 
 #endif
 
 #if defined (ID_POSIX)
-	#if ID_POSIX != 1
-		#error ID_POSIX must be defined to 1 or must not be defined
-	#endif 
+    #if ID_POSIX != 1
+        #error ID_POSIX must be defined to 1 or must not be defined
+    #endif 
 #endif
 
 
 // "defining multiple constants, will result in a compile-time error"
 #if defined(ID_LINUX)
-	#if defined (DEFINED)
-		#error more than one platform target specified
-	#else
-		#undef DEFINED
-		#define DEFINED 1
-	#endif
+    #if defined (DEFINED)
+        #error more than one platform target specified
+    #else
+        #undef DEFINED
+        #define DEFINED 1
+    #endif
 #endif
 
 #if defined(ID_OSX)
-	#if defined (DEFINED)
-		#error more than one platform target specified
-	#else
-		#undef DEFINED
-		#define DEFINED 1
-	#endif
+    #if defined (DEFINED)
+        #error more than one platform target specified
+    #else
+        #undef DEFINED
+        #define DEFINED 1
+    #endif
 #endif
 
 #if defined (ID_WINDOWS)
-	#if defined (DEFINED)
-		#error more than one platform target specified
-	#else
-		#undef DEFINED
-		#define DEFINED 1
-	#endif
+    #if defined (DEFINED)
+        #error more than one platform target specified
+    #else
+        #undef DEFINED
+        #define DEFINED 1
+    #endif
 #endif
 
 #if defined(ID_IOSSIMULATOR)
-	#if defined (DEFINED)
-		#error more than one platform target specified
-	#else
-		#undef DEFINED
-		#define DEFINED 1
-	#endif
+    #if defined (DEFINED)
+        #error more than one platform target specified
+    #else
+        #undef DEFINED
+        #define DEFINED 1
+    #endif
 #endif
 
 #if defined(ID_IOS)
-	#if defined (DEFINED)
-		#error more than one platform target specified
-	#else
-		#undef DEFINED
-		#define DEFINED 1
-	#endif
+    #if defined (DEFINED)
+        #error more than one platform target specified
+    #else
+        #undef DEFINED
+        #define DEFINED 1
+    #endif
 #endif
 
 // "If ID_MINGW is defined, then ID_WINDOWS must be defined."
 #if defined (ID_MINGW)
-	#if !defined(ID_WINDOWS)
-		#error ID_MINGW can not be defined without ID_WINDOWS being defined
-	#endif
+    #if !defined(ID_WINDOWS)
+        #error ID_MINGW can not be defined without ID_WINDOWS being defined
+    #endif
 #endif
 
 // If the target platform is MingGW32 or MinGW64, then either the constant ID_MINGW32 or the constant ID_MINGW64 is defined (but not both).
 #if defined (ID_MING64) && defined (ID_MINGW32)
-	#error either ID_MINGW64 or ID_MINGW32 may be defined, not both
+    #error either ID_MINGW64 or ID_MINGW32 may be defined, not both
 #endif
 
 #if defined (ID_MINGW)
-	#if !defined(ID_MINGW32) && !defined(ID_MINGW64)
-		#error if ID_MINGW is defined, then either ID_MINGW64 or ID_MINGW32 must be defined
-	#endif
+    #if !defined(ID_MINGW32) && !defined(ID_MINGW64)
+        #error if ID_MINGW is defined, then either ID_MINGW64 or ID_MINGW32 must be defined
+    #endif
 #endif
 
 
@@ -194,5 +194,27 @@
 #include "idlib/platform/check_unix_posix.in"
 
 #if !defined(ID_WINDOWS) && !defined(ID_LINUX) && !defined(ID_OSX) && !defined(ID_IOS) && !defined(ID_IOSSIMULATOR)
-	#error target platform not detected
+    #error target platform not detected
+#endif
+
+
+/// @brief An alias for @a (float).
+using single = float;
+/// @brief An alias for @a (long double).
+using quadruple = long double;
+
+/// @brief Format attributes for printf-style functions for GCC/Clang.
+/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
+#if defined(__GNUC__)
+    #define GCC_PRINTF_FUNC(fmtargnum) __attribute__ (( format( __printf__, fmtargnum, fmtargnum+1 ) ))
+#else
+    #define GCC_PRINTF_FUNC(fmtargnum)
+#endif
+
+/// @brief Format attributes for scanf-style functions for GCC/Clang.
+/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
+#if defined(__GNUC__)
+    #define GCC_SCANF_FUNC(fmtargnum) __attribute__ (( format( __scanf__, fmtargnum, fmtargnum+1 ) ))
+#else
+    #define GCC_SCANF_FUNC(fmtargnum)
 #endif

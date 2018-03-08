@@ -5,7 +5,10 @@
 #pragma push_macro("IDLIB_PRIVATE")
 #undef IDLIB_PRIVATE
 #define IDLIB_PRIVATE 1
+
 #include "idlib/utility/platform.hpp"
+
+#undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")
 
 #include <cstdint>

@@ -24,7 +24,7 @@ add_test(idlib-filesystem-tests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-filesyst
 if (NOT MSVC)
   add_custom_target(idlib-filesystem-check COMMAND ${CMAKE_CTEST_COMMAND} --verbose DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/idlib-filesystem-tests-executable)
   if (NOT TARGET check)
-	add_custom_target(check)
+    add_custom_target(check)
   endif()
   add_dependencies(check idlib-filesystem-check)
 endif()

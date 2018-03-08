@@ -31,6 +31,9 @@
 #include "idlib/platform.hpp"
 #include "idlib/crtp.hpp"
 
+#include <algorithm>
+#include <vector>
+
 #include "idlib/filesystem/header.in"
 
 namespace internal {
@@ -38,14 +41,14 @@ namespace internal {
 template <typename C>
 struct extension_validator
 {
-	std::basic_string<C> operator()(const std::basic_string<C>& w) const
-	{ 
-		// Must not be empty.
+    std::basic_string<C> operator()(const std::basic_string<C>& w) const
+    { 
+        // Must not be empty.
         if (w.cbegin() == w.cend())
         {
             throw idlib::runtime_error(__FILE__, __LINE__, "invalid extension");
         }
-		// Must not contain special characters.
+        // Must not contain special characters.
         static const std::vector<C> d{ '*', '?', ':', '.', ',', '/', '\\', ' ', '\t', '\n', '\r' };
         auto it = std::find_first_of(w.cbegin(), w.cend(), d.cbegin(), d.cend());
         if (it != w.cend())
@@ -67,36 +70,36 @@ struct extension;
 template <typename C>
 struct extension : public equal_to_expr<extension<C>>
 {
-	using char_type = C;
+    using char_type = C;
     using string_type = std::basic_string<char_type>;
 
-	/// @brief Construct this extension with a specified string.
-	/// @throw idlib::runtime_error @a string is not a valid extension string
+    /// @brief Construct this extension with a specified string.
+    /// @throw idlib::runtime_error @a string is not a valid extension string
     explicit extension(const string_type& string)
         : m_string(internal::extension_validator<char_type>()(string))
     {}
 
-	/// @brief Get if a string is valid extension string.
-	/// @param string a string
-	/// @return @a true if @a string is a valid extension string, @a false otherwise
-	static bool is_extension_string(const string_type& string)
-	{
-		try
-		{
-			internal::extension_validator<char_type>()(string);
-		}
-		catch (...)
-		{
-			return false;
-		}
-		return true;
-	}
+    /// @brief Get if a string is valid extension string.
+    /// @param string a string
+    /// @return @a true if @a string is a valid extension string, @a false otherwise
+    static bool is_extension_string(const string_type& string)
+    {
+        try
+        {
+            internal::extension_validator<char_type>()(string);
+        }
+        catch (...)
+        {
+            return false;
+        }
+        return true;
+    }
 
     const string_type& to_string() const
     { return m_string; }
 
-	bool equal_to(const extension<char_type>& other) const
-	{ return m_string == other.m_string; }
+    bool equal_to(const extension<char_type>& other) const
+    { return m_string == other.m_string; }
 
 private:
     string_type m_string;
