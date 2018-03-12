@@ -48,32 +48,4 @@ TEST(dimensionality_testing, test_dimensionality)
     ASSERT_TRUE(idlib::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
 }
 
-TEST(one_testing, test_one_types)
-{
-    static_assert(std::is_same<decltype(idlib::one<signed short>()), signed short>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<unsigned short>()), unsigned short>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<signed int>()), signed int>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<unsigned int>()), unsigned int>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<signed long>()), signed long>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<unsigned long>()), unsigned long>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<signed long long>()), signed long long>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<unsigned long long>()), unsigned long long>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<float>()), float>::value, "");
-    static_assert(std::is_same<decltype(idlib::one<double>()), double>::value, "");
-}
-
-TEST(zero_testing, test_zero_types)
-{
-    static_assert(std::is_same<decltype(idlib::zero<signed short>()), signed short>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<unsigned short>()), unsigned short>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<signed int>()), signed int>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<unsigned int>()), unsigned int>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<signed long>()), signed long>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<unsigned long>()), unsigned long>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<signed long long>()), signed long long>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<unsigned long long>()), unsigned long long>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<float>()), float>::value, "");
-    static_assert(std::is_same<decltype(idlib::zero<double>()), double>::value, "");
-}
-
 } // namespace idlib::tests

@@ -46,6 +46,8 @@
 #include "idlib/math/normalize.hpp"
 #include "idlib/math/min_element.hpp"
 #include "idlib/math/max_element.hpp"
+#include "idlib/math/zip_min.hpp"
+#include "idlib/math/zip_max.hpp"
 #include "idlib/numeric.hpp"
 
 namespace idlib {
@@ -93,23 +95,6 @@ public:
     vector(const vector_type& other)
         : m_implementation(other.m_implementation)
     {}
-    
-    /// @internal
-    template <typename G, std::size_t...Is>
-    static vector_type generate(const G& g, std::index_sequence<Is...>)
-    {
-        return vector_type((g(Is))...);
-    }
-    
-    /// @brief Generate a vector with the values of a sequence generator.
-    /// @tparam G the generator type
-    /// @param g the generator
-    /// @return the vector
-    template <typename G>
-    static vector_type generate(const G& g)
-    {
-        return generate(g, std::make_index_sequence<dimensionality()>{});
-    }
 
     /// @internal
     /// @brief Construct this vector.
@@ -124,27 +109,16 @@ public:
     { /* Intentionally empty. */ }
 
 public:
-    /// @brief Get a unit vector in which the component of the specified index is @a 1.
-    /// @return the unit vector
-    static vector_type unit(size_t index)
-    {
-        using a = constant_generator<scalar_type>;
-        using b = constant_generator<scalar_type>;
-        using c = conditional_generator<a, b>;
-        return generate(c(index, a(one<scalar_type>()), b(zero<scalar_type>())));
-    }
-
-public:
     /// @{
     /// @brief Get the component value of the \f$x\f$ component.
     /// @return a reference to the component value of the \f$x\f$ component
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     std::enable_if_t<(LocalDimensionality >= 1), scalar_type>& x()
     {
         static_assert(vector_type::dimensionality() >= 1, "cannot call for member x() with dimensionality less than 1");
         return m_implementation(0);
     }
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     const std::enable_if_t<(LocalDimensionality >= 1), scalar_type>& x() const
     {
         static_assert(vector_type::dimensionality() >= 1, "cannot call for member x() with dimensionality less than 1");
@@ -155,13 +129,13 @@ public:
     /// @{
     /// @brief Get the component value of the \f$y\f$ component.
     /// @return a reference to the component value of the \f$y\f$ component
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     scalar_type& y()
     {
         static_assert(vector_type::dimensionality() >= 2, "cannot call for member y() with dimensionality less than 2");
         return m_implementation(1);
     }
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     const scalar_type& y() const
     {
         static_assert(vector_type::dimensionality() >= 2, "cannot call for member y() with dimensionality less than 2");
@@ -172,13 +146,13 @@ public:
     /// @{
     /// @brief Get the component value of the \f$z\f$ component.
     /// @return a reference to the component value of the \f$z\f$ component
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     std::enable_if_t<(LocalDimensionality >= 3), scalar_type>& z()
     {
         static_assert(vector_type::dimensionality() >= 3, "cannot call for member z() with dimensionality less than 3");
         return m_implementation(2);
     }
-    template <std::size_t LocalDimensionality = vector_type::dimensionality()>
+    template <size_t LocalDimensionality = vector_type::dimensionality()>
     const std::enable_if_t<(LocalDimensionality >= 3), scalar_type>& z() const
     {
         static_assert(vector_type::dimensionality() >= 3, "cannot call for member z() with dimensionality less than 3");
@@ -189,56 +163,18 @@ public:
 public:
     bool operator==(const vector_type& other) const
     { return m_implementation == other.m_implementation; }
-    
+
     bool operator!=(const vector_type& other) const
     { return m_implementation != other.m_implementation; }
-    
+
     vector_type& operator=(const vector_type& other)
     {
         m_implementation = other.m_implementation;
         return *this;
     }
 
-public:
-#if 0
-    /**
-     * @brief
-     *  Normalize this vector to the specified length.
-     * @param length
-     *  the length
-     * @post
-     *  If <tt>*this</tt> is the null/zero vector, then <tt>*this</tt> was assigned the null/zero vector
-     *  and is assigned <tt>length * (*this) / |(*this)|</tt> otherwise.
-     */
-    void normalize(scalar_type length) {
-        auto = euclidean_norm(*this);
-        if (ScalarFieldType::isPositive(l)) {
-            *this = *this * ScalarFieldType::quotient(length, l);
-        }
-    }
-#endif
-
-#if 0
-    /**
-     * @brief
-     *  Normalize this vector.
-     * @return
-     *  the old length of this vector
-     * @post
-     *  If <tt>*this</tt> is the null/zero vector, then <tt>*this</tt> was assigned the null/zero vector
-     *  and is assigned <tt>(*this) / l</tt> (where @a l is the old length of <tt>(*this)</tt>) otherwise.
-     */
-    ScalarType normalize() {
-        auto l = euclidean_norm(*this);
-        if (ScalarFieldType::isPositive(l)) {
-            *this = *this * ScalarFieldType::quotient(1.0, l);
-        }
-        return l;
-    }
-#endif
-
 private:
-    template <typename C, std::size_t...Is>
+    template <typename C, size_t...Is>
     bool equal_to(const vector_type& other, const C& c, std::index_sequence<Is ...>) const
     { return and_fold_expr()(c((*this)[Is], other[Is]) ...); }
 
@@ -294,40 +230,6 @@ public:
     }
 #endif
 
-private:
-    /** @internal */
-    template <size_t...Is>
-    vector_type max(std::index_sequence<Is...>, const vector_type& other) const
-    { return vector_type((std::max((*this)(Is), other(Is))) ...); }
-
-    /** @internal */
-    template <size_t...Is>
-    vector_type min(std::index_sequence<Is...>, const vector_type& other) const
-    { return vector_type((std::min((*this)(Is), other(Is))) ...); }
-
-public:  
-    /// @brief Get the component-wise maximum of this vector and another vector.
-    /// @param other the other vector
-    /// @return the component-wise maximum
-    /// @remark
-    /// For two vectors \f$\vec{u},\vec{v}\in\mathbb{R}^n,n>0\f$ the component-wise maximum is defined as
-    /// \f[
-    /// max\left(\vec{u},\vec{v}\right)=left(max(u_1,v_1),\ldots,max(u_n,v_n)\right)
-    /// \f]
-    vector_type max(const vector_type& other) const
-    { return max(std::make_index_sequence<vector_type::dimensionality()>{}, other); }
-
-    /// @brief Get the component-wise minimum of this vector and another vector.
-    /// @param other the other vector
-    /// @return the component-wise minimum
-    /// @remark
-    /// For two vectors \f$\vec{u},\vec{v}\in\mathbb{R}^n,n>0\f$ the component-wise minimum is defined as
-    /// \f[
-    /// min\left(\vec{u},\vec{v}\right)=left(min(u_1,v_1),\ldots,min(u_n,v_n)\right)
-    /// \f]
-    vector_type min(const vector_type& other) const
-    { return min(std::make_index_sequence<vector_type::dimensionality()>{}, other); }
-
 public:
     scalar_type& operator[](size_t const& index)
     { return m_implementation(index); }
@@ -368,6 +270,33 @@ public:
     bool is_zero() const {
         auto t = squared_euclidean_norm(*this);
         return t < 0.01f;
+    }
+
+    /// @internal
+    template <typename G, size_t...Is>
+    static vector_type generate(const G& g, std::index_sequence<Is...>)
+    {
+        return vector_type((g(Is))...);
+    }
+
+    /// @brief Generate a vector with the values of a sequence generator.
+    /// @tparam G the generator type
+    /// @param g the generator
+    /// @return the vector
+    template <typename G>
+    static vector_type generate(const G& g)
+    {
+        return generate(g, std::make_index_sequence<dimensionality()>{});
+    }
+
+    /// @brief Get a unit vector in which the component of the specified index is @a 1.
+    /// @return the unit vector
+    static vector_type unit(size_t index)
+    {
+        using a = constant_generator<scalar_type>;
+        using b = constant_generator<scalar_type>;
+        using c = conditional_generator<a, b>;
+        return generate(c(index, a(one<scalar_type>()), b(zero<scalar_type>())));
     }
 
 }; // struct vector
@@ -506,7 +435,7 @@ struct cross_product_functor<vector<Scalar, 3>>
     }
 };
 
-template <typename Scalar, std::size_t Dimensionality>
+template <typename Scalar, size_t Dimensionality>
 struct dot_product_functor<vector<Scalar, Dimensionality>>
 {
     using scalar_type = Scalar;
@@ -516,7 +445,7 @@ struct dot_product_functor<vector<Scalar, Dimensionality>>
     { return impl(v, w); }
 
 private:
-    template <std::size_t...Is>
+    template <size_t...Is>
     static scalar_type impl(const vector_type& v, const vector_type& w, std::index_sequence<Is...>)
     { return idlib::plus_fold_expr()((v[Is] * w[Is])...); }
 
@@ -524,7 +453,7 @@ private:
     { return impl(v, w, std::make_index_sequence<vector_type::dimensionality()>{}); }
 }; // struct dot_product_functor
 
-template <typename Scalar, std::size_t Dimensionality>
+template <typename Scalar, size_t Dimensionality>
 struct squared_euclidean_norm_functor<vector<Scalar, Dimensionality>>
 {
     using scalar_type = Scalar;
@@ -534,7 +463,7 @@ struct squared_euclidean_norm_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
     
 private:
-    template <std::size_t...Is>
+    template <size_t...Is>
     static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
     { return idlib::plus_fold_expr()((v[Is] * v[Is])...); }
 
@@ -543,7 +472,7 @@ private:
 
 }; // struct squared_euclidean_norm_functor
 
-template <typename Scalar, std::size_t Dimensionality>
+template <typename Scalar, size_t Dimensionality>
 struct euclidean_norm_functor<vector<Scalar, Dimensionality>>
 {
     using scalar_type = Scalar;
@@ -553,7 +482,7 @@ struct euclidean_norm_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
 
 private:
-    template <std::size_t...Is>
+    template <size_t...Is>
     static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
     { return std::sqrt(idlib::plus_fold_expr()((v[Is] * v[Is])...)); }
 
@@ -562,7 +491,7 @@ private:
     
 }; // struct euclidean_norm_functor
 
-template <typename Scalar, std::size_t Dimensionality>
+template <typename Scalar, size_t Dimensionality>
 struct manhattan_norm_functor<vector<Scalar, Dimensionality>>
 {
     using scalar_type = Scalar;
@@ -572,7 +501,7 @@ struct manhattan_norm_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
 
 private:
-    template <std::size_t...Is>
+    template <size_t ... Is>
     static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
     { return idlib::plus_fold_expr()(std::abs(v[Is])...); }
 
@@ -581,7 +510,9 @@ private:
 
 }; // struct manhattan_norm_functor
 
-template <typename Scalar, std::size_t Dimensionality>
+/// @internal
+/// @brief Specialization of idlib::maximum_norm_functor for idlib::vector<Scalar, Dimensionality>.
+template <typename Scalar, size_t Dimensionality>
 struct maximum_norm_functor<vector<Scalar, Dimensionality>>
 {
     using scalar_type = Scalar;
@@ -591,7 +522,7 @@ struct maximum_norm_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
 
 private:
-    template <std::size_t...Is>
+    template <size_t...Is>
     static scalar_type impl(const vector_type& v, std::index_sequence<Is...>)
     { return variadic::max(std::abs(v[Is])...); }
 
@@ -600,9 +531,10 @@ private:
 
 }; // struct maximum_norm_functor
 
+/// @internal
 /// @brief The result of a normalization of a vector.
 /// If the old length is equal to the new length and the new length is @a 0
-template <typename Scalar, std::size_t Dimensionality>
+template <typename Scalar, size_t Dimensionality>
 struct normalization_result
 {
     using scalar_type = Scalar;
@@ -629,12 +561,9 @@ struct normalization_result
     { return m_vector; }
 };
 
-/// @brief When normalizing a zero vector, raise an exception.
-struct zero_policy_exception {};
-/// @brief When normalizing a zero vector, return zero vector.
-struct zero_policy_retain {};
-
-template <typename Scalar, std::size_t Dimensionality, typename Norm>
+/// @internal
+/// @brief Specialization of idlib::normalize_functor for idlib::vector<Scalar, Dimensionality> values.
+template <typename Scalar, size_t Dimensionality, typename Norm>
 struct normalize_functor<vector<Scalar, Dimensionality>, Norm>
 {
     using scalar_type = Scalar;
@@ -661,9 +590,11 @@ private:
 
 }; // struct normalize_functor
 
+/// @internal
 /// @brief Specialization of idlib::max_element_functor for idlib::vector<Scalar, Dimensionality> values.
-template <typename Scalar, std::size_t Dimensionality>
-struct max_element_functor<vector<Scalar, Dimensionality>>
+template <typename Scalar, size_t Dimensionality>
+struct max_element_functor<vector<Scalar, Dimensionality>,
+                           std::enable_if_t<(Dimensionality > 0 )>>
 {
     using vector_type = vector<Scalar, Dimensionality>;
 
@@ -671,18 +602,47 @@ struct max_element_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
     
 private:
-    template<std::size_t...Is>
+    template<size_t...Is>
     auto impl(const vector_type& v, std::index_sequence<Is...>) const
     { return variadic::max((v[Is])...); }
 
     auto impl(const vector_type& v) const
-    { return impl(v, std::make_index_sequence<Dimensionality>{}); }
+    { return impl(v, std::make_index_sequence<vector_type::dimensionality()>{}); }
     
 }; // struct max_element_functor
 
+/// @internal
+/// @brief Specialization of idlib::zip_max_functor for idlib::vector<Scalar, Dimensionality> values.
+/// @remark
+/// For two vectors \f$\vec{u},\vec{v}\in\mathbb{R}^n,n>0\f$ the zip max result is defined as
+/// \f[
+/// max\left(\vec{u},\vec{v}\right)=left(max(u_1,v_1),\ldots,max(u_n,v_n)\right)
+/// \f]
+template <typename Scalar, size_t Dimensionality>
+struct zip_max_functor<vector<Scalar, Dimensionality>,
+                       vector<Scalar, Dimensionality>,
+                       std::enable_if_t<(Dimensionality > 0 )>>
+{
+    using vector_type = vector<Scalar, Dimensionality>;
+
+    auto operator()(const vector_type& u, const vector_type& v) const
+    { return impl(u, v); }
+
+private:
+    template<size_t...Is>
+    auto impl(const vector_type& u, const vector_type& v, std::index_sequence<Is...>) const
+    { return vector_type(std::max(u[Is], v[Is])...); }
+
+    auto impl(const vector_type& u, const vector_type& v) const
+    { return impl(u, v, std::make_index_sequence<vector_type::dimensionality()>{}); }
+
+}; // struct zip_max_functor
+
+/// @internal
 /// @brief Specialization of idlib::min_element_functor for idlib::vector<Scalar, Dimensionality> values.
-template <typename Scalar, std::size_t Dimensionality>
-struct min_element_functor<vector<Scalar, Dimensionality>>
+template <typename Scalar, size_t Dimensionality>
+struct min_element_functor<vector<Scalar, Dimensionality>,
+                           std::enable_if_t<(Dimensionality > 0 )>>
 {
     using vector_type = vector<Scalar, Dimensionality>;
 
@@ -690,7 +650,7 @@ struct min_element_functor<vector<Scalar, Dimensionality>>
     { return impl(v); }
 
 private:
-    template<std::size_t...Is>
+    template<size_t...Is>
     auto impl(const vector_type& v, std::index_sequence<Is...>) const
     { return variadic::min((v[Is])...); }
 
@@ -699,9 +659,39 @@ private:
 
 }; // struct min_element_functor
 
-/// @brief Specialization of idlib::lineary_interpolate_functor for lineary interpolation of idlib::vector<Scalar, Dimensionality> values.
+/// @internal
+/// @brief Specialization of idlib::zip_min_functor for idlib::vector<Scalar, Dimensionality> values.
+/// @remark
+/// For two vectors \f$\vec{u},\vec{v}\in\mathbb{R}^n,n>0\f$ the zip min result is defined as
+/// \f[
+/// min\left(\vec{u},\vec{v}\right)=left(min(u_1,v_1),\ldots,min(u_n,v_n)\right)
+/// \f]
 template <typename Scalar, size_t Dimensionality>
-struct lineary_interpolate_functor<vector<Scalar, Dimensionality>, Scalar, void>
+struct zip_min_functor<vector<Scalar, Dimensionality>,
+                       vector<Scalar, Dimensionality>,
+                       std::enable_if_t<(Dimensionality > 0 )>>
+{
+    using vector_type = vector<Scalar, Dimensionality>;
+
+    auto operator()(const vector_type& u, const vector_type& v) const
+    { return impl(u, v); }
+
+private:
+    template<size_t...Is>
+    auto impl(const vector_type& u, const vector_type& v, std::index_sequence<Is...>) const
+    { return vector_type(std::min(u[Is], v[Is])...); }
+
+    auto impl(const vector_type& u, const vector_type& v) const
+    { return impl(u, v, std::make_index_sequence<vector_type::dimensionality()>{}); }
+
+}; // struct zip_min_functor
+
+/// @internal
+/// @brief Specialization of idlib::lineary_interpolate_functor for idlib::vector<Scalar, Dimensionality> values.
+template <typename Scalar, size_t Dimensionality>
+struct lineary_interpolate_functor<vector<Scalar, Dimensionality>,
+                                   Scalar,
+                                   std::enable_if_t<(Dimensionality > 0 )>>
 {
     using parameter_type = Scalar;
     using value_type = vector<Scalar, Dimensionality>;
@@ -715,13 +705,14 @@ struct lineary_interpolate_functor<vector<Scalar, Dimensionality>, Scalar, void>
 }; // struct lineary_interpolate_functor
 
 /// @internal
-template <typename S, size_t D>
-struct random_functor<vector<S, D>,
-                      std::enable_if_t<(D > 0)>>
+/// @brief Specialization of idlb::random_functor for idlib::vector<Scalar, Dimensionality> values.
+template <typename Scalar, size_t Dimensionality>
+struct random_functor<vector<Scalar, Dimensionality>,
+                      std::enable_if_t<(Dimensionality > 0)>>
 {
-    using scalar_type = S;
+    using scalar_type = Scalar;
 
-    using vector_type = vector<scalar_type, D>;
+    using vector_type = vector<scalar_type, Dimensionality>;
   
     vector_type operator()() const
     { return vector_type(random<typename vector_type::implementation_type>()); }
@@ -741,11 +732,11 @@ struct random_functor<vector<S, D>,
 
 namespace std {
 
-template<typename Scalar, std::size_t Dimensionality, std::size_t...Is>
+template<typename Scalar, size_t Dimensionality, size_t...Is>
 idlib::vector<Scalar, Dimensionality> abs(const idlib::vector<Scalar, Dimensionality>& v, index_sequence<Is...>)
 { return idlib::vector<Scalar, Dimensionality>(std::abs(v[Is])...); }
 
-template<typename Scalar, std::size_t Dimensionality>
+template<typename Scalar, size_t Dimensionality>
 idlib::vector<Scalar, Dimensionality> abs(const idlib::vector<Scalar, Dimensionality>& v)
 { return abs(v, make_index_sequence<Dimensionality>{}); }
 

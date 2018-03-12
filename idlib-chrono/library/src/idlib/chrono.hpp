@@ -22,22 +22,18 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/// @file idlib/chrono.hpp
+/// @brief Master include file of the Idlib chrono library.
+/// @author Michael Heilmann
+
 #pragma once
 
-#include "idlib/platform.hpp"
+#pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE (1)
 
-namespace idlib {
+#include "idlib/chrono/time_units.hpp"
+#include "idlib/chrono/stopwatch.hpp"
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
-
-} // namespace idlib
+#undef IDLIB_PRIVATE
+#pragma pop_macro("IDLIB_PRIVATE")

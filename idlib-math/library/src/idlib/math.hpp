@@ -32,41 +32,35 @@
 #undef IDLIB_PRIVATE
 #define IDLIB_PRIVATE 1
 
+#include "idlib/math/angle.hpp"
+#include "idlib/math/angle-degrees-radians-turns.hpp"
 #include "idlib/math/arithmetic_array_1d.hpp"
 #include "idlib/math/arithmetic_array_2d.hpp"
 #include "idlib/math/arithmetic_functor.hpp"
-
-// matrix-specific
-#include "idlib/math/identity.hpp"
-#include "idlib/math/trace.hpp"
-#include "idlib/math/transpose.hpp"
-
-#include "idlib/math/look_at_matrix.hpp"
-#include "idlib/math/orthographic_projection_matrix.hpp"
-#include "idlib/math/perspective_projection_matrix.hpp"
-#include "idlib/math/rotation_matrix.hpp"
-#include "idlib/math/scaling_matrix.hpp"
-#include "idlib/math/translation_matrix.hpp"
-
-#include "idlib/math/angle.hpp"
-#include "idlib/math/angle-degrees-radians-turns.hpp"
-
-#include "idlib/math/operators.hpp"
-#include "idlib/math/dimensionality.hpp"
-#include "idlib/math/units.hpp"
-
-#include "idlib/math/generator.hpp"
 #include "idlib/math/constant_generator.hpp"
 #include "idlib/math/conditional_generator.hpp"
-
+#include "idlib/math/dimensionality.hpp"
 #include "idlib/math/enclose.hpp"
+#include "idlib/math/generator.hpp"
+#include "idlib/math/identity.hpp"
+#include "idlib/math/is_acute_angle-degrees-radians-turns.hpp"
 #include "idlib/math/is_enclosing.hpp"
 #include "idlib/math/is_intersecting.hpp"
-#include "idlib/math/translate.hpp"
-
-#include "idlib/math/point.hpp"
-#include "idlib/math/vector.hpp"
+#include "idlib/math/look_at_matrix.hpp"
 #include "idlib/math/matrix.hpp"
+#include "idlib/math/operators.hpp"
+#include "idlib/math/orthographic_projection_matrix.hpp"
+#include "idlib/math/perspective_projection_matrix.hpp"
+#include "idlib/math/point.hpp"
+#include "idlib/math/rotation_matrix.hpp"
+#include "idlib/math/scaling_matrix.hpp"
+#include "idlib/math/trace.hpp"
+#include "idlib/math/transpose.hpp"
+#include "idlib/math/translate.hpp"
+#include "idlib/math/translation_matrix.hpp"
+#include "idlib/math/angle_units.hpp"
+#include "idlib/math/vector.hpp"
+#include "idlib/math/vector-rejection-projection.hpp"
 
 #undef IDLIB_PRIVATE
 #pragma pop_macro("IDLIB_PRIVATE")

@@ -22,22 +22,30 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "gtest/gtest.h"
+#include "idlib/math.hpp"
 
-#include "idlib/platform.hpp"
+namespace idlib::tests {
 
-namespace idlib {
+TEST(is_acute_angle_test, degrees)
+{
+    using angle_type = idlib::angle<single, idlib::degrees>;
+    angle_type x(idlib::zero<single>());
+    angle_type y(idlib::fraction<single, 90, 1>());
+}
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
+TEST(is_acute_angle_test, radians)
+{
+    using angle_type = idlib::angle<single, idlib::radians>;
+    angle_type x(idlib::zero<single>());
+    angle_type y(idlib::pi<single>());
+}
 
-} // namespace idlib
+TEST(is_acute_angle_test, turns)
+{
+    using angle_type = idlib::angle<single, idlib::turns>;
+    angle_type x(idlib::zero<single>());
+    angle_type y(idlib::fraction<single, 1, 4>());
+}
+
+} // namespace idlib::tests

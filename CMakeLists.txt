@@ -44,6 +44,7 @@ endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-filesystem)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-color)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-chrono)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-type)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-document)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/idlib-signal)

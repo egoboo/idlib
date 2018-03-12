@@ -22,22 +22,23 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "gtest/gtest.h"
+#include "idlib/math.hpp"
 
-#include "idlib/platform.hpp"
+namespace idlib::tests {
 
-namespace idlib {
+TEST(zero_test, types)
+{
+    static_assert(std::is_same<decltype(idlib::zero<signed short>()), signed short>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<unsigned short>()), unsigned short>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<signed int>()), signed int>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<unsigned int>()), unsigned int>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<signed long>()), signed long>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<unsigned long>()), unsigned long>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<signed long long>()), signed long long>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<unsigned long long>()), unsigned long long>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<single>()), single>::value, "");
+    static_assert(std::is_same<decltype(idlib::zero<double>()), double>::value, "");
+}
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
-
-} // namespace idlib
+} // namespace idlib::tests

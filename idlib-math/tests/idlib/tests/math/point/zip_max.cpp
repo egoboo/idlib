@@ -22,22 +22,28 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "gtest/gtest.h"
+#include "idlib/math.hpp"
 
-#include "idlib/platform.hpp"
+namespace idlib::tests {
 
-namespace idlib {
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
+using point_3i = idlib::point<vector_3i>;
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
+TEST(zip_max_test, point_3i)
+{
+    for (size_t i = 0; i < 1000; ++i)
+    {
+        auto interval = interval_i(-1000, +1000);
+        auto a = idlib::random<point_3i>(interval);
+        auto b = idlib::random<point_3i>(interval);
+        auto c = idlib::zip_max(a,b);
+        for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
+        {
+            ASSERT_TRUE(c[i] == std::max(a[i], b[i]));
+        }
+    }
+}
 
-} // namespace idlib
+} // namespace idlib::tests

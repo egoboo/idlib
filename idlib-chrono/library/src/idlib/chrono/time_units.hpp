@@ -22,22 +22,28 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+/// @file idlib/chrono/time_units.hpp
+/// @brief Types denoting time units.
+/// @author Michael Heilmann
 
-#include "idlib/platform.hpp"
+#pragma once
 
 namespace idlib {
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
+/// @brief Type of a unit in which time is measured.
+/// Denotes the unit "milliseconds".
+struct milliseconds {};
+
+/// @brief Type of a unit in which time is measured.
+/// Denotes the unit "seconds".
+struct seconds {};
+
+/// @brief Type of a unit in which time is measured.
+/// Denotes the unit "minutes".
+struct minutes {};
+
+/// @brief Type of a unit in which time is measured.
+/// Denotes the unit "hours".
+struct hours {};
 
 } // namespace idlib

@@ -27,31 +27,24 @@
 
 namespace idlib::tests {
 
-TEST(matrix_4f_4f, determinant)
+using interval_i = idlib::interval<int>;
+using vector_3i = idlib::vector<int, 3>;
+using point_3i = idlib::point<vector_3i>;
+
+TEST(max_element_test, point_3i)
 {
-    using M = idlib::matrix<single, 4, 4>;
-    M m;
-    // a binary matrix with a checkerboard pattern of 0's and 1's
-    // determinant must be zero
-    m = M(0, 1, 0, 1,
-          1, 0, 1, 0,
-          0, 1, 0, 1,
-          1, 0, 1, 0);
-    ASSERT_EQ(m.det(), 0);
-    // a translation matrix with a translation of 1 along the x-axis
-    // determinant must be one
-    m = M(1, 0, 0, 1,
-          0, 1, 0, 0,
-          0, 0, 1, 0,
-          0, 0, 1, 1);
-    ASSERT_EQ(m.det(), 1);
-    // a translation matrix with a translation of 2 along the x-axis
-    // determinant must be one
-    m = M(1, 0, 0, 2,
-          0, 1, 0, 0,
-          0, 0, 1, 0,
-          0, 0, 1, 1);
-    ASSERT_EQ(m.det(), 1);
+    for (size_t i = 0; i < 1000; ++i)
+    {
+        auto interval = interval_i(-1000, +1000);
+        auto a = idlib::random<point_3i>(interval);
+        // Explicitly find the maximal element.
+        auto e = a[0];
+        for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
+        {
+            if (a[i] > e) e = a[i];
+        }
+        ASSERT_TRUE(e == idlib::max_element(a));
+    }
 }
 
 } // namespace idlib::tests

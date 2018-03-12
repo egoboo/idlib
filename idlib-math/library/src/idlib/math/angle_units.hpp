@@ -22,8 +22,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/math/units.hpp
-/// @brief Types denoting units
+/// @file idlib/math/angle_units.hpp
+/// @brief Types denoting angle units.
 /// @author Michael Heilmann
 
 #pragma once

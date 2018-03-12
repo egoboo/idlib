@@ -29,7 +29,7 @@
 #pragma once
 
 #include "idlib/math/angle.hpp"
-#include "idlib/math/units.hpp"
+#include "idlib/math/angle_units.hpp"
 #include "idlib/numeric.hpp"
 #include "idlib/semantic_cast.hpp"
 
@@ -133,10 +133,6 @@ struct angle<Syntactics, Semantics,
     using syntactics_type = Syntactics;
     using semantics_type = Semantics;
 
-    angle(const angle& other) :
-        m_angle(other.m_angle)
-    {}
-
     /// Construct this angle with its default values.
     angle() :
         m_angle(zero<syntactics_type>())
@@ -147,11 +143,8 @@ struct angle<Syntactics, Semantics,
         m_angle(angle)
     {}
 
-    const angle& operator=(const angle& other)
-    {
-        m_angle = other.m_angle;
-        return *this;
-    }
+    angle(const angle& other) = default;
+    angle& operator=(const angle& other) = default;
 
     bool operator==(const angle& other) const
     { return m_angle == other.m_angle; }
@@ -171,17 +164,11 @@ struct angle<Syntactics, Semantics,
     bool operator>=(const angle& other) const
     { return m_angle >= other.m_angle; }
 
+
     angle operator+(const angle& other) const
     {
         auto t = *this;
         t += other;
-        return t;
-    }
-
-    angle operator-(const angle& other) const
-    {
-        auto t = *this;
-        t -= other;
         return t;
     }
 
@@ -191,16 +178,22 @@ struct angle<Syntactics, Semantics,
         return *this;
     }
 
+
+    angle operator-(const angle& other) const
+    {
+        auto t = *this;
+        t -= other;
+        return t;
+    }
+
     angle operator-=(const angle& other)
     {
         m_angle -= other.m_angle;
         return *this;
     }
 
-    angle operator*(syntactics_type other) const
-    { return angle(m_angle * other); }
 
-    angle operator/(syntactics_type other) const
+    angle operator*(syntactics_type other) const
     { return angle(m_angle * other); }
 
     const angle& operator*=(syntactics_type other)
@@ -208,6 +201,10 @@ struct angle<Syntactics, Semantics,
         m_angle *= other;
         return *this;
     }
+
+
+    angle operator/(syntactics_type other) const
+    { return angle(m_angle * other); }
 
     const angle& operator/=(syntactics_type other)
     {
@@ -221,39 +218,6 @@ public:
 
     explicit operator syntactics_type() const
     { return m_angle; }
-
-public:
-    /// @brief Get if an angle, in degrees, is an acute angle.
-    /// @return @a true if the angle is an acute angle, @a false otherwise
-    /// @remark An angle \f$\alpha\f$ in degrees is an acute angle if \f$0 < a < 90\f$.
-    template <typename LocalSemantics = Semantics>
-    std::enable_if_t<std::is_same<idlib::degrees, LocalSemantics>::value && 
-                     std::is_same<LocalSemantics, Semantics>::value, bool>
-    is_acute() const
-    { return zero<syntactics_type>() < m_angle
-         && m_angle < fraction<syntactics_type, 90, 1>(); }
-
-    /// @brief Get if an angle, in radians, is an acute angle.
-    /// @return @a true if the angle is an acute angle, @a false otherwise
-    /// @remark An acute angle is an angle which has a measure between that of a right angle and that of a zero angle.
-    /// In other words: An angle \f$\alpha\f$ in radians is an acute angle if \f$0 < a < \frac{\pi}{2}\f$.
-    template <typename LocalSemantics = Semantics>
-    std::enable_if_t<std::is_same<idlib::radians, LocalSemantics>::value &&
-                     std::is_same<LocalSemantics, Semantics>::value, bool>
-    is_acute() const
-    { return zero<Syntactics>() < m_angle
-          && m_angle < two_pi<Syntactics>(); }
-
-    /// @brief Get if this angle, is an acute angle.
-    /// @return @a true if the angle is an acute angle, @a false otherwise
-    /// @remark An acute angle is an angle which has a measure between that of a right angle and that of a zero angle.
-    /// In other words: An angle \f$\alpha\f$ in turns is an acute angle if \f$0 < a < \frac{1}{4}\f$.
-    template <typename LocalSemantics = Semantics>
-    std::enable_if_t<std::is_same<idlib::turns, LocalSemantics>::value &&
-                     std::is_same<LocalSemantics, Semantics>::value, bool>
-    is_acute() const
-    { return zero<syntactics_type>() < m_angle
-          && m_angle < fraction<syntactics_type, 1, 4>(); }
 
 private:
     syntactics_type m_angle;

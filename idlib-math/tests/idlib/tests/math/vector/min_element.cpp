@@ -29,37 +29,20 @@ namespace idlib::tests {
 
 using interval_i = idlib::interval<int>;
 using vector_3i = idlib::vector<int, 3>;
-using point_3i = idlib::point<vector_3i>;
 
-TEST(max_element, point_3i)
-{
-    for (size_t i = 0; i < 1000; ++i)
-    {
-        auto interval = interval_i(-1000, +1000);
-        auto a = idlib::random<point_3i>(interval);
-        // Explicitly find the maximal element.
-        auto e = a[0];
-        for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
-        {
-            if (a[i] > e) e = a[i];
-        }
-        ASSERT_TRUE(e == idlib::max_element(a));
-    }
-}
-
-TEST(max_element, vector_3i)
+TEST(min_element_test, vector_3i)
 {
     for (size_t i = 0; i < 1000; ++i)
     {
         auto interval = interval_i(-1000, +1000);
         auto a = idlib::random<vector_3i>(interval);
-        // Explicitly find the maximal element.
+        // Explicitly find the minimal element.
         auto e = a[0];
-        for (size_t i = 1, n = point_3i::dimensionality(); i < n; ++i)
+        for (size_t i = 1, n = vector_3i::dimensionality(); i < n; ++i)
         {
-            if (a[i] > e) e = a[i];
+            if (a[i] < e) e = a[i];
         }
-        ASSERT_TRUE(e == idlib::max_element(a));
+        ASSERT_TRUE(e == idlib::min_element(a));
     }
 }
 

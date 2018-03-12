@@ -22,22 +22,21 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "gtest/gtest.h"
+#include "idlib/math.hpp"
 
-#include "idlib/platform.hpp"
+namespace idlib::tests {
 
-namespace idlib {
+using vector_3s = idlib::vector<single, 3>;
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
+TEST(vector_projection_rejection_test, vector_3s_special)
+    {
+        vector_3s x, y, z;
+        // vector x = {1, 4, 0} on vector y = {4, 2, 4} yields z = {4/3, 2/3, 4/3}
+        x = vector_3s(1, 4, 0);
+        y = vector_3s(4, 2, 4);
+        z = idlib::vector_projection(x, y);
+        ASSERT_TRUE(vector_3s(4.0f / 3.0f, 2.0f / 3.0f, 4.0f / 3.0f) == z);
+}
 
-} // namespace idlib
+} // namespace idlib::tests

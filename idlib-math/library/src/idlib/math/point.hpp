@@ -274,7 +274,8 @@ struct zero_functor<point<Vector>>
 
     using point_type = point<vector_type>;
     
-    static constexpr size_t dimensionality() { return vector_type::dimensionality(); }
+    static constexpr size_t dimensionality()
+    { return vector_type::dimensionality(); }
 
     auto operator()() const
     { return point_type::generate(constant_generator<scalar_type>(zero<scalar_type>())); }
@@ -288,9 +289,13 @@ template <typename Vector>
 struct enclose_functor<point<Vector>, point<Vector>>
 {
     using vector_type = Vector;
+    
     using scalar_type = typename vector_type::scalar_type;
+    
     using point_type = point<vector_type>;
-    static constexpr size_t dimensionality() { return vector_type::dimensionality(); }
+    
+    static constexpr size_t dimensionality()
+    { return vector_type::dimensionality(); }
 
     auto operator()(const point_type& source) const
     { return source; }
@@ -304,9 +309,13 @@ template <typename Vector>
 struct is_enclosing_functor<point<Vector>, point<Vector>>
 {
     using vector_type = Vector;
+    
     using scalar_type = typename vector_type::scalar_type;
+    
     using point_type = point<vector_type>;    
-    static constexpr size_t dimensionality() { return vector_type::dimensionality(); }
+    
+    static constexpr size_t dimensionality()
+    { return vector_type::dimensionality(); }
     
     bool operator()(const point_type& a, const point_type& b) const
     {
@@ -328,14 +337,17 @@ template <typename Vector>
 struct translate_functor<point<Vector>, Vector>
 {
     using vector_type = Vector;
+
     using scalar_type = typename vector_type::scalar_type;
+
     using point_type = point<vector_type>;
-    static constexpr size_t dimensionality() { return vector_type::dimensionality(); }
+
+    static constexpr size_t dimensionality()
+    { return vector_type::dimensionality(); }
     
     auto operator()(const point_type& x, const vector_type& t) const
-    {
-        return semantic_cast<point_type>(semantic_cast<vector_type>(x) + t);
-    }
+    { return semantic_cast<point_type>(semantic_cast<vector_type>(x) + t); }
+
 }; // struct translare_functor
 
 /// @brief Specialization of idlib::is_intersecting_functor.
@@ -345,9 +357,13 @@ template<typename Vector>
 struct is_intersecting_functor<point<Vector>, point<Vector>>
 {
     using vector_type = Vector;
+
     using scalar_type = typename vector_type::scalar_type;
+
     using point_type = point<vector_type>;
-    static constexpr size_t dimensionality() { return vector_type::dimensionality(); }
+
+    static constexpr size_t dimensionality()
+    { return vector_type::dimensionality(); }
     
     bool operator()(const point_type& a, const point_type& b) const
     {
@@ -362,9 +378,10 @@ struct is_intersecting_functor<point<Vector>, point<Vector>>
     }
 }; // struct is_intersecting_functor
 
+/// @internal
 /// @brief Specialization of idlib::max_element_functor for idlib::point<Vector> values.
 template <typename Vector>
-struct max_element_functor<point<Vector>>
+struct max_element_functor<point<Vector>, void>
 {
     using point_type = point<Vector>;
 
@@ -380,10 +397,38 @@ private:
     { return impl(p, std::make_index_sequence<point_type::dimensionality()>{}); }
     
 }; // struct max_element_functor
-    
+
+/// @internal
+/// @brief Specialization of idlib::zip_max_functor for idlib::point<Vector> values.
+/// @remark
+/// For two points \f$P, Q\f$ over $\mathbb{R}^n,n>0\f$ the zip max result is defined as
+/// \f[
+/// max\left(P, Q\right)=left(max(P_1,Q_1),\ldots,max(P_n,Q_n)\right)
+/// \f]
+template <typename Vector>
+struct zip_max_functor<point<Vector>,
+                       point<Vector>,
+                       void>
+{
+    using point_type = point<Vector>;
+
+    auto operator()(const point_type& p, const point_type& q) const
+    { return impl(p, q); }
+
+private:
+    template<size_t...Is>
+    auto impl(const point_type& p, const point_type& q, std::index_sequence<Is...>) const
+    { return point_type(std::max(p[Is], q[Is])...); }
+
+    auto impl(const point_type& p, const point_type& q) const
+    { return impl(p, q, std::make_index_sequence<point_type::dimensionality()>{}); }
+
+}; // struct zip_max_functor
+
+/// @internal
 /// @brief Specialization of idlib::min_element_functor for idlib::point<Vector> values.
 template <typename Vector>
-struct min_element_functor<point<Vector>>
+struct min_element_functor<point<Vector>, void>
 {
     using point_type = point<Vector>;
 
@@ -400,14 +445,44 @@ private:
 
 }; // struct min_element_functor
 
-/// @brief Specialization of idlib::interpolate_functor for linear interpolation of idlib::point<Vector>.
+/// @internal
+/// @brief Specialization of idlib::zip_min_functor for idlib::vector<Scalar, Dimensionality> values.
+/// @remark
+/// For two vectors \f$\vec{u},\vec{v}\in\mathbb{R}^n,n>0\f$ the zip min result is defined as
+/// \f[
+/// min\left(\vec{u},\vec{v}\right)=left(min(u_1,v_1),\ldots,min(u_n,v_n)\right)
+/// \f]
+template <typename Vector>
+struct zip_min_functor<point<Vector>,
+                       point<Vector>,
+                       void>
+{
+    using point_type = point<Vector>;
+
+    auto operator()(const point_type& p, const point_type& q) const
+    { return impl(p, q); }
+
+private:
+    template<size_t...Is>
+    auto impl(const point_type& p, const point_type& q, std::index_sequence<Is...>) const
+    { return point_type(std::min(p[Is], q[Is])...); }
+
+    auto impl(const point_type& p, const point_type& q) const
+    { return impl(p, q, std::make_index_sequence<point_type::dimensionality()>{}); }
+
+}; // struct zip_min_functor
+
+/// @internal
+/// @brief Specialization of idlib::interpolate_functor for idlib::point<Vector>.
 template <typename Vector>
 struct lineary_interpolate_functor<point<Vector>, typename Vector::scalar_type, void>
 {
     using vector_type = Vector;
+    
     using point_type = idlib::point<vector_type>;
     
     using value_type = point_type;
+    
     using parameter_type = typename point_type::scalar_type;
 
     auto operator()(const value_type& x, const value_type& y, parameter_type t) const
@@ -445,10 +520,12 @@ private:
 }; // struct semantic_cast_functor
 
 /// @internal
+/// @brief Specialization of idlib::random_functor for idlib::point<V>.
 template <typename V>
 struct random_functor<point<V>, void>
 {
     using point_type = point<V>;
+    
     using scalar_type = typename point_type::scalar_type;
 
     point_type operator()() const

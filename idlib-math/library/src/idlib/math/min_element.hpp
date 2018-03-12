@@ -26,11 +26,15 @@
 
 namespace idlib {
 
-template <typename T>
+template <typename T, typename Enabled = void>
 struct min_element_functor;
 
+/// @brief Determine the least component value of a matrix, point, or vector.
+/// @tparam T the matrix, point, or vector type
+/// @param v the value of type T of which the least component value is determined
+/// @return the least component value
 template <typename T>
-auto min_element(const T& v)
+auto min_element(const T& v) -> decltype(min_element_functor<T>()(v))
 { return min_element_functor<T>()(v); }
 
 } // namespace idlib

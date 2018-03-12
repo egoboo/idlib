@@ -104,7 +104,7 @@ public:
         : m_origin(origin), m_axis(axis), m_angle(angle) 
     {
         m_axis = normalize(axis, euclidean_norm_functor<vector_type>{}).get_vector();
-        if (!m_angle.is_acute())
+        if (!is_acute_angle(m_angle))
         {
             throw runtime_error(__FILE__, __LINE__, "the angle is not an acute angle");
         }

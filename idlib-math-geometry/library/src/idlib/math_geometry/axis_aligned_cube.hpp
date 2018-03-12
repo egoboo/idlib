@@ -22,7 +22,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @file idlib/math/geometry/axis_aligned_cube.hpp
+/// @file idlib/math_geometry/axis_aligned_cube.hpp
 /// @brief Axis aligned cubes.
 /// @author Michael Heilmann
 

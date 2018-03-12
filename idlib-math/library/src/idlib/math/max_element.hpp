@@ -26,11 +26,15 @@
 
 namespace idlib {
 
-template <typename T>
+template <typename T, typename Enabled = void>
 struct max_element_functor;
 
+/// @brief Determine the greatest component value of a matrix, point, or vector.
+/// @tparam T the matrix, point, or vector type
+/// @param v the value of type T of which the greatest component value is determined
+/// @return the greatest component value
 template <typename T>
-auto max_element(const T& v)
+auto max_element(const T& v) -> decltype(max_element_functor<T>()(v))
 { return max_element_functor<T>()(v); }
 
 } // namespace idlib

@@ -28,6 +28,8 @@
 
 #pragma once
 
+#define IDLIB_MATH_MATRIX_WITH_RANDOM (0)
+
 #include "idlib/crtp.hpp"
 #include "idlib/debug.hpp"
 #include "idlib/math/arithmetic_array_2d.hpp"
@@ -35,6 +37,10 @@
 #include "idlib/math/trace.hpp"
 #include "idlib/math/transpose.hpp"
 #include "idlib/math/identity.hpp"
+#include "idlib/math/max_element.hpp"
+#include "idlib/math/min_element.hpp"
+#include "idlib/variadic/min.hpp"
+#include "idlib/variadic/max.hpp"
 
 namespace idlib {
 
@@ -727,5 +733,81 @@ struct identity_functor<matrix<E, N, M>,
         return r;
     }
 }; // struct identity_functor
+
+/// @brief Specialization of idlib::max_element_functor for idlib::matrix<E, N, M> values.
+template <typename E, size_t N, size_t M>
+struct max_element_functor<matrix<E, N, M>,
+                           std::enable_if_t<(N > 0) && (N == M)>>
+{
+    using matrix_type = matrix<E, N, M>;
+
+    auto operator()(const matrix_type& m) const
+    { return impl(m); }
+    
+private:
+    template<std::size_t...Is>
+    auto impl(const matrix_type& m, std::index_sequence<Is...>) const
+    { return variadic::max((m(Is))...); }
+
+    auto impl(const matrix_type& m) const
+    { return impl(m, std::make_index_sequence<N * M>{}); }
+    
+}; // struct max_element_functor
+
+/// @brief Specialization of idlib::max_element_functor for idlib::matrix<E, N, M> values.
+template <typename E, size_t N, size_t M>
+struct min_element_functor<matrix<E, N, M>,
+                           std::enable_if_t<(N > 0) && (N == M)>>
+{
+    using matrix_type = matrix<E, N, M>;
+
+    auto operator()(const matrix_type& m) const
+    { return impl(m); }
+
+private:
+    template<std::size_t...Is>
+    auto impl(const matrix_type& m, std::index_sequence<Is...>) const
+    { return variadic::min((m[Is])...); }
+
+    auto impl(const matrix_type& m) const
+    { return impl(m, std::make_index_sequence<N * M>{}); }
+
+}; // struct min_element_functor
+
+#if defined(IDLIB_MATH_MATRIX_WITH_RANDOM) && 1 == IDLIB_MATH_MATRIX_WITH_RANDOM
+
+/// @internal
+/// @brief Specialization of idlib::random_functor for matrix<E, N, M> values.
+template <typename E, size_t N, size_t M>
+struct random_functor<matrix<E, N, M>,
+                      std::enable_if_t<(N > 0) && (M > 0)>>
+{
+    using matrix_type = matrix<E, N, M>;
+
+    using element_type = typename matrix_type::element_type;
+
+    matrix_type operator()() const
+    {
+        return matrix_type(random<typename matrix_type::implementation_type>());
+    }
+
+    matrix_type operator()(rng *rng) const
+    {
+        return matrix_type(random<typename matrix_type::implementation_type>(rng));
+    }
+
+    matrix_type operator()(const interval<element_type>& interval) const
+    {
+        return point_type(random<typename matrix_type::implementation_type>(interval));
+    }
+
+    matrix_type operator()(rng *rng, const interval<element_type>& interval) const
+    {
+        return matrix_type(random<typename matrix_type::implementation_type>(rng, interval));
+    }
+
+}; // struct random_functor
+
+#endif
 
 } // namespace idlib

@@ -22,22 +22,30 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "gtest/gtest.h"
+#include "idlib/math.hpp"
 
-#include "idlib/platform.hpp"
+namespace idlib::tests {
 
-namespace idlib {
+using interval_i = idlib::interval<int>;
+using matrix_3i_3i = idlib::matrix<int, 3, 3>;
 
-/// @tparam Element the element type
-/// @tparam Width the width of the array
-/// @tparam Height the height of the array
-/// @tparam Zero type of a functor type returning the zero element value
-/// @tparam Enabled for SFINAE
-template <typename Element,
-          size_t Width,
-          size_t Height,
-          typename Zero,
-          typename Enabled = void>
-struct arithmetic_array_2d;
+TEST(max_element_test, matrix_3i_3i)
+{
+    #if defined(IDLIB_MATH_MATRIX_WITH_RANDOM) && 1 == IDLIB_MATH_MATRIX_WITH_RANDOM
+    for (size_t i = 0; i < 1000; ++i)
+    {
+        auto interval = interval_i(-1000, +1000);
+        auto a = idlib::random<matrix_3i_3i>(interval);
+        // Explicitly find the maximal element.
+        auto e = a(0);
+        for (size_t i = 1, n = matrix_3i_3i::order(); i < n; ++i)
+        {
+            if (a(i) > e) e = a(i);
+        }
+        ASSERT_TRUE(e == idlib::max_element(a));
+    }
+    #endif
+}
 
-} // namespace idlib
+} // namespace idlib::tests

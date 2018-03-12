@@ -30,10 +30,10 @@
 
 namespace idlib {
 
-/// @tparam Syntax the type of the syntax (what values represent angles)
+/// @tparam Syntactics the type of the syntax (what values represent angles)
 /// @tparam Semantics the type of the semantics (how are the values interpreted)
 /// @tparam Enabled for SFINAE
-template <typename Syntax, typename Semantics, typename Enabled = void>
+template <typename Syntactics, typename Semantics, typename Enabled = void>
 struct angle;
 
 } // namespace idlib
