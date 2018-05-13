@@ -40,7 +40,7 @@ TEST(zip_max_test, vector_3i)
         auto c = idlib::zip_max(a,b);
         for (size_t i = 1, n = vector_3i::dimensionality(); i < n; ++i)
         {
-            ASSERT_TRUE(c[i] == std::min(a[i], b[i]));
+            ASSERT_TRUE(c[i] == std::max(a[i], b[i]));
         }
     }
 }
