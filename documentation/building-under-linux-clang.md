@@ -6,7 +6,7 @@ To compile Idlib, open a console, change to the directory in which the source of
 cmake CMakeLists.txt
 make all
 ```
-CMake respects the CC and CXX upon detecting the C and C++ compiler to use.
+CMake respects the `CC` and `CXX` environment variables upon detecting the C and C++ compiler to use.
 For building using Clang instead of GCC it might be required to prefix the above commands with
 ```
 export CC=/usr/bin/clang
