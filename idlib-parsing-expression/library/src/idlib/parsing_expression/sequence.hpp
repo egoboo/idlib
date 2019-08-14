@@ -92,7 +92,7 @@ private:
         {
             return for_each(std::forward<Tuple>(t), f, result.range().end(), end, std::integral_constant<size_t, Index + 1>()); // Advance.
         }
-		return make_match(false, idlib::make_iterator_range(at, at));
+		    return make_match(false, idlib::make_iterator_range(at, at));
     }
 
 public:
@@ -133,22 +133,26 @@ public:
         internal::n_ary_expr<tuple_op_sequence, Expression, Expressions ...>(internal::constructor_access_token{}, expression, expressions ...)
     {}
 
+    struct f {
+      template<typename T, typename It>
+      auto operator()(const T& expr, It at, It end) const
+      {
+        return expr(at, end);
+      }
+    };
+
     template <typename Iterator>
-    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
+    idlib::parsing_expression::match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
     {
         static const tuple_op_sequence op;
-        auto result = op.for_each(this->m_exprs,
-                                  [](const auto& expr, Iterator at, Iterator end) 
-                                    {
-                                        return expr(at, end);
-                                    },
+        auto result = op.for_each(this->m_exprs, f{},
                                   at, 
                                   end);
         if (result)
         {
-			return make_match(true, idlib::make_iterator_range(at, result.range().end()));
+			    return make_match(true, idlib::make_iterator_range(at, result.range().end()));
         }
-		return make_match(false, idlib::make_iterator_range(at, at));
+		    return make_match(false, idlib::make_iterator_range(at, at));
     }
 };
 

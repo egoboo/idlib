@@ -34,6 +34,7 @@
 
 #include "idlib/parsing_expression/match.hpp"
 
+#include <type_traits>
 #include <iterator>
 
 #include "idlib/parsing_expression/header.in"

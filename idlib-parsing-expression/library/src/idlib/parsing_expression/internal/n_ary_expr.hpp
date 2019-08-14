@@ -29,6 +29,7 @@
 #endif
 
 #include "idlib/parsing_expression/internal/constructor_access_token.hpp"
+#include <type_traits>
 #include <tuple>
 
 #include "idlib/parsing_expression/internal/header.in"

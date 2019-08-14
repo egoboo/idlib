@@ -132,16 +132,21 @@ public:
                              exprs ...)
     {}
 
+    struct f {
+      template<typename T, typename It>
+      auto operator()(const T& expr, It at, It end) const
+      {
+        auto result = expr(at, end);
+        return result ? result : make_match(false, at, at);
+      }
+    };
+
     template <typename It>
-    match<std::decay_t<It>> operator()(It at, It end) const
+    idlib::parsing_expression::match<std::decay_t<It>> operator()(It at, It end) const
     {
         static const tuple_op_ordered_choice op;
-        auto result = op.for_each(this->m_exprs,
-                                  [](const auto& expr, It at, It end)
-                                    {
-                                        auto result = expr(at, end);
-                                        return result ? result : make_match(false, at, at);
-                                    }, 
+
+        auto result = op.for_each(this->m_exprs, f{},
                                   at, 
                                   end);
         return result;
