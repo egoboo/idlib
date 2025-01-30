@@ -2,15 +2,11 @@
 
 Idlib is a C++17 cross-platform utility library for Windows, Linux, and OS X.
 Idlib and is made available publicly under the
-[MIT license](https://github.com/primordialmachine/idlib/blob/master/LICENSE.md)
+[MIT license](https://github.com/egoboo/idlib/blob/master/LICENSE.md)
 on
-[Github](https://github.com/primordialmachine/idlib).
+[Github](https://github.com/egoboo/idlib).
 
 The library was built and used under Windows/Visual Studio 2017, Linux/GCC 6, Linux/Clang, and OS X/Clang.
-
-Visit the
-[![Idlib Gitter channel](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/primordialmachine/primordialmachine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-for more information.
 
 ### Featurette
 
@@ -43,7 +39,12 @@ for more information.
 
 ### Build instructions
 
-Download or checkout the source code from https://primordialmachine.com/idlib/.
+Checkout the source code from https://primordialmachine.com/idlib/ by
+```
+git clone https://primordialmachine.com/idlib/
+git submdoule init
+git submodule update
+```
 See below for build instructions for some of the individual environments.
 
 * [Windows 10/Visual Studio Community 2017](documentation/building-under-windows-10-visual-studio-community-2017.md)
