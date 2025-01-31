@@ -43,7 +43,7 @@ namespace std {
 template <typename UnaryFunctor,
 	      typename Iterator>
 struct iterator_traits<idlib::transform_iterator<UnaryFunctor, Iterator>> {
-	using reference = typename invoke_result<const UnaryFunctor(typename iterator_traits<Iterator>::reference)>;
+	using reference = typename invoke_result<const UnaryFunctor, typename iterator_traits<Iterator>::reference>::type;
 	using value_type = typename remove_cv<reference>::type;
 	using pointer = value_type *;
 	using difference_type = typename iterator_traits<Iterator>::difference_type;

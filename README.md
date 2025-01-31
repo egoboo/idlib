@@ -39,19 +39,21 @@ The library was built and used under Windows/Visual Studio 2017, Linux/GCC 6, Li
 
 ### Build instructions
 
-Checkout the source code from https://primordialmachine.com/idlib/ by
+Checkout the source code from https://github.com/egoboo/idlib by
 ```
-git clone https://primordialmachine.com/idlib/
+git clone https://github.com/egoboo/idlib 
 git submdoule init
 git submodule update
 ```
 See below for build instructions for some of the individual environments.
 
-* [Windows 10/Visual Studio Community 2017](documentation/building-under-windows-10-visual-studio-community-2017.md)
+* [Windows 11/Visual Studio Community 2022](documentation/building-under-windows-11-visual-studio-community-2022.md)
 * [Windows 10/Cygwin](documentation/building-under-windows-10-cygwin.md)
 * [Linux/GCC](documentation/building-under-linux-gcc.md)
 * [Linux/Clang](documentation/building-under-linux-clang.md)
 * [OS X/Clang](documentation/building-under-os-x-clang.md)
+
+Only Windows 11/Visual Studio Community 2022 environment is officially supported due to a lack of maintainers for the other environments.
 
 ### Continuous Integrations Status Maxtrix
 
