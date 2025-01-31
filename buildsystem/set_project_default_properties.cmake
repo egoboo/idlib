@@ -64,11 +64,7 @@ macro(set_project_default_properties)
 		  CMAKE_CXX_FLAGS_RELEASE
 		  CMAKE_CXX_FLAGS_RELWITHDEBINFO)
 	  foreach(variable ${variables})
-		if(${variable} MATCHES "/MD")
-		  string(REGEX REPLACE "/MD" "/MT" ${variable} "${${variable}}")
-		endif()
 	  endforeach()
-	  set(MSVC_RUNTIME "static")
 	endif()
 
 	# (3) MSVC specific settings
@@ -140,12 +136,4 @@ macro(include_google_test)
 	if (${IDLIB_CXX_COMPILER_ID} EQUAL ${IDLIB_CXX_COMPILER_ID_GCC})
 	  set(CMAKE_CXX_FLAGS "-Wno-error=unused-function")
 	endif()
-	# Remember the Google Test directory.
-	if (NOT DEFINED IDLIB_PATH)
-	  set(googletest_dir "${CMAKE_CURRENT_SOURCE_DIR}/external/googletest")
-	else()
-	  set(googletest_dir "${IDLIB_PATH}/external/googletest")
-	endif()
-	# Add the Google Test directory.
-	add_subdirectory("${googletest_dir}" EXCLUDE_FROM_ALL)
 endmacro()

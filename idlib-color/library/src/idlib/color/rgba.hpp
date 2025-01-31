@@ -81,9 +81,9 @@ public:
     /// @see color<RGBb>::red()
     static const color& red()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::red(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::red(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "green".
@@ -91,9 +91,9 @@ public:
     /// @see color<RGBb>::green()
     static const color& green()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::green(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::green(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "blue".
@@ -101,9 +101,9 @@ public:
     /// @see color<RGBb>::blue()
     static const color& blue()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::blue(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::blue(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "white".
@@ -111,9 +111,9 @@ public:
     /// @see color<RGBb>::white()
     static const color& white()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::white(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::white(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "black".
@@ -121,9 +121,9 @@ public:
     /// @see color<RGBb>::black()
     static const color& black()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::black(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::black(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "cyan".
@@ -131,9 +131,9 @@ public:
     /// @see color<RGBb>::cyan()
     static const color& cyan()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::cyan(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::cyan(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "magenta".
@@ -141,9 +141,9 @@ public:
     /// @see color<RGBb>::magenta()
     static const color& magenta()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::magenta(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::magenta(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "yellow".
@@ -151,9 +151,9 @@ public:
     /// @see color<RGBb>::yellow()
     static const color& yellow()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::yellow(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::yellow(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "purple".
@@ -161,9 +161,9 @@ public:
     /// @see color<RGBb>::purple()
     static const color& purple()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::purple(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::purple(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "grey".
@@ -171,9 +171,9 @@ public:
     /// @see color<RGBb>::grey()
     static const color& grey()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::grey(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::grey(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
 public:

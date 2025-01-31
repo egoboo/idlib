@@ -75,27 +75,27 @@ public:
     /// @return the color "black"
     static const color& black()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::black(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::black(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "grey" (75,75,75).
     /// @return the color "grey".
     static const color& grey()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::grey(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::grey(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
     /// @brief The color "white" (255,255,255).
     /// @return the color "white"
     static const color& white()
     {
-        static const color color(color<pure_color_space_t<color_space_type>>::white(),
-                                 color_space_type::a::syntax::range().max());
-        return color;
+        static const color c(color<pure_color_space_t<color_space_type>>::white(),
+                             color_space_type::a::syntax::range().max());
+        return c;
     }
 
 public:

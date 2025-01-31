@@ -26,9 +26,6 @@ option(idlib-with-documentation
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/buildsystem/set_project_default_properties.cmake)
 
-# Add module Google Test.
-include_google_test()
-
 # Ensure the "check" target exists.
 if (NOT MSVC)
   if (NOT TARGET check)
@@ -39,6 +36,16 @@ endif()
 # Add subdirectories for the library and the tests.
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/library)
 if (idlib-with-tests)
+  include(FetchContent)
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/b514bdc898e2951020cbdca1304b75f5950d1f59.zip
+  )
+  # For Windows: Prevent overriding the parent project's compiler/linker settings
+  #set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  FetchContent_MakeAvailable(googletest)
+  enable_testing()
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
 
