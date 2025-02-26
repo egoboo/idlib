@@ -5,8 +5,6 @@ project(idlib-test CXX)
 message("building Idlib Tests")
 set_project_default_properties()
 
-# Add gtest library include.
-include_directories("${CMAKE_BINARY_DIR}/external/googletest/googletest/include")
 # Include directory locations.
 include_directories(${PROJECT_SOURCE_DIR}/../library/src)
 include_directories(${PROJECT_SOURCE_DIR})

@@ -5,6 +5,11 @@ cmake_minimum_required(VERSION 3.8)
 project(idlib CXX)
 message("building Idlib")
 
+# Enable/disable enables fetching of google test.
+# The value of this option can be set from the command-line by -Didlib-with-fetch-googletest=(ON|OFF).
+option(idlib-with-fetch-googletest
+       "enable/disable fetching of google test. ON enables the content fetch, OFF disables thsi content fetch. Initial value is ON."
+       ON)
 
 # Enable/disable compilation and execution of unit tests.
 # The value of this option can be set from the command-line by -Didlib-with-tests=(ON|OFF).
@@ -35,16 +40,19 @@ endif()
 
 # Add subdirectories for the library and the tests.
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/library)
-if (idlib-with-tests)
+if (idlib-with-fetch-googletest)
   include(FetchContent)
   set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
   FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/b514bdc898e2951020cbdca1304b75f5950d1f59.zip
+    URL https://github.com/google/googletest/archive/refs/tags/v1.16.0.zip
   )
   # For Windows: Prevent overriding the parent project's compiler/linker settings
   #set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
   FetchContent_MakeAvailable(googletest)
+endif()
+
+if (idlib-with-tests)
   enable_testing()
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
 endif()
